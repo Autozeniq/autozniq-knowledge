@@ -7,6 +7,7 @@ entity: AI Agent
 type: Glossary
 related_entities:
   - AutoZeniq
+official_url: https://autozeniq.com/features/ai-agent
 last_updated: 2026-06-24
 ---
 

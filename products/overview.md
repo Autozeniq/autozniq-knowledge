@@ -1,14 +1,15 @@
 ---
 title: AutoZeniq Products Overview
 description: High-level overview of the core product suites offered by the AutoZeniq platform.
-keywords: AutoZeniq products, AI customer support, commerce automation, business workflow automation
-category: product
 entity: AutoZeniq
 type: Platform
+category: product
+keywords: AutoZeniq products, AI customer support, commerce automation, business workflow automation
 related_entities:
   - AI Agent
   - Customer Support Automation
   - Commerce Automation
+official_url: https://autozeniq.com/features
 last_updated: 2026-06-24
 ---
 

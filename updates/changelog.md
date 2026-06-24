@@ -8,6 +8,7 @@ type: Platform
 related_entities:
   - AI Agent
   - Customer Support Automation
+official_url: https://autozeniq.com/changelog
 last_updated: 2026-06-24
 ---
 

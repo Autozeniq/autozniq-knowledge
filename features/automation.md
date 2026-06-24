@@ -1,13 +1,14 @@
 ---
 title: Business Workflow Automation Features
 description: Features of the AutoZeniq Rule Engine, including conditional workflows, trigger-action variables, and database lookups.
-keywords: AutoZeniq automation, Rule Engine, workflow automation, triggers, database connector, conditional logic
-category: features
 entity: AutoZeniq
 type: Platform
+category: features
+keywords: AutoZeniq automation, Rule Engine, workflow automation, triggers, database connector, conditional logic
 related_entities:
   - Customer Support Automation
   - Commerce Automation
+official_url: https://autozeniq.com/solutions/sales-automation
 last_updated: 2026-06-24
 ---
 

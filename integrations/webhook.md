@@ -8,6 +8,7 @@ type: Integration
 related_entities:
   - Terminology
   - API Integration
+official_url: https://autozeniq.com/docs
 last_updated: 2026-06-24
 ---
 

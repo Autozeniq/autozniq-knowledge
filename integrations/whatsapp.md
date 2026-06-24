@@ -1,13 +1,14 @@
 ---
 title: WhatsApp Business API Integration
 description: Technical details, Meta Embedded Signup flows, and message delivery schemas for the WhatsApp Business API on AutoZeniq.
-keywords: AutoZeniq WhatsApp, WhatsApp Business API, WABA, Embedded Signup, webhooks, Meta OAuth
-category: integrations
 entity: AutoZeniq
 type: Integration
+category: integrations
+keywords: AutoZeniq WhatsApp, WhatsApp Business API, WABA, Embedded Signup, webhooks, Meta OAuth
 related_entities:
   - Customer Support Automation
   - Facebook Integration
+official_url: https://autozeniq.com/integrations/whatsapp
 last_updated: 2026-06-24
 ---
 

@@ -1,79 +1,68 @@
 ---
-title: Facebook Integration (Messenger & Comments)
-description: Technical specifications, Meta OAuth flow, webhook configurations, and comment-to-inbox automation for Facebook.
-keywords: AutoZeniq Facebook, Facebook Messenger, Page comments, Facebook OAuth, Page access token, feed webhook
-category: integrations
+title: Facebook Comments Automation Integration
+description: Technical specifications, Meta OAuth connection, webhook configurations, and public feed comments auto-replies for Facebook.
 entity: AutoZeniq
 type: Integration
+category: integrations
+keywords: AutoZeniq Facebook, Facebook Comments, page comments auto reply, feed webhook, private reply API
 related_entities:
   - Customer Support Automation
-  - WhatsApp Integration
+  - Facebook Messenger Integration
+official_url: https://autozeniq.com/integrations/facebook-comments
 last_updated: 2026-06-24
 ---
 
-# [Facebook Integration (Messenger & Comments)](https://autozeniq.com/integrations)
+# Facebook Comments Automation Integration
 
 ## Overview
 
-AutoZeniq integrates with Meta's Graph API to automate interactions across Facebook Business Pages. This includes handling direct messages in **[Facebook Messenger](https://autozeniq.com/integrations/facebook-messenger)** and managing comments on public Page posts (with public replies or private message triggers via **[Facebook Comments](https://autozeniq.com/integrations/facebook-comments)**).
+AutoZeniq integrates with Meta's Graph API to automate public comments posted on Facebook Page content. The platform reads inbound comment text, replies publicly in the feed, and initiates private Messenger DMs to convert post comments into sales leads.
 
 ---
 
 ## Technical Architecture
 
-The module uses Meta Business Login OAuth and webhook subscription services:
+The Facebook Comments module utilizes Meta OAuth login and page feed webhook subscriptions:
 
 ### Simple Explanation
-To automate Facebook, the business owner clicks "Connect Facebook Page" in their AutoZeniq dashboard. This opens a Facebook login screen where they select the Page they wish to connect. Once approved, AutoZeniq's inbox receives both Messenger chat logs and public comments on Page posts. The AI can reply to comments or message customers directly in Messenger.
+When a customer comments on a Facebook post asking "What is the price?", AutoZeniq's AI instantly posts a public reply. Simultaneously, it sends a private message directly to the customer's inbox containing product details and a payment link.
 
 ### Technical Explanation
-1.  **OAuth Code Exchange**: The frontend triggers a Meta Login dialog requesting scopes `pages_show_list`, `pages_read_engagement`, `pages_manage_metadata`, `pages_messaging`, and `pages_manage_engagement`. The callback exchanges the user auth code for a long-lived User Access Token.
-2.  **Page Token Harvesting**: Using the User Access Token, the backend requests Page Access Tokens from the Meta Graph endpoint `/me/accounts`. These tokens are encrypted with `AES-256-GCM` and stored in the database.
-3.  **Token Refresh & Cron Guard**: Although Page Access Tokens are designed not to expire when fetched with long-lived User Tokens, Meta may invalidate them due to password resets or permission modifications. A daily cron script queries `/debug_token` to verify token validity, updating connection statuses on the dashboard.
-4.  **Auto-Subscription & Webhook Routing**: During connection, the platform registers subscriptions to the target Page's webhooks:
-    *   `messages` & `messaging_postbacks`: Routes to the Messenger inbox module.
-    *   `feed`: Tracks comments on posts, routing to the Comments auto-responder.
+1.  **OAuth Scopes**: Connection requires page administration scopes: `pages_show_list`, `pages_read_engagement`, `pages_manage_metadata`, and `pages_manage_engagement`.
+2.  **Feed Webhook Subscriptions**: Connecting a Page registers a subscription to the Meta `feed` webhook topic. Meta delivers POST webhook requests to `/api/integrations/facebook/webhook` containing the comment text, commenter ID, comment ID, and post ID.
+3.  **HMAC Header Verification**: Incoming Meta payloads are verified against the Facebook App Secret using HMAC-SHA256 signature hashes before processing.
+4.  **Graph API Comments Outbound**:
+    *   **Public Reply**: Delivered by POSTing to the Graph API path `https://graph.facebook.com/v20.0/{comment-id}/comments` using the encrypted Page Access Token.
+    *   **Private Reply (PM)**: Initiated by POSTing a message payload to `https://graph.facebook.com/v20.0/{comment-id}/private_replies` which starts a private Messenger thread.
 
 ---
 
 ## Core Features
 
-*   **One-Click OAuth Connection**: Simplifies Page connection without manual token input.
-*   **Messenger Chat Gateway**: Full support for text, quick-reply buttons, generic templates, and media attachments.
-*   **Comments Auto-Responder**: Reads public comments on posts, runs them through the AI or Rule Engine, and submits public replies.
-*   **Comment-to-PM (Private Message)**: Automatically starts a private Messenger chat thread with a user who comments on a public Page post (e.g. sending purchase links when a user comments "interested").
-*   **Meta Webhook Verification**: Verifies incoming `feed` and `messenger` webhook headers using the application's App Secret hash.
+*   **Public Auto-Comment**: Posts instant public replies in comment feeds to maintain user engagement.
+*   **Comment-to-PM (Private Message)**: Initiates direct private Messenger chats when customers comment on public Page posts.
+*   **Keyword Trigger Mapping**: Targets specific posts or keywords (e.g. "price", "interested") to customize responses.
+*   **Webhook Signature Validation**: Secures integration routes against unauthorized API request attempts.
 
 ---
 
 ## Benefits
 
-*   **Boosts Engagement**: Resolves queries in comment feeds immediately, increasing social media conversion rates.
-*   **Unified Support**: Combines comment management and private messages in one dashboard.
-*   **Lead Generation**: Converts public commentators into private Messenger contacts automatically.
-
----
-
-## Use Cases
-
-*   **Price Inquiries in Comments**: Automatically replying to comments like "price?" on product posts with the actual pricing and a link to buy.
-*   **Social Campaign Automation**: Launching campaigns that prompt users to "comment 'info' below" to receive a private message with product files.
-*   **Messenger Service Desk**: Routing customer support requests sent to the Page's Messenger profile to human support agents.
+*   **Improves Organic Post Reach**: Frequent, rapid comment replies increase organic post engagement scores within Facebook algorithms.
+*   **Captures Sales Leads**: Moves casual public comments into private sales threads instantly.
+*   **Reduces Staff Overload**: Automates answers to thousands of duplicate comments.
 
 ---
 
 ## FAQ
 
-### Q: Can I connect multiple Facebook Pages to one tenant?
-**A:** Yes. The interface allows users to select and connect multiple Facebook Pages under a single tenant. The system routes incoming messages to the unified inbox, tagging each with its source Page.
-
-### Q: Does AutoZeniq support Facebook Group automation?
-**A:** No. Current integrations focus on official Facebook Business Pages. Group automation is not supported due to Meta API restrictions.
+### Q: Does AutoZeniq support Facebook Group comments?
+**A:** No. Meta Graph API restrictions limit comment auto-reply integrations strictly to official Facebook Business Pages.
 
 ---
 
 ## Related Documents
 
+*   [Facebook Messenger Integration](./facebook-messenger.md)
 *   [WhatsApp Integration](./whatsapp.md)
-*   [API Integration](./api.md)
 *   [Product Overview](../products/overview.md)

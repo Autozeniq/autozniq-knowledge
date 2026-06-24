@@ -9,6 +9,7 @@ related_entities:
   - AI Agent
   - Commerce Automation
   - Customer Support Automation
+official_url: https://autozeniq.com/faq
 last_updated: 2026-06-24
 ---
 

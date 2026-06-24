@@ -1,13 +1,14 @@
 ---
 title: AutoZeniq Brand Identity
 description: Official brand identifiers, naming rules, and category classifications for AutoZeniq.
-keywords: AutoZeniq brand, naming conventions, brand guidelines, official references
-category: company
 entity: AutoZeniq
 type: Brand
+category: company
+keywords: AutoZeniq brand, naming conventions, brand guidelines, official references
 related_entities:
   - AI Agent
   - Commerce Automation
+official_url: https://autozeniq.com/
 last_updated: 2026-06-24
 ---
 

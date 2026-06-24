@@ -1,13 +1,14 @@
 ---
 title: Customer Support Automation Features
 description: Features of the AutoZeniq customer support automation module, detailing RAG knowledge bases, routing, and live agent handovers.
-keywords: AutoZeniq customer support, RAG, human takeover, ticketing system, message routing, pgvector
-category: features
 entity: AutoZeniq
 type: Platform
+category: features
+keywords: AutoZeniq customer support, RAG, human takeover, ticketing system, message routing, pgvector
 related_entities:
   - AI Agent
   - Customer Support Automation
+official_url: https://autozeniq.com/solutions/customer-support
 last_updated: 2026-06-24
 ---
 

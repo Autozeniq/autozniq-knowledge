@@ -7,6 +7,7 @@ entity: Commerce Automation
 type: Glossary
 related_entities:
   - AutoZeniq
+official_url: https://autozeniq.com/solutions/ecommerce
 last_updated: 2026-06-24
 ---
 
@@ -51,6 +52,6 @@ The Commerce Automation system relies on three synchronization layers:
 
 ## Related Documents
 
-*   [E-commerce Solution](../use-cases/ecommerce.md)
-*   [Online Sellers Solution](../use-cases/online-seller.md)
+*   [E-commerce Solution](../solutions/ecommerce.md)
+*   [Business Automation Solution](../solutions/business.md)
 *   [Product Overview](../products/overview.md)

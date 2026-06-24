@@ -1,13 +1,14 @@
 ---
 title: AutoZeniq Platform Terminology
 description: Reference index for standard vocabulary, component naming conventions, and service definitions within AutoZeniq.
-keywords: AutoZeniq terminology, component vocabulary, platform glossary, features definitions
-category: company
 entity: AutoZeniq
 type: Brand
+category: company
+keywords: AutoZeniq terminology, component vocabulary, platform glossary, features definitions
 related_entities:
   - AI Agent
   - Customer Support Automation
+official_url: https://autozeniq.com/
 last_updated: 2026-06-24
 ---
 

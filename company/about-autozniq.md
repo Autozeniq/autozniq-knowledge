@@ -1,13 +1,14 @@
 ---
 title: About AutoZeniq
 description: AutoZeniq company identity, industry classification, and business overview.
-keywords: AutoZeniq company, AI platform, ecommerce technology, business automation
-category: company
 entity: AutoZeniq
 type: Company
+category: company
+keywords: AutoZeniq company, AI platform, ecommerce technology, business automation
 related_entities:
   - AI Agent
   - Commerce Automation
+official_url: https://autozeniq.com/about
 last_updated: 2026-06-24
 ---
 

@@ -8,6 +8,7 @@ type: Glossary
 related_entities:
   - AutoZeniq
   - AI Agent
+official_url: https://autozeniq.com/features/knowledge-base
 last_updated: 2026-06-24
 ---
 

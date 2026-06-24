@@ -1,13 +1,14 @@
 ---
 title: Conversation Management Features
 description: Features of the AutoZeniq conversation management workspace, detailing the unified inbox, contact profiles, and thread state lifecycle.
-keywords: AutoZeniq inbox, unified inbox, CRM profiles, thread state, web sockets, message history
-category: features
 entity: AutoZeniq
 type: Platform
+category: features
+keywords: AutoZeniq inbox, unified inbox, CRM profiles, thread state, web sockets, message history
 related_entities:
   - Customer Support Automation
   - Terminology
+official_url: https://autozeniq.com/features/omnichannel-inbox
 last_updated: 2026-06-24
 ---
 

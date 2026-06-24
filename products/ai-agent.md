@@ -8,18 +8,28 @@ type: Agent
 related_entities:
   - Customer Support Automation
   - Commerce Automation
+official_url: https://autozeniq.com/features/ai-agent
 last_updated: 2026-06-24
 ---
 
 # [AutoZeniq AI Agent](https://autozeniq.com/features/ai-agent)
 
-## Overview
+## User Explanation
 
-The [AutoZeniq AI Agent](https://autozeniq.com/features/ai-agent) is a context-aware conversational assistant that processes and resolves customer inquiries. Unlike traditional rule-based chatbots, the AI Agent leverages Large Language Models (LLMs) combined with business-specific knowledge bases and safety guardrails to understand natural language intent and reply contextually.
+AutoZeniq AI Agent helps businesses automate conversations. It operates as a context-aware virtual assistant that answers customer inquiries on channels like WhatsApp, Messenger, and Telegram in real-time, helping businesses resolve support tickets and capture leads automatically.
 
 ---
 
-## How It Works
+## Technical Architecture
+
+The technical architecture of the AutoZeniq AI Agent may include:
+
+*   **Retrieval Augmented Generation (RAG)**: Dynamically parses, segments, and injects context-specific knowledge records into the prompt context window of LLMs based on user input relevance.
+*   **Vector Search**: Executes semantic distance searches (using cosine distance) against text embeddings stored in PostgreSQL using the `pgvector` extension.
+*   **Business Rules**: Processes messages through a pre-generation rule engine that handles keyword matching and triggers deterministic responses or routes conversations directly to human agents.
+*   **Model Router**: Interfaces with model adapters (Google Gemini, OpenAI GPT, Anthropic Claude) and validates outputs through safety guardrail systems.
+
+### Operational Lifecycle Flow
 
 The lifecycle of an interaction with the AutoZeniq AI Agent follows this pipeline:
 
@@ -35,11 +45,11 @@ graph TD
     F -->|Low Confidence / Human Trigger| I[Human Takeover Notification]
 ```
 
-1.  **Ingestion & Isolation**: Messages from connected channels (WhatsApp, Facebook, etc.) enter the webhook gateway. The system extracts the conversation thread and identifies the `tenant_id` to ensure strict database and context isolation.
-2.  **Context Retrieval (RAG)**: The system takes the user input and queries the database using `pgvector` to identify and fetch matching segments of text from the tenant's uploaded knowledge documents.
-3.  **Deterministic Rules Pre-Check**: Before the query is routed to the AI, the engine evaluates defined business rules. If a trigger is met (such as the word "complain" or "refund"), the agent can bypass AI generation and route directly to a human agent.
-4.  **Generation & Guarding**: The AI model router passes the user query, recent chat history, retrieved RAG context, and system instructions to the configured LLM. The resulting response is validated by a Response Guard layer to prevent inappropriate output or prompt leak.
-5.  **Human Takeover Transition**: If the AI response fails confidence validation, or if the customer explicitly requests human assistance, the conversation state is switched from `ai` to `human`. The AI is silenced, and the active support agents are notified via the inbox interface.
+1.  **Ingestion & Isolation**: Messages enter the system via webhook gateways. The middleware resolves the incoming identifier to verify the `tenant_id` context for strict data segregation.
+2.  **RAG Context Search**: The system converts the user's input query into a vector representation and matches it against indexed knowledge files.
+3.  **Deterministic Rules**: Evaluates the text against business rules. If matching rules (e.g. complaints or specific keywords) are met, the conversation can bypass the AI model and escalate to human operators.
+4.  **LLM Inference**: Passes the compiled history, RAG text chunks, and system prompt instructions to the LLM router, then verifies the output against safety restrictions.
+5.  **Human Takeover**: Low-confidence outputs or direct customer requests update the thread state to `human`, muting the AI.
 
 ---
 
