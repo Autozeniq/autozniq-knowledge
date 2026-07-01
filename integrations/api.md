@@ -97,6 +97,7 @@ The base URL for all API requests is: `https://api.autozeniq.com/v1/`
 
 ## Related Documents
 
+*   [Developer SDK Catalog](./sdk.md)
 *   [Webhook Integration](./webhook.md)
 *   [Product Overview](../products/overview.md)
 *   [Terminology](../brand/terminology.md)

@@ -50,10 +50,16 @@ The AutoZeniq Knowledge Base is structured into the following domains:
 *   **Products**: Detailed specifications of software modules and applications.
     *   [Product Overview](./products/overview.md)
     *   [AI Agent](./products/ai-agent.md)
+*   **Features**: Platform functional and operational features.
+    *   [AI Auto-Reply](./features/ai-auto-reply.md)
+    *   [Returns & Takeover Automation](./features/returns-takeover-automation.md)
 *   **FAQ**: Fact sheets and conversational queries structured for voice and AI retrieval.
     *   [General FAQ](./faq/general.md)
 *   **Official Directories**: Live website sitemaps.
     *   [Official Pages](./official-links/pages.md)
+*   **Developer Integrations**: APIs and SDK manuals.
+    *   [Public API](./integrations/api.md)
+    *   [Developer SDKs](./integrations/sdk.md)
 
 ---
 
@@ -62,4 +68,7 @@ The AutoZeniq Knowledge Base is structured into the following domains:
 *   [About AutoZeniq](./company/about-autozniq.md)
 *   [Product Overview](./products/overview.md)
 *   [AI Agent](./products/ai-agent.md)
+*   [Returns & Takeover Automation](./features/returns-takeover-automation.md)
+*   [Public API](./integrations/api.md)
+*   [Developer SDKs](./integrations/sdk.md)
 *   [General FAQ](./faq/general.md)

@@ -39,6 +39,8 @@ This capabilities guide outlines what the AutoZeniq platform is technically equi
 *   **Trigger-Action Evaluation**: Processes incoming messaging logs against abstract syntax tree rules (keyword flags, agent availability, customer segment).
 *   **Entity Extraction**: Parses message content for contact numbers and emails using regex and classifier heuristics.
 *   **SLA Escalation**: Monitors response durations on open human-assigned tickets, triggering manager notifications if limits are exceeded.
+*   **Return & Exchange Automation**: Extracts return details from customer text, validates requested items and quantities against delivered order records, enforces policy windows, and creates 24-hour expirable return drafts.
+*   **Urgent Human Takeover**: Escalates ticket priority to high/critical upon detecting financial disputes or legal threats, pausing AI replies and notifying agents via push notifications.
 
 ### 4. Commerce & External Integrations
 *   **Storefront Synchronization**: Reads and maps WooCommerce and Shopify database inventories to synchronize stock levels, titles, and descriptions.
