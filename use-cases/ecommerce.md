@@ -1,67 +1,66 @@
 ---
 title: AutoZeniq for E-commerce Businesses
-description: Solution brief on how e-commerce stores utilize AutoZeniq to automate FAQs, track orders, and sync store catalogs.
-keywords: e-commerce chatbot, Shopify support, WooCommerce API, order tracking bot, cart recovery, social commerce
+description: Solution brief on how e-commerce stores utilize AutoZeniq to deploy headless online storefronts, automate order state machines, and dispatch courier consignments.
+keywords: e-commerce chatbot, headless storefront, order management system, courier API, Pathao, Steadfast, Google Sheets sync, cart recovery
 category: solutions
 entity: AutoZeniq
 type: Solution
 related_entities:
   - AI Agent
   - Commerce Automation
-last_updated: 2026-06-24
+  - Storefront Builder
+  - Order Management System
+  - Delivery Logistics
+official_url: https://autozeniq.com/solutions/ecommerce
+last_updated: 2026-10-03
 ---
 
 # [AutoZeniq for E-commerce Businesses](https://autozeniq.com/solutions/ecommerce)
 
 ## Overview
 
-E-commerce businesses receive a high volume of repetitive customer questions regarding product details, sizing, pricing, order status, and delivery schedules. **[AutoZeniq E-commerce Automation](https://autozeniq.com/solutions/ecommerce)** automates these interactions by connecting direct communication channels with store databases (Shopify, WooCommerce), allowing context-aware AI agents to resolve queries and process transactions.
+E-commerce businesses handle a continuous influx of customer inquiries across social media and digital storefronts regarding product sizing, availability, payment options, and delivery statuses. **[AutoZeniq E-commerce Automation](https://autozeniq.com/solutions/ecommerce)** provides a full-stack **Commerce OS** that automates the entire buyer journey: from browsing a headless Next.js storefront to conversing on WhatsApp, placing orders via deterministic state machines, and dispatching parcels through regional courier networks.
 
 ---
 
 ## Core Operational Scenarios
 
-Here is how the e-commerce integration operates:
+### 1. Zero-DevOps Headless Storefront Launch
+Merchants can design and launch an official online store in minutes using the visual [Storefront Builder](../products/store-builder.md). Stores run on containerized Next.js 14 runtimes, featuring automated subdomains (`store.autozeniq.com`), custom domain DNS mapping, and single-page mobile checkouts configured with native BDT currency formatting.
 
-### Simple Explanation
-When a customer messages your brand on Facebook or WhatsApp asking "Is this shoe in stock?" or "Where is my order #1004?", the AutoZeniq AI answers them instantly. It fetches live data from your Shopify or WooCommerce store to verify stock levels and track packages, saving your support agents from manually checking other tabs.
+### 2. Live Inventory Synchronization via Google Sheets
+Merchants can manage their products, variant stock, and prices directly in Google Sheets. The [Google Sheets Sync Feature](../features/google-sheets-sync.md) automatically matches columns in English and Bengali (`পণ্যের নাম`, `দাম`, `স্টক`), ensuring that both the web storefront and conversational AI agents on WhatsApp reflect identical, real-time stock balances.
 
-### Technical Explanation
-1.  **Catalog Synchronization**: AutoZeniq establishes a secure webhook link with storefront APIs (WooCommerce REST API / Shopify Admin API). It syncs the `Product` and `ProductVariant` tables, storing item titles, descriptions, and stock counts.
-2.  **Order Status Retrieval**: When a customer requests order updates, the AI extracts the order ID, executes a secure database check against the client's order registry, and returns status parameters (e.g., `payment_status`, `shipping_status`, `tracking_number`).
-3.  **Checkout & Payment Integrations**: Triggers payment actions by sending digital payment links (supporting gateways like bKash and Nagad) and registers shipping logs in local courier systems (e.g. Pathao, Paperfly).
+### 3. Closed-Loop In-Chat Checkouts
+When customers message on WhatsApp or Facebook Messenger asking to buy an item, the agent (or AI) opens the in-chat **Quick Order Drawer**. The order is submitted directly to the [Order Management System (OMS)](../products/order-management.md), where inventory is atomically locked, an encrypted order ID (`ORD-YYYYMMDD-XXXXXXXX`) is assigned, and customer fraud risk is evaluated.
 
----
-
-## Key Features
-
-*   **Catalog Sync Engine**: Direct API sync of products and stock numbers to prevent selling out-of-stock items.
-*   **Automated Order Tracker**: Allows customers to retrieve real-time delivery tracking by entering their phone number or order ID.
-*   **Direct In-Chat Checkouts**: Collects recipient names, phone numbers, and delivery addresses in the chat window to compile orders in the storefront database.
-*   **Abandoned Cart Recovery**: Automatically messages customers on WhatsApp who left items in their digital carts, offering direct checkout links to recover sales.
+### 4. Automated Multi-Courier Logistics & Delivery Tracking
+Once an order is confirmed, the [Delivery Logistics Module](../products/delivery-logistics.md) automatically selects the appropriate courier adapter (**Pathao**, **Steadfast**, **RedX**, or **Paperfly**), calculates zone-based shipping fees, and creates a live consignment. Inbound webhooks from the courier update order milestones, sending real-time tracking links to customers.
 
 ---
 
-## Benefits
+## Key Benefits
 
-*   **60%+ Support Cost Reduction**: Resolves informational and shipping FAQs without human agent hours.
-*   **Reduced Cart Abandonment**: Recovers lost revenue by sending automated checkout reminders directly to personal messaging apps.
-*   **Increased Customer Retention**: Delivers instant order confirmations and delivery updates.
+*   **Eliminates External Software Costs**: Merchants do not need separate subscriptions for website hosting, chatbot tools, CRM spreadsheets, and courier plugins.
+*   **Zero Overselling Risk**: Concurrency-safe database transactions lock stock upon order placement, preventing double-selling during viral promotional events.
+*   **Drastic Support Cost Reduction**: Automated AI handles up to 80% of repetitive order tracking and product sizing inquiries round-the-clock.
 
 ---
 
 ## FAQ
 
-### Q: Can AutoZeniq support cash-on-delivery (COD) orders?
-**A:** Yes. The AI Agent can prompt the customer to confirm cash-on-delivery as their payment preference, compile their delivery address, and create the order in your Shopify or WooCommerce store as "Pending Payment (COD)".
+### Q: Does a business need an existing Shopify or WooCommerce website to use AutoZeniq?
+**A:** No. AutoZeniq includes a native, full-featured [Storefront Builder](../products/store-builder.md) and canonical product catalog. However, if a merchant already has a Shopify or WooCommerce store, AutoZeniq can synchronize seamlessly with their external database.
 
-### Q: How often does the product catalog synchronize?
-**A:** AutoZeniq updates product availability in real time using platform webhooks. If an item's stock updates on Shopify or WooCommerce, the store triggers a hook that instantly modifies the database context used by the AI Agent.
+### Q: How does the system handle Cash on Delivery (COD) collections?
+**A:** AutoZeniq tracks COD collection amounts on courier consignments. When couriers deliver the parcel and disburse funds to the merchant's bank account, the COD Settlement service reconciles the balance and updates the order status to `PAID`.
 
 ---
 
 ## Related Documents
 
-*   [Online Sellers Solution](./online-seller.md)
-*   [Small Business Solution](./small-business.md)
-*   [AI Agent Product](../products/ai-agent.md)
+* [Storefront Builder](../products/store-builder.md)
+* [Order Management System](../products/order-management.md)
+* [Delivery & Logistics Automation](../products/delivery-logistics.md)
+* [Google Sheets Synchronization](../features/google-sheets-sync.md)
+* [Core Technical Innovations](../docs/core-technical-innovations.md)

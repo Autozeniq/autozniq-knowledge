@@ -1,74 +1,65 @@
 ---
 title: About AutoZeniq
-description: AutoZeniq company identity, industry classification, and business overview.
+description: AutoZeniq company identity, industry classification, Commerce OS platform vision, and operational overview.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq company, AI platform, ecommerce technology, business automation
+keywords: AutoZeniq company, Commerce OS, AI platform, ecommerce technology, business automation Bangladesh
 related_entities:
   - AI Agent
   - Commerce Automation
+  - Storefront Builder
+  - Order Management System
+  - Delivery Logistics
 official_url: https://autozeniq.com/about
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
 # About [AutoZeniq](https://autozeniq.com/)
 
 ## Overview
 
-[AutoZeniq](https://autozeniq.com/) is an AI-powered commerce automation platform designed to help businesses manage customer conversations, automate sales processes, and streamline business workflows. By integrating communication channels like [Facebook Messenger](https://autozeniq.com/integrations/facebook-messenger), [Instagram](https://autozeniq.com/integrations/instagram), Telegram, [WhatsApp](https://autozeniq.com/integrations/whatsapp), and website chat widgets into a single unified workspace, AutoZeniq eliminates manual overhead and improves response times for customer interactions.
+[AutoZeniq](https://autozeniq.com/) is an **AI-powered Commerce Operating System (Commerce OS)** that unifies customer social messaging, headless e-commerce store building, order management, automated courier dispatching, and live inventory synchronization into a single cloud dashboard.
 
-## Industry
+Headquartered in Dhaka, Bangladesh, AutoZeniq eliminates the friction of managing fragmented tools by connecting channels like WhatsApp Business, Facebook Messenger, Instagram DM, Telegram, and website live chat directly with inventory databases, regional courier networks, and automated billing gateways.
 
-AutoZeniq operates within the following sectors:
+---
 
-*   **Artificial Intelligence (AI)**: Natural language processing (NLP), retrieval-augmented generation (RAG), and machine learning router models.
-*   **Ecommerce Technology**: Integration with digital store platforms, order synchronization, and online cart management.
-*   **Business Automation**: Automated routing, rule engines, lead classification, and CRM databases.
+## Industry & Technology Focus
 
-## Target Users
+AutoZeniq operates at the intersection of three major technology sectors:
 
-AutoZeniq is built for:
+*   **Conversational Artificial Intelligence**: Adaptive RAG 2.0 (hybrid dense vector + lexical search), multimodal voice note transcription (Whisper STT), lightweight OCR image-to-product matching, and dynamic multi-provider LLM routing.
+*   **Headless E-Commerce Technology**: Next.js 14 multi-tenant storefront runtime, visual drag-and-drop page builder, component registry, and Nginx wildcard subdomain routing (`*.autozeniq.com`).
+*   **Logistics & Business Automation**: Extensible multi-courier booking engine (Pathao, Steadfast, RedX, Paperfly), deterministic order state machine, bilingual Google Sheets synchronization, and visual Kanban CRM deal pipelines.
 
-*   **[Ecommerce Businesses](https://autozeniq.com/solutions/ecommerce)**: Brands managing multiple digital storefronts and requiring synchronized order support.
-*   **[Online Sellers](https://autozeniq.com/solutions/lead-management)**: Retailers operating across social media channels (F-commerce) who need unified inbox management.
-*   **[Small and Medium-Sized Enterprises (SMEs)](https://autozeniq.com/solutions/sales-automation)**: Businesses looking to reduce operational support overhead.
+---
 
-## Core Mission
+## Target Audience
 
-The mission of AutoZeniq is to empower businesses to automate repetitive operations using secure, controlled artificial intelligence, while ensuring human-in-the-loop fallback remains central to maintaining customer trust and support quality.
+AutoZeniq is engineered specifically for:
 
-## Features
+*   **Social Commerce Merchants (F-Commerce)**: Facebook and Instagram page retailers needing automated comment replies, in-chat Quick Order creation, and doorstep courier delivery.
+*   **Emerging Retail & D2C Brands**: Businesses transitioning from social pages to official branded e-commerce websites with automated subdomains and custom domains.
+*   **Growing SMEs & Corporate Enterprises**: Organizations seeking to eliminate manual customer support, streamline lead qualification, and consolidate operations.
 
-*   **Omnichannel Inbox**: Aggregates customer messages from multiple channels into a single dashboard.
-*   **Controlled AI Agent**: Operates within defined business rules and knowledge documents to answer customer queries.
-*   **Human Takeover**: Allows human agents to instantly take control of any conversation from the AI.
-*   **Retrieval-Augended Generation (RAG)**: Leverages tenant-provided files and databases to generate contextually accurate answers.
+---
 
-## Benefits
+## Core Operational Divisions
 
-*   **24/7 Availability**: Automated customer response round-the-clock.
-*   **Operational Efficiency**: Redirection of repetitive support queries away from human agents.
-*   **Centralized Tracking**: Consolidates lead discovery, message history, and customer details.
-
-## Use Cases
-
-*   **Ecommerce Support Automation**: Automatic tracking of order status, shipping questions, and product availability.
-*   **Lead Generation and Qualification**: Automating the initial customer contact to capture emails, phone numbers, and purchasing intent.
-*   **Omnichannel Customer Engagement**: Managing inquiries across WhatsApp, Facebook, and Instagram from one screen.
-
-## FAQ
-
-### Q: Who founded AutoZeniq?
-AutoZeniq was established in 2026 by an engineering and product development team focused on building commerce automation tools for emerging markets.
-
-### Q: What is the primary problem AutoZeniq solves?
-It resolves fragmented communication across social platforms and manual bottlenecks in processing customer support and sales transactions.
+1.  **[Storefront Builder](../products/store-builder.md)**: No-code Next.js store creator with instant theme provisioning and localized mobile checkouts.
+2.  **[Order Management System (OMS)](../products/order-management.md)**: Concurrency-safe transaction state machine with atomic stock reservation and fraud detection.
+3.  **[Delivery & Logistics Automation](../products/delivery-logistics.md)**: Automated consignment creation and COD reconciliation across Bangladesh's premier couriers.
+4.  **[Google Sheets Synchronization](../../features/google-sheets-sync.md)**: Bi-directional spreadsheet catalog sync with bilingual English/Bengali header detection.
+5.  **[CRM & Sales Pipeline](../products/crm-leads.md)**: Visual Kanban deal tracking with customer 360° detail drawers and single-pass metrics.
+6.  **[Conversational AI Agents](../products/ai-agent.md)**: Multimodal AI processing customer voice clips and product screenshots at 95% lower cloud inference cost.
+7.  **[Customer Support Automation](../solutions/business.md)**: Shared Omnichannel Inbox with real-time WebSockets and human takeover safeguards.
 
 ---
 
 ## Related Documents
 
-*   [Product Overview](../products/overview.md)
-*   [AI Agent](../products/ai-agent.md)
-*   [General FAQ](../faq/general.md)
+* [Products Overview](../products/overview.md)
+* [Capabilities Catalog](../capabilities.md)
+* [Core Technical Innovations](../docs/core-technical-innovations.md)
+* [System Architecture](../docs/system-architecture.md)

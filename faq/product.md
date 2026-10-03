@@ -1,44 +1,47 @@
 ---
 title: AutoZeniq Product & Features FAQ
-description: Frequently asked questions about product features, automation templates, CRM settings, and agent controls in AutoZeniq.
+description: Frequently asked questions about product features, storefront builder, order state machine, courier dispatching, and agent controls in AutoZeniq.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq product faq, message templates, inbox settings, CRM limits, lead detection rules
+keywords: AutoZeniq product faq, storefront builder, courier booking, quick order drawer, google sheets sync, OMS state machine
 related_entities:
-  - AutoZeniq AI Agent
-  - Unified Inbox Feature
+  - Storefront Builder
+  - Order Management System
+  - Delivery Logistics
+  - Google Sheets Synchronization
 official_url: https://autozeniq.com/faq
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
 # AutoZeniq Product & Features FAQ
 
-This guide answers questions about utilizing the AutoZeniq dashboard features, configuring message templates, setting up automated responses, and managing leads in the CRM.
+This guide answers questions about utilizing the AutoZeniq dashboard features, designing online stores, managing orders, booking couriers, and synchronizing spreadsheets.
 
 ---
 
 ## FAQ
 
-### Q: Can I customize the quick replies and message templates?
-**A:** Yes. Under **Settings > Templates**, you can define standard message templates with dynamic placeholders (e.g. `{{customer_name}}`, `{{order_id}}`). These can be dispatched manually by support agents in the Unified Inbox or automatically by the Workflow Agent.
+### Q: How does the Storefront Builder work?
+**A:** Located under **Store Builder** in the dashboard, the visual drag-and-drop editor allows merchants to customize page layouts (Home, Catalog, Product Details, Cart, Checkout) across desktop and mobile viewports. Stores are served via an optimized Next.js 14 runtime under `store.autozeniq.com` or custom merchant CNAME domains.
 
-### Q: How do I control when the AI Agent responds?
-**A:** The AI Agent is governed by active hours and channel toggle buttons located at **Settings > AI Settings**. You can enable or disable AI replies globally, per messaging channel (e.g. only on WhatsApp), or for specific customer categories.
+### Q: What is the In-Chat Quick Order Drawer?
+**A:** While conversing with a customer in the Omnichannel Inbox, support agents or sales reps can slide open the Quick Order drawer. Staff can search the live catalog, pick sizes/colors, apply custom shipping discounts, and confirm orders directly into the OMS without switching tabs.
 
-### Q: What is the lead detection engine?
-**A:** AutoZeniq uses an NLP intent classifier that scans incoming messages for buy signals (e.g., "how to order"). When a signal is detected, the lead detection engine assigns a priority tag and alerts the sales team or routes the chat to the Lead Agent.
+### Q: How does AutoZeniq connect to regional couriers?
+**A:** AutoZeniq's `CourierRegistry` supports **Pathao**, **Steadfast**, **RedX**, and **Paperfly**. Merchants configure their API keys or OAuth credentials once in Settings. When an order is confirmed, the system can automatically book a consignment, generate a tracking code, and notify the customer via SMS or WhatsApp.
 
-### Q: Can multiple human agents access the same inbox?
-**A:** Yes. AutoZeniq supports multi-agent collaboration. The dashboard allows administrators to define roles (Admins, Managers, Agents) and assign specific conversation threads to individual staff members.
+### Q: How does the Google Sheets integration stay up to date?
+**A:** The Google Sheets Sync service polls connected spreadsheets on scheduled intervals (hourly or daily) or upon clicking "Sync Now". The service uses smart auto-mapping for English and Bengali headers (`পণ্যের নাম`, `দাম`, `স্টক`) and processes updates asynchronously via BullMQ.
 
-### Q: Where do I manage the files used by the AI for RAG?
-**A:** You can upload, edit, or delete documents and FAQ spreadsheets in the **Knowledge Base** section of the client panel. The system automatically handles parsing and vector re-indexing within a few minutes of upload.
+### Q: What happens if an order is cancelled?
+**A:** The deterministic state machine validates the cancellation, updates the order status to `CANCELLED`, and executes an atomic database transaction to return the reserved product quantities back to available stock.
 
 ---
 
 ## Related Documents
 
-*   [Unified Inbox Feature](../features/unified-inbox.md)
-*   [Knowledge Base Feature](../features/knowledge-base.md)
-*   [Lead Agent Profile](../products/agents/lead-agent.md)
+* [Storefront Builder](../products/store-builder.md)
+* [Order Management System](../products/order-management.md)
+* [Delivery & Logistics Automation](../products/delivery-logistics.md)
+* [Google Sheets Synchronization](../../features/google-sheets-sync.md)

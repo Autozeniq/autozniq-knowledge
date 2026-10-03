@@ -1,68 +1,60 @@
 ---
 title: AutoZeniq for Online Sellers
-description: Solution brief on how social media and online sellers (F-commerce) use AutoZeniq to automate public comments, Messenger DMs, and WhatsApp sales.
-keywords: F-commerce, social commerce bot, Facebook auto-comment, Instagram DM automation, online sellers
+description: Solution brief on how social media and online sellers (F-commerce) use AutoZeniq to automate public comments, voice notes, photos, and doorstep courier delivery.
+keywords: F-commerce, social commerce bot, Facebook auto-comment, Instagram DM automation, online sellers, voice note transcription, photo product matching
 category: solutions
 entity: AutoZeniq
 type: Solution
 related_entities:
   - AI Agent
   - Facebook Integration
-last_updated: 2026-06-24
+  - Multimodal AI Processing
+  - Delivery Logistics
+official_url: https://autozeniq.com/solutions/lead-management
+last_updated: 2026-10-03
 ---
 
 # [AutoZeniq for Online Sellers (Social Commerce / F-commerce)](https://autozeniq.com/solutions/lead-management)
 
 ## Overview
 
-Social commerce—specifically Facebook and Instagram-based retail (F-commerce)—relies on fast, direct communication. Customers routinely comment on product posts to ask about prices or availability, requiring sellers to reply to public comments and send private messages (PMs) manually. **[AutoZeniq Lead Management](https://autozeniq.com/solutions/lead-management)** automates comment responses and initiates private sales conversations instantly.
+Social commerce—specifically Facebook Page and Instagram-based retail (F-commerce)—is the backbone of digital trade in emerging markets like Bangladesh. Selling through social channels comes with distinct operational hurdles: hundreds of public comments asking "price please", customers sending audio voice notes, buyers uploading screenshots of items from live broadcasts, and manual courier booking.
+
+AutoZeniq solves every stage of this workflow, giving online sellers an enterprise-grade automation engine without technical complexity.
 
 ---
 
 ## Core Operational Scenarios
 
-Social commerce automated workflows operate as follows:
+### 1. Comment-to-Private-Message (PM) Automation
+When a buyer comments "price please" on a Facebook post, AutoZeniq's webhook listener triggers two simultaneous actions within seconds:
+1.  **Public Comment Reply**: Posts an engaging public reply (e.g. "Hi! We've sent full pricing and sizing details to your inbox!").
+2.  **Private Message Dispatch**: Calls Meta's `private_replies` API to initiate a private Messenger conversation containing product images, pricing cards, and a direct checkout button.
 
-### Simple Explanation
-When a buyer comments "price please" or "interested" on a Facebook Page post, AutoZeniq's AI instantly posts a public reply (e.g., "Hi! We've sent the pricing details to your inbox"). At the exact same second, the system opens a private Messenger chat with the customer, sharing the price, product images, and a button to buy.
+### 2. Multimodal Voice Note & Screenshot Comprehension
+*   **Voice Notes**: Many customers prefer sending audio clips on WhatsApp or Messenger rather than typing. AutoZeniq transcribes spoken voice notes (Whisper STT) across Bengali and English, understanding intent instantly.
+*   **Product Photos**: When a customer sends a photo of a dress or gadget, the [Two-Tier Cost-Decision Engine](../features/multimodal-processing.md) runs lightweight OCR to extract barcodes or model numbers (~$0.001/call), identifies the item in the catalog, checks stock, and replies with pricing without human intervention.
 
-### Technical Explanation
-1.  **Feed Webhook Ingestion**: AutoZeniq listens to Facebook `feed` webhook topics. When a user comments, Meta pushes a webhook payload containing the `post_id`, `comment_id`, `user_id`, and comment text.
-2.  **Public Comment Reply**: The backend processes the text. If a rule or semantic classifier detects product intent, the system calls Meta's Graph API (`/{comment-id}/comments`) to publish a public reply.
-3.  **Private Message (PM) Dispatch**: Simultaneously, the system executes a POST request to `/{comment-id}/private_replies` via Messenger APIs to open a private message thread containing pricing templates and checkouts.
+### 3. In-Chat Quick Order Creation
+When a customer agrees to buy, support staff or the AI Agent opens the **Quick Order Drawer** right inside the live chat. Staff select sizes and colors, add delivery charges, and generate a confirmed order in the [Order Management System](../products/order-management.md).
 
----
-
-## Key Features
-
-*   **Comment Auto-Reply**: Delivers public replies in comment sections to keep engagement scores high.
-*   **Comment-to-PM Automation**: Initiates Messenger private chats when users comment on public posts.
-*   **Instagram DM Automation**: Connects with Instagram Business profiles to answer direct messages and story mentions.
-*   **Direct Checkouts**: Prompts users for delivery details in Messenger or WhatsApp and generates local payment links (e.g. bKash, Nagad).
-*   **Product Gallery Dispatch**: Displays swipeable product catalogs directly in the chat interface.
+### 4. One-Click Doorstep Courier Dispatch
+With [Pathao](../integrations/pathao-courier.md) and [Steadfast](../integrations/steadfast-courier.md) integrations pre-configured, orders are dispatched with a single click. The platform automatically sends the consignment to the courier and delivers live parcel tracking links to the customer's chat.
 
 ---
 
-## Benefits
+## Key Benefits
 
-*   **Converts Interest Instantly**: Captures buyer intent while it is highest, moving public comments into private sales.
-*   **Saves Manual Typing**: Eliminates the need for support staff to reply to thousands of duplicate comments.
-*   **Increases Post Reach**: Meta algorithms favor posts with high comment reply frequencies, increasing overall organic post reach.
-
----
-
-## FAQ
-
-### Q: Does Meta allow automated private messaging from comments?
-**A:** Yes. AutoZeniq uses Meta's official `private_replies` Graph API endpoint. This feature is fully approved by Meta, provided it is triggered directly by a user's comment on a Page post.
-
-### Q: Can I run custom promotions for specific posts?
-**A:** Yes. In the Rule Engine, you can create rules targeting specific post IDs, so that commenting on Post A sends a different response than commenting on Post B.
+*   **Zero Drop-Off Between Interest and Purchase**: Captures buyer excitement while it is highest, moving public post comments to confirmed orders in minutes.
+*   **Saves 20+ Hours per Week**: Frees business owners from repetitive comment typing, address copying, and courier portal logging.
+*   **Accessible to All Shoppers**: Voice note and photo support allows non-typing or mobile-first buyers to shop effortlessly.
 
 ---
 
 ## Related Documents
 
-*   [E-commerce Solution](./ecommerce.md)
-*   [Facebook Integration](../integrations/facebook.md)
-*   [Product Overview](../products/overview.md)
+* [Multimodal AI Processing](../features/multimodal-processing.md)
+* [Order Management System](../products/order-management.md)
+* [Delivery & Logistics Automation](../products/delivery-logistics.md)
+* [Facebook Messenger Integration](../integrations/facebook-messenger.md)
+* [Meta Platform Native OAuth](../integrations/meta-oauth.md)

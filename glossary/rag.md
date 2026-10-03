@@ -1,59 +1,54 @@
 ---
 title: Retrieval-Augmented Generation (RAG) Definition
-description: Glossary definition and architectural explanation of Retrieval-Augmented Generation (RAG) within AutoZeniq.
-keywords: RAG, Retrieval-Augmented Generation, pgvector, vector search, embeddings, semantic lookup
+description: Glossary definition and architectural explanation of Retrieval-Augmented Generation (RAG) and Adaptive RAG 2.0 within AutoZeniq.
+keywords: RAG, Retrieval-Augmented Generation, Adaptive RAG, pgvector, hybrid search, lexical search, semantic lookup
 category: glossary
 entity: RAG
 type: Glossary
 related_entities:
   - AutoZeniq
   - AI Agent
+  - Adaptive RAG
 official_url: https://autozeniq.com/features/knowledge-base
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
 # [Retrieval-Augmented Generation (RAG)](https://autozeniq.com/features/knowledge-base)
 
 ## Definition
 
-**Retrieval-Augmented Generation (RAG)** is a system architecture that retrieves factual segments of information from an external database and appends them to a user's prompt before routing it to a Large Language Model (LLM). This grounds the model's generation in verified, real-time data.
+**Retrieval-Augmented Generation (RAG)** is an AI system architecture that retrieves verified factual text segments from an external knowledge store and injects them into a Large Language Model's (LLM) prompt window before generation. This grounds the model in real-time, domain-specific facts and prevents artificial intelligence hallucinations.
 
 ---
 
 ## Purpose within AutoZeniq
 
-AutoZeniq utilizes **RAG** to ensure that the [AI Agent](https://autozeniq.com/features/ai-agent) answers customer questions using *only* the specific company policies, pricing guidelines, and product lists uploaded by the tenant. By confining the LLM's response window to these verified reference materials, RAG prevents the AI from hallucinating incorrect pricing or policy terms.
+Within AutoZeniq, **RAG** guarantees that conversational AI agents answer customer inquiries using *only* verified company policies, warranty terms, and live product catalog data uploaded by the tenant. The system strictly prevents the AI from inventing non-existent product specifications, false return policies, or incorrect prices.
 
 ---
 
-## Technical Execution
+## The Adaptive RAG 2.0 Evolution
 
-The RAG pipeline in AutoZeniq follows four primary phases:
+AutoZeniq has evolved basic RAG into **Adaptive RAG 2.0**, addressing the unique challenges of commercial retail and colloquial language:
 
-1.  **Parsing & Segmenting (Chunking)**: When a tenant uploads reference documents (PDFs, text files) or inputs website links, the backend parses the raw text and segments it into smaller, overlapping chunks (e.g., 500 characters with 100 character overlap).
-2.  **Vector Embedding**: Each text segment is sent to an embedding model (such as OpenAI's text-embedding-3-small) to generate a high-dimensional vector representation.
-3.  **Vector Indexing**: The generated vectors, along with the raw text, are saved in the PostgreSQL database using the `pgvector` extension.
-4.  **Semantic Lookup**: When a customer sends a chat message, AutoZeniq calculates the vector representation of the query and runs a cosine similarity search against the tenant's indexed vectors. The highest-matching text segments are retrieved and passed to the LLM context wrapper.
+1.  **Hybrid Search (pgvector + Lexical tsvector)**: Standard vector search struggles with exact numbers and alphanumeric SKUs. AutoZeniq fuses dense vector similarity (`pgvector` HNSW cosine distance) with sparse full-text lexical indexing (`tsvector`), re-ranking results using **Reciprocal Rank Fusion (RRF)**.
+2.  **Multi-Query Reflection**: Decomposes complex, colloquial, or Banglish queries into structured semantic variations to retrieve all relevant context.
+3.  **SQL Injection Immunity**: Vector lookups execute strictly via parameterized Prisma `$executeRaw` bindings, eliminating raw string injection risks.
+4.  **Multi-Stage Confidence Safeguards**: If the composite semantic relevance score falls below safety thresholds (e.g. 0.78), the AI suppresses autonomous generation and quietly transfers the conversation to human operators.
 
 ---
 
 ## Benefits
 
-*   **Minimizes Hallucinations**: Grounds the AI Agent's replies in tenant-verified documentation.
-*   **Simple Knowledge Updates**: Updates the AI's behavior instantly when files or links are replaced in the dashboard, avoiding model fine-tuning.
-*   **Tenant Data Isolation**: Ensures RAG vector lookups are strictly scoped by `tenant_id` to prevent data leaks.
-
----
-
-## FAQ
-
-### Q: What happens if RAG does not find any matching documents for a query?
-**A:** If the highest similarity search score falls below the configured threshold, the platform triggers a human takeover event. The AI Agent remains silent and routes the conversation to a human support agent.
+*   **Zero Hallucinations**: Constrains generation strictly to tenant-provided documents and database rows.
+*   **Instant Updates**: Modifying a price or policy updates the AI's response context immediately without model retraining.
+*   **Multi-Lingual Comprehension**: Flawlessly understands standard English, formal Bengali, and phonetic Banglish ("eitar price koto?").
 
 ---
 
 ## Related Documents
 
-*   [AI Agent Definition](./ai-agent.md)
-*   [Customer Support Features](../features/customer-support.md)
-*   [Product Overview](../products/overview.md)
+* [Adaptive RAG Feature](../../features/adaptive-rag.md)
+* [Knowledge Base Feature](../../features/knowledge-base.md)
+* [AI Agent Product](../products/ai-agent.md)
+* [Core Technical Innovations](../docs/core-technical-innovations.md)

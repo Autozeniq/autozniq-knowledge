@@ -1,15 +1,16 @@
 ---
 title: AutoZeniq Technical & Architecture FAQ
-description: Technical frequently asked questions about database models, RAG vector similarity, tenant isolation, and security systems in AutoZeniq.
+description: Technical frequently asked questions about database models, RAG vector similarity, Two-Tier Cost-Decision Engine, and Sentinel security in AutoZeniq.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq technical faq, pgvector search, database schema, tenant isolation, API encryption, security details
+keywords: AutoZeniq technical faq, pgvector search, cost decision engine, SQL injection fix, Redis entitlement cache, Nginx subdomain routing
 related_entities:
-  - Security Overview
-  - AutoZeniq AI Agent
+  - Security and Compliance
+  - System Architecture
+  - Core Technical Innovations
 official_url: https://autozeniq.com/faq
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
 # AutoZeniq Technical & Architecture FAQ
@@ -20,25 +21,29 @@ This document addresses technical questions regarding system architecture, datab
 
 ## FAQ
 
-### Q: How is database isolation maintained for different clients?
-**A:** AutoZeniq uses logical tenant isolation in a shared PostgreSQL database. Every table (e.g. `conversations`, `contacts`, `messages`, `users`) contains a `tenant_id` foreign key. Query routing middleware and Prisma database schema policies automatically inject `tenant_id` filters on every read and write query.
+### Q: How does the Two-Tier Cost-Decision Engine work for customer product photos?
+**A:** Naively sending customer images to multimodal LLMs (GPT-4o Vision) costs $0.02–$0.03 per image. AutoZeniq runs a **Two-Tier Cost-Decision Engine**:
+1.  **Tier 1**: Uploads the photo to Cloudflare R2; executes low-cost OCR and text extraction (~$0.001/call) to parse printed brand names, barcodes, or model numbers. If an exact catalog match is found, product specs are injected into an economical model (Gemini 1.5 Flash).
+2.  **Tier 2**: Only if OCR yields no conclusive text does the system compute a compact vector embedding and run a `pgvector` similarity search.
+This achieves 97% recognition accuracy while reducing inference costs by ~95%.
 
-### Q: What database extensions are used for vector retrieval?
-**A:** The platform uses the `pgvector` extension in PostgreSQL to execute similarity calculations. Knowledge files are split into parsed text segments, converted to 1536-dimensional embeddings (using standard text-embedding models), and saved in a vector-indexed column. Searches are conducted using cosine distance (`<=>` operator) query lookups.
+### Q: How did AutoZeniq eliminate SQL injection vulnerabilities in AI vector search?
+**A:** All database calls across the platform execute via compile-time parameterized Prisma `$executeRaw` and `$queryRaw` statements with strict variable binding. Raw string interpolation and `$executeRawUnsafe` have been completely removed from `knowledge.service.ts` and `embedding.processor.ts`.
 
-### Q: How does human takeover override work at a database level?
-**A:** Every conversation record in the database maintains a `status` enum (values: `ai`, `human`). When a client message triggers human escalation, the status column is updated to `human`. The message gateway router evaluates this status value on incoming webhooks; if the status is `human`, the gateway bypasses the AI inference pipeline entirely and routes the payload directly to client-facing web socket connections.
+### Q: How does the Redis Entitlement Cache prevent N+1 query bottlenecks?
+**A:** To avoid querying tenant subscription tables on every incoming HTTP request, the `EntitlementCacheService` computes tenant capability flags (e.g. `MODULE_STORE_BUILDER`, `MODULE_DELIVERY_AUTO_BOOK`) and stores them in Redis memory. The `SubscriptionGuard` executes sub-millisecond $O(1)$ memory checks before controller execution, with selective cache eviction triggered only upon plan changes.
+
+### Q: How does Nginx wildcard subdomain routing work for the Storefront runtime?
+**A:** Nginx listens on `*.autozeniq.com` and custom CNAME domains, passing the `Host` header to the single containerized Next.js 14 `apps/storefront` runtime. The runtime's `lib/domain-resolver.ts` parses the hostname, queries the tenant's layout schema from the database, and renders the corresponding store dynamically.
 
 ### Q: How are third-party credentials and keys secured?
-**A:** Sensitive settings—including WhatsApp API tokens, Meta Page tokens, and custom webhook secrets—are encrypted at rest in the PostgreSQL database. The application layer encrypts and decrypts these variables using the AES-256-GCM cipher with a unique secret key managed in environment variables.
-
-### Q: Are outgoing webhook dispatches guaranteed to arrive?
-**A:** Outgoing webhook notifications are managed via Redis-backed queue workers (`BullMQ`). The dispatcher retries failed requests up to 5 times using an exponential backoff formula before marking the job as failed.
+**A:** Meta Page Access Tokens, Google Service Account JSON keys, and courier API secrets are encrypted at rest using authenticated symmetric `AES-256-GCM` encryption with cryptographically random initialization vectors (IV) in the `CredentialVaultService`.
 
 ---
 
 ## Related Documents
 
-*   [Security Overview](../security.md)
-*   [API Integration](../integrations/api.md)
-*   [AI Agent Profile](../products/ai-agent.md)
+* [Core Technical Innovations](../docs/core-technical-innovations.md)
+* [System Architecture](../docs/system-architecture.md)
+* [Sentinel Security & Hardening](../../features/sentinel-security.md)
+* [Two-Tier Multimodal Processing](../../features/multimodal-processing.md)
