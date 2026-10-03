@@ -57,6 +57,7 @@ The AutoZeniq Knowledge Base is structured into the following domains:
     *   [Capabilities Catalog](./capabilities.md)
     *   [Entity Relationship Tree](./entity-relations.md)
     *   [V2 System Architecture](./docs/system-architecture.md)
+    *   [Core Technical Innovations & Moats](./docs/core-technical-innovations.md)
     *   [Security & Compliance](./security.md)
     *   [Subscription & Pricing](./pricing.md)
 *   **Products**:
