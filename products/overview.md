@@ -1,77 +1,95 @@
 ---
 title: AutoZeniq Products Overview
-description: High-level overview of the core product suites offered by the AutoZeniq platform.
+description: High-level overview of the complete product suite offered by the AutoZeniq Commerce OS platform.
 entity: AutoZeniq
 type: Platform
 category: product
-keywords: AutoZeniq products, AI customer support, commerce automation, business workflow automation
+keywords: AutoZeniq products, storefront builder, order management, delivery logistics, CRM, AI customer support, commerce automation
 related_entities:
+  - Storefront Builder
+  - Order Management System
+  - Delivery Logistics
   - AI Agent
   - Customer Support Automation
-  - Commerce Automation
 official_url: https://autozeniq.com/features
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
 # [AutoZeniq Products Overview](https://autozeniq.com/features)
 
 ## Overview
 
-[AutoZeniq](https://autozeniq.com/) provides a suite of products designed to automate client communications, sales operations, and workflow management. These products are integrated into a single multi-tenant dashboard and share a unified database and AI orchestration engine. The three primary product categories are:
-
-1.  **[AI Customer Support](https://autozeniq.com/solutions/customer-support)**
-2.  **[Commerce Automation](https://autozeniq.com/solutions/ecommerce)**
-3.  **[Business Workflow Automation](https://autozeniq.com/solutions/sales-automation)**
+[AutoZeniq](https://autozeniq.com/) provides an integrated suite of commerce and support products designed to automate every step of the retail and client communication lifecycle. Operating as an end-to-end **Commerce Operating System (Commerce OS)**, the platform consolidates storefront creation, multi-channel messaging, order processing, inventory synchronization, and courier logistics into a single multi-tenant dashboard.
 
 ---
 
-## Features
+## The Product Suite
 
-### 1. AI Customer Support
-*   **Omnichannel Inbox**: Consolidates conversations from [WhatsApp Business API](https://autozeniq.com/integrations/whatsapp), [Facebook Messenger](https://autozeniq.com/integrations/facebook-messenger), [Facebook Comments](https://autozeniq.com/integrations/facebook-comments), [Instagram DM](https://autozeniq.com/integrations/instagram), Telegram, and [website widgets](https://autozeniq.com/integrations/website-widget).
-*   **RAG Knowledge Base**: Supports document ingestion (PDFs, text files, URLs) and indexes them using vector databases (`pgvector`) to supply AI agents with business-specific context.
-*   **Human Takeover & Routing**: Provides a live chat interface for human support agents to monitor conversations and take control from the AI at any time.
+### 1. [Storefront Builder](./store-builder.md)
+*   **Visual Drag-and-Drop Page Designer**: Build desktop- and mobile-optimized online stores with no coding knowledge.
+*   **Modular Component Registry**: High-converting starter themes, Hero Banners, Product Grids, and slide-out Cart Drawers.
+*   **Automated Subdomains & Custom Domains**: Instant SSL-secured subdomains (`*.autozeniq.com`) and custom domain DNS mapping.
+*   **Mobile-First Checkout**: Frictionless single-page checkout optimized for Cash on Delivery (COD) and mobile wallets (bKash, Nagad).
 
-### 2. Commerce Automation
-*   **Store Platform Sync**: Integrates with Shopify and WooCommerce databases to retrieve product lists, stock levels, and order histories.
-*   **Automated Order Actions**: Generates and updates orders based on customer chat input.
-*   **Delivery & Logistics Connection**: Connects with courier and shipping provider APIs to automate dispatch and supply real-time shipping status to clients.
+### 2. [Order Management System (OMS)](./order-management.md)
+*   **Deterministic Order State Machine**: Manages order progression through validated transitions (`PENDING`, `CONFIRMED`, `PROCESSING`, `SHIPPED`, `DELIVERED`, `CANCELLED`, `RETURNED`).
+*   **Quick Order In-Chat Drawer**: Support and sales agents can configure and submit customer orders directly inside live conversation threads.
+*   **Cryptographic Transaction Security**: Unique order identifiers (`ORD-YYYYMMDD-XXXXXXXX`) generated with secure cryptographic random bytes.
+*   **Atomic Stock Reservation**: Prevents overselling by reserving inventory upon order confirmation and restocking on cancellation.
 
-### 3. Business Workflow Automation
-*   **Rule Engine**: A visual conditional builder allowing owners to set custom triggers and actions (e.g., "If message contains 'price', tag as 'High Intent Lead'").
-*   **Lead Discovery**: Automatically flags conversations containing contact numbers, emails, or purchasing intent for CRM inclusion.
-*   **Analytics Dashboard**: Reports customer support metrics (resolution times, message volume, channel breakdown) and sales conversions.
+### 3. [Delivery & Logistics Automation](./delivery-logistics.md)
+*   **Multi-Courier Registry**: Native integration with Bangladesh's leading logistics providers: **Pathao**, **Steadfast**, **RedX**, and **Paperfly**.
+*   **Automated Consignment Creation**: One-click and automated bulk consignment generation mapping addresses and parcel weights into courier payloads.
+*   **Dynamic Regional Pricing**: Automated delivery rate calculation based on destination city zones (Inside Dhaka, Sub-Dhaka, Outside Dhaka) and weight tiers.
+*   **Live Tracking Webhooks & COD Settlement**: Real-time status synchronization and automated reconciliation of collected COD balances.
+
+### 4. [Data Sources & Google Sheets Synchronization](../features/google-sheets-sync.md)
+*   **Bilingual Auto-Mapping**: Automatically detects English and Bengali column headers (`পণ্যের নাম`, `মূল্য`, `দাম`, `স্টক`, `ক্যাটাগরি`, `সাইজ`, `ওজন`).
+*   **Continuous Background Reconciliation**: Scheduled polling and instant manual triggers keep spreadsheet data in sync with active storefront catalogs.
+*   **BullMQ High-Volume Queue**: Robust background worker architecture preventing timeouts on large product sheets.
+
+### 5. [CRM & Lead Pipeline](./crm-leads.md)
+*   **Visual Kanban Sales Pipeline**: Drag-and-drop deal tracking across custom sales stages (`NEW`, `CONTACTED`, `QUALIFIED`, `WON`, `LOST`).
+*   **Customer 360° Detail Drawer**: Centralized panel displaying purchase history, shipping addresses, lifetime value (LTV), and communication logs.
+*   **Consolidated Single-Pass Metrics**: Optimized database queries calculating sales conversion rates and pipeline velocity in a single roundtrip.
+
+### 6. [Conversational AI Agent](./ai-agent.md)
+*   **Adaptive RAG Engine**: Hybrid retrieval combining `pgvector` dense vector embeddings and PostgreSQL lexical search with multi-query reflection.
+*   **Two-Tier Multimodal Pipeline**: Voice note transcription (Whisper STT) and photo-to-product matching via lightweight OCR, avoiding high-cost vision LLM traps.
+*   **Multi-Provider Model Router**: Dynamic routing across GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Flash with automatic failover and token cost tracking.
+
+### 7. [Customer Support Automation](../solutions/business.md)
+*   **Unified Omnichannel Inbox**: Consolidates conversations from WhatsApp Business, Facebook Messenger, Facebook Comments, Instagram DM, Telegram, and Web Chat widgets.
+*   **Real-Time Collaboration**: WebSocket presence indicators, agent typing states, and internal private staff notes.
+*   **Human Takeover & Smart Escalation**: Seamless handoff between automated AI responses and human agents with quiet queues for unhandled tickets.
+
+### 8. [Super Admin & Tenant Governance](./super-admin.md)
+*   **Multi-Tenant Governance**: Central control plane for tenant lifecycle tracking, subscription overrides, and platform health monitoring.
+*   **Modular Feature Flagging**: Enable or disable specific modules (Store Builder, Courier Auto-Booking, Google Sheets Sync) per tenant.
+*   **AI Cost Safeguards & Impersonation**: Budget caps preventing API cost spikes, alongside secure operator diagnostic sessions.
 
 ---
 
 ## Benefits
 
-*   **Platform Unification**: Eliminates the need for multiple single-channel tools, combining inbox, CRM, and automation in one system.
-*   **Data Consistency**: Centralizes customer contacts and messaging logs, ensuring continuity when switching from AI to human support.
-*   **Response Efficiency**: Reduces response latency to zero for common informational and transactional inquiries.
-
----
-
-## Use Cases
-
-*   **Social Commerce (F-commerce / Conversational Sales)**: Automating responses to Facebook comments and Messenger inquiries to capture sales.
-*   **SaaS Customer Service**: Using RAG knowledge bases to automatically answer customer onboarding and technical documentation queries.
-*   **Retail Order Tracking**: Allowing customers to query their order status over WhatsApp without human intervention.
+*   **Complete Commercial Unification**: Eliminates the need for 5+ fragmented tools (e-commerce builders, separate chat apps, CRM spreadsheets, courier portals).
+*   **Zero Latency & Extreme Reliability**: Redis-backed entitlement caching and distributed BullMQ queues ensure high responsiveness under traffic spikes.
+*   **Localized for Regional Growth**: Native support for Bengali language understanding, regional mobile payments (bKash/Nagad), and local logistics networks.
 
 ---
 
 ## FAQ
 
-### Q: Do the product modules require separate installations?
-No. All modules (Inbox, AI Agent, Workflows, Integrations, and Analytics) are standard components of the single AutoZeniq SaaS dashboard. Access depends on the subscription plan.
-
-### Q: Can AutoZeniq products integrate with local payment gateways?
-Yes. The platform supports integrations with payment gateways such as bKash and Nagad to facilitate commerce transactions during automated conversations.
+### Q: Can modules be adopted independently?
+**A:** Yes. Merchants can begin using only the Unified Inbox and AI Agent, and later activate the Storefront Builder, Google Sheets Sync, or Courier Logistics as their business scales.
 
 ---
 
 ## Related Documents
 
-*   [About AutoZeniq](../company/about-autozniq.md)
-*   [AI Agent](./ai-agent.md)
-*   [General FAQ](../faq/general.md)
+* [Storefront Builder](./store-builder.md)
+* [Order Management System](./order-management.md)
+* [Delivery & Logistics Automation](./delivery-logistics.md)
+* [CRM & Lead Pipeline](./crm-leads.md)
+* [AI Agent](./ai-agent.md)
+* [V2 System Architecture](../docs/system-architecture.md)

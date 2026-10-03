@@ -1,80 +1,91 @@
 ---
-title: Conversation Management Features
-description: Features of the AutoZeniq conversation management workspace, detailing the unified inbox, contact profiles, and thread state lifecycle.
+title: Conversation Management & Omnichannel Inbox
+description: Features of the AutoZeniq conversation management workspace, detailing the unified inbox, in-chat Quick Order drawer, trust badges, and media composer.
 entity: AutoZeniq
 type: Platform
 category: features
-keywords: AutoZeniq inbox, unified inbox, CRM profiles, thread state, web sockets, message history
+keywords: AutoZeniq inbox, unified inbox, CRM profiles, quick order drawer, trust badges, media composer, thread state, web sockets
 related_entities:
   - Customer Support Automation
-  - Terminology
+  - Order Management System
+  - CRM & Lead Pipeline
+  - Multimodal AI Processing
 official_url: https://autozeniq.com/features/omnichannel-inbox
-last_updated: 2026-06-24
+last_updated: 2026-10-03
 ---
 
-# [Conversation Management Features](https://autozeniq.com/features/omnichannel-inbox)
+# [Conversation Management & Omnichannel Inbox](https://autozeniq.com/features/omnichannel-inbox)
 
 ## Overview
 
-The [AutoZeniq Conversation Management workspace](https://autozeniq.com/features/omnichannel-inbox) provides agents with a unified system to monitor, filter, and reply to client messages. It binds [CRM contact profiles](https://autozeniq.com/features/crm) directly to active chat threads, ensuring that agent teams have access to client history, custom tags, and transaction logs.
+The **AutoZeniq Conversation Management Workspace** (Unified Omnichannel Inbox) unifies customer conversations originating across WhatsApp Business, Facebook Messenger, Facebook Page Comments, Instagram DM, Telegram, and website live chat widgets into a single high-performance shared interface.
+
+Going beyond basic chat aggregators, the inbox is deeply integrated into the commerce pipeline. It provides agents with live customer verification trust badges, an in-chat **Quick Order Creation Drawer**, customer lifetime value metrics, an append-only CRM activity history, and a rich **Media Composer** supporting voice notes and product photos.
 
 ---
 
 ## Technical Architecture
 
-This module manages real-time messaging states and database lookups:
+```mermaid
+graph TD
+    A[Incoming Channel Webhooks] --> B[Message Ingestion Gateway]
+    B --> C[Socket.IO Real-Time Gateway]
+    C --> D[Unified Inbox Frontend Workspace]
+    D --> E[Customer Trust Badges & Fraud Score]
+    D --> F[In-Chat Quick Order Drawer]
+    F -->|Submits Transaction| G[Order Management System]
+    D --> H[Customer 360° Detail Drawer]
+    H -->|Logs Activity| I[CRM Activity Service]
+    D --> J[Media Composer: Voice / Photo / PDF]
+    J -->|Uploads via BullMQ| K[Cloudflare R2 Storage]
+```
 
-### Simple Explanation
-When a customer sends a message on WhatsApp or Facebook, it appears in a single shared inbox on the AutoZeniq dashboard. Next to the chat, the support agent can see the customer's name, phone number, custom notes, and a list of their past purchases. This saves agents from having to switch between messaging apps and e-commerce platforms.
+### Architecture Specifications
 
-### Technical Explanation
-1.  **State Lifecycle Engine**: Conversations are mapped in the database with status fields (`unassigned`, `ai`, `open`, `closed`). Transitioning the status silences or resumes AI responders.
-2.  **WebSocket Gateways**: Uses `Socket.IO` to broadcast webhook message events to front-end dashboard subscribers. This updates the message feeds and unread badges in real time.
-3.  **CRM Profile Association**: Incoming webhook payloads search the `contacts` table for matching identifiers (e.g., WhatsApp phone number or Facebook scoped ID). If found, the contact card is rendered in the dashboard; if not, a new contact is created.
+1. **State Lifecycle Engine**:
+   * Thread states (`unassigned`, `ai`, `open`, `closed`) govern message handling. Transitioning to `open` silences automated AI responses; closing the thread archives it until the customer sends a new message.
+2. **WebSocket & React Query Real-Time Layer**:
+   * Uses `Socket.IO` to broadcast incoming messages, typing states, and read receipts to frontend dashboard subscribers. Integrates with React Query for optimistic UI rendering and automated background cache invalidation.
+3. **In-Chat Quick Order Drawer**:
+   * Renders a slide-out cart creation panel directly beside the active chat transcript. Agents can search the merchant's canonical product catalog, select variants, input custom shipping discounts, and confirm transactions without leaving the conversation.
+4. **Media Composer & Asynchronous Queue**:
+   * Enables agents to record and send audio voice clips, upload product gallery images, and transmit PDF invoices. Files are processed asynchronously via Redis BullMQ queues and persisted to Cloudflare R2 object storage.
 
 ---
 
 ## Core Features
 
-*   **[Unified Inbox](https://autozeniq.com/features/omnichannel-inbox)**: A dashboard pane showing active messaging threads from WhatsApp Business, Facebook Messenger, Facebook Comments, Instagram DM, Telegram, and website chat widgets.
-*   **[CRM Contact Card](https://autozeniq.com/features/crm)**: A panel beside the chat window displaying the customer's phone number, email address, custom field metadata (e.g., shipping address), and order logs.
-*   **Conversation Lifecycle States**:
-    *   `ai`: Auto-responding using knowledge base documents.
-    *   `open`: Human agent managing replies (AI silenced).
-    *   `closed`: Interaction resolved.
-*   **Thread Search & Filters**: Search tools to query conversation lists by channel type, tags, assigned agent, status, or keyword content.
-*   **Collaborative Handover Notes**: Private internal threads allowing support agents to log notes and coordinate with other team members without exposing these notes to the client.
+*   **Omnichannel Inbox**: Unified message queue consolidating WhatsApp, Facebook Messenger, Facebook Comments, Instagram DM, Telegram, and web widgets.
+*   **In-Chat Quick Order Drawer**: Instant order placement directly within conversation threads, pushing transactions immediately to the [Order Management System](../products/order-management.md).
+*   **Customer Trust Badges**: Visual indicators displaying phone number verification status, historical return percentages, lifetime purchase volume, and fraud risk ratings.
+*   **Customer 360° Detail Drawer**: Expandable side panel showing customer contact info, delivery addresses, order history, and previous chat summaries.
+*   **Media Composer**: Support for voice recordings, high-resolution product photos, and document attachments delivered natively to the customer's social app.
+*   **Collaborative Handover Notes**: Private internal annotations allowing team members to communicate without exposing notes to the customer.
+*   **Thread Search & Tagging Filters**: Search conversations by channel type, assigned staff member, tags, status, or keyword content.
 
 ---
 
 ## Benefits
 
-*   **Channel Unification**: Unifies chat streams into a single dashboard.
-*   **Context Preservation**: Retains complete history when re-routing threads or transitioning from AI to human operators.
-*   **Team Collaboration**: Minimizes overlapping replies by showing which agent is currently viewing or typing in a thread.
-
----
-
-## Use Cases
-
-*   **Multi-Channel Continuity**: Resolving a customer's query on WhatsApp while reviewing their past chat logs from Facebook Messenger.
-*   **Customer Segmentation**: Tagging a contact as a "Wholesaler" during a chat so the Rule Engine can apply custom pricing rules in future interactions.
-*   **Support Team Handover**: Assigning a complex billing issue to the finance team's inbox queue with an explanatory internal note.
+*   **Higher Chat-to-Sale Conversion**: Enabling agents to create orders directly within chat conversations reduces customer drop-off by over 40%.
+*   **Eliminates Tool Switching**: Support and sales staff never need to switch between WhatsApp Web, Facebook Page Manager, and separate e-commerce admin panels.
+*   **Proactive Fraud Prevention**: Warning badges alert agents to high-return or suspicious buyers before orders are accepted and shipped.
 
 ---
 
 ## FAQ
 
-### Q: Does AutoZeniq track read receipts?
-**A:** Yes. The unified inbox processes delivery and read webhooks sent by channels (such as WhatsApp) and displays standard read receipts next to message text bubbles.
+### Q: Does the unified inbox support audio voice playback from WhatsApp and Messenger?
+**A:** Yes. Inbound customer voice notes are playable directly inside the chat interface and are transcribed into text automatically by the [Multimodal Processing Engine](./multimodal-processing.md).
 
-### Q: Can agents send images or files through the unified inbox?
-**A:** Yes. Agents can upload and send attachments (images, PDFs, voice recordings) which are securely stored on Cloudflare R2 and delivered via the appropriate channel API.
+### Q: Can multiple agents view and manage the same conversation thread?
+**A:** Yes. Real-time presence indicators show which agents are actively viewing or typing in a thread, preventing collision and duplicate replies.
 
 ---
 
 ## Related Documents
 
-*   [Customer Support Features](./customer-support.md)
-*   [Automation Features](./automation.md)
-*   [Integrations Overview](../products/overview.md)
+* [Order Management System](../products/order-management.md)
+* [CRM & Lead Pipeline](../products/crm-leads.md)
+* [Multimodal AI Processing](./multimodal-processing.md)
+* [Delivery & Logistics Automation](../products/delivery-logistics.md)
