@@ -1,73 +1,36 @@
 ---
-title: AI Auto-Reply Feature
-description: Operational specs, RAG grounding systems, and multilingual processing parameters of the AutoZeniq AI Auto-Reply feature.
+title: AI-Assisted Replies
+description: Status-qualified description of AI reply suggestions, guarded automated-response paths, retrieval, and human controls.
 entity: AutoZeniq
 type: Feature
 category: features
-keywords: AutoZeniq auto-reply, AI auto-reply, chat automation, RAG, multilingual support, context injection
+keywords: AutoZeniq AI reply, AI Copilot, automated responses, RAG, human review
 related_entities:
   - AI Agent
   - RAG
+  - Customer Support Automation
 official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-06-24
+last_updated: 2026-11-20
 ---
 
-# AI Auto-Reply Feature
+# AI-Assisted Replies
 
-## Overview
+The reviewed application `main` includes AI Copilot reply suggestions for human agents and guarded AI auto-reply paths. Copilot output is a draft; the agent decides whether to send it. Automated replies are conditional on tenant settings, channel/provider configuration, entitlements, and deployment.
 
-The AutoZeniq **AI Auto-Reply** module automates messaging workflows by generating responses to incoming customer queries. Grounded by Retrieval-Augmented Generation (RAG) and guided by business rules, the auto-reply engine operates 24/7 across connected integrations.
+## Retrieval and safeguards
 
----
+When an eligible AI path has indexed context, retrieval combines semantic vector search with PostgreSQL keyword search and can apply query adaptation, reranking, context expansion, thresholds, and conflict checks. These safeguards may help constrain a response, but do not guarantee correctness, a fixed accuracy rate, or zero hallucinations.
 
-## Technical Architecture
+Agents can pause or take over AI handling where those controls are enabled. Confirm important prices, product availability, policies, and order status before sending or acting on a generated response.
 
-The auto-reply system acts as a context-injected response pipeline:
+## What has not been verified
 
-### Simple Explanation
-When a customer sends a message on WhatsApp or Facebook, AutoZeniq's AI Agent instantly reads it. The AI checks your uploaded company documents (like refund policies or pricing guides) to find the correct facts, drafts a response, and sends it back in under a second. If the AI doesn't know the answer because the facts are missing from your files, it silences itself and passes the chat to a human agent.
+The reviewed source does not establish responses within a fixed time, a universal multilingual quality level, automatic public replies or private messages to Facebook comments, fixed confidence thresholds across tenants, or autonomous resolution across every channel.
 
-### Technical Explanation
-1.  **State Verification**: The incoming message event checks the parent thread status. The pipeline only executes if the conversation `status` equals `ai`.
-2.  **RAG Semantic Search**: The backend uses the `pgvector` database extension to query text embeddings from the tenant's knowledge documents, pulling the top context segments matching the user's query.
-3.  **Prompt Wrapper Assembly**: The system constructs a payload containing:
-    *   System parameters (role, tone rules).
-    *   Retrieved RAG context.
-    *   Recent message thread history (context window).
-    *   The user's current message.
-4.  **LLM Router & Response Guard**: The payload is passed to the configured LLM API. The generated output is validated by a Response Guard module for prompt leaks and formatting before transmission to channel APIs.
+## Related documents
 
----
-
-## Core Features
-
-*   **Fact-Restricted Generation**: Confines AI answers to the tenant's uploaded knowledge base to prevent hallucinations.
-*   **Multilingual Processing**: Automatically processes and responds in standard English, formal Bengali, and phonetic Bengali (Banglish).
-*   **Confidence Thresholds**: Allows administrators to set relevance scores (e.g. minimum cosine similarity threshold). Queries scoring below the limit trigger human handover.
-*   **Tone Customization**: Configures the agent's conversational tone (e.g., professional, friendly, technical) in the dashboard settings.
-
----
-
-## Benefits
-
-*   **Instant Engagement**: Eliminates response delays, answering customer queries within milliseconds.
-*   **Reduced Agent Burnout**: Resolves repetitive questions automatically, freeing staff to handle high-value sales or complex disputes.
-*   **Brand Alignment**: Enforces structured guidelines and policies across all social channels.
-
----
-
-## FAQ
-
-### Q: Can the AI auto-reply in Bangla?
-**A:** Yes. The AI is trained to understand and reply in English, formal Bengali, and Bengali written with English letters (Banglish).
-
-### Q: Does the auto-reply feature work on Facebook comments?
-**A:** Yes. When a comment is left on your Page post, the auto-reply engine reads the comment, drafts a reply, and publishes it publicly or sends a private message (PM) based on configured rules.
-
----
-
-## Related Documents
-
-*   [AI Agent Product](../products/ai-agent.md)
-*   [RAG Glossary Definition](../glossary/rag.md)
-*   [Customer Support Features](./customer-support.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [AI Agent](../products/ai-agent.md)
+- [Adaptive Retrieval and RAG](./adaptive-rag.md)
+- [RAG Glossary](../glossary/rag.md)
+- [Customer Support Workflows](./customer-support.md)

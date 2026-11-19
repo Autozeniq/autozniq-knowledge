@@ -1,64 +1,37 @@
 ---
-title: Business Workflow Automation Features
-description: Features of the AutoZeniq Rule Engine, including conditional workflows, courier auto-booking, and database actions.
+title: AutoZeniq Workflow Automation
+description: Tenant workflow graph creation, connected triggers, executable notification action, and current limitations.
 entity: AutoZeniq
 type: Platform
 category: features
-keywords: AutoZeniq automation, Rule Engine, workflow automation, triggers, courier auto-booking, database connector, conditional logic
+keywords: AutoZeniq automation, workflows, triggers, notification, order event, chat keyword
 related_entities:
   - Customer Support Automation
   - Commerce Automation
   - Order Management System
   - Delivery Logistics
-official_url: https://autozeniq.com/solutions/sales-automation
-last_updated: 2026-10-03
+official_url: https://autozeniq.com/features/workflow-builder
+last_updated: 2026-11-20
 ---
+# AutoZeniq Workflow Automation
 
-# [Business Workflow Automation Features](https://autozeniq.com/solutions/sales-automation)
+The backend contains tenant-scoped workflow graph creation and updates, validation, publishing, execution records, queued processing, execution leases, idempotent notifications, and limited recovery. A saved graph or UI node does not mean its action is connected or executable.
 
-## Overview
+## Connected triggers and action
 
-The AutoZeniq Business Workflow Automation module allows merchants to build custom, event-driven business rules. Through the platform's visual **[Rule Engine / Workflow Builder](https://autozeniq.com/features/workflow-builder)**, users combine deterministic triggers with conditional logic to execute automated commercial actions—such as tagging high-intent leads, reserving product stock, auto-booking courier consignments with **Pathao** or **Steadfast**, or emitting outbound webhooks.
+In the reviewed `main` path, `order_placed` is connected to a created order event and `chat_keyword` to persisted inbound customer text. `notify_agent` is the executable workflow action found in the processor; it creates a tenant-scoped in-app notification.
 
----
+`cart_abandoned` is listed but lacks a safe automatic event emitter in the reviewed code. It must be treated as a manual bridge, not an automatic event trigger. `send_whatsapp_template` and `apply_coupon` are present in the action catalog but fail closed; they do not execute their named effects.
 
-## Technical Architecture
+## Reliability and limits
 
-This module runs a centralized event-driven rule evaluator:
+Workflow graphs are validated and queued under tenant scope. Execution uses persisted state/leases and idempotency controls for notification actions. Recovery is deliberately limited to notification-only graphs; do not promise arbitrary action retries or exactly-once side effects.
 
-```mermaid
-graph TD
-    A[Inbound Event: Message / Order / Cart] --> B[Rule Evaluator Hook]
-    B --> C[AST Logic Engine (AND / OR Evaluation)]
-    C -->|Condition Met| D[Action Dispatcher (BullMQ Queue)]
-    D --> E1[Tag Lead in CRM]
-    D --> E2[Create Order in OMS]
-    D --> E3[Auto-Book Consignment via Courier Registry]
-    D --> E4[Trigger Outbound HMAC Webhook]
-```
+Do not advertise courier booking, stock reservation, lead tagging, arbitrary webhooks, outbound WhatsApp template delivery, coupon application, or other design-only nodes as live workflow actions. Workflow entitlements, usage limits, configuration, and provider connections still apply.
 
-### Technical Execution Details
+## Related documents
 
-1.  **Event Hook Ingestion**: When messages, orders, or cart updates occur, transaction hooks fire events to `RuleEngineService`.
-2.  **AST Evaluation (Abstract Syntax Tree)**: Compiles user rules into logical conditions containing inputs (`message.content`, `contact.tags`, `order.status`, `delivery.zone`, `time.current`).
-3.  **Action Dispatcher (BullMQ)**: Executes actions asynchronously through Redis BullMQ worker queues to guarantee execution and prevent API thread blocking.
-
----
-
-## Core Operational Actions
-
-*   **Courier Auto-Booking**: When an order transitions to `CONFIRMED`, automatically invokes `auto-booking.service.ts` to generate a live consignment with Pathao, Steadfast, RedX, or Paperfly.
-*   **Lead Intent Scoring & Pipeline Movement**: Detects buyer inquiries, calculates Intent Scores, and pushes deals to the `QUALIFIED` stage on the visual Kanban board.
-*   **Inventory Stock Alerts**: Monitors inventory levels; when variant stock falls below safety thresholds, automatically silences promotion rules and notifies the merchant.
-*   **Urgent Takeover Escalation**: Detects customer frustration, dispute terms, or refund demands, immediately bypassing the AI agent and alerting human operators via push notifications.
-*   **Google Sheets Sync Trigger**: Triggers automated catalog polling when high-volume campaigns are launched.
-
----
-
-## Related Documents
-
-* [Order Management System](../products/order-management.md)
-* [Delivery & Logistics Automation](../products/delivery-logistics.md)
-* [CRM & Lead Pipeline](../products/crm-leads.md)
-* [Conversation Management](./conversation-management.md)
-* [Adaptive RAG Feature](./adaptive-rag.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Order Management](../products/order-management.md)
+- [Delivery and Logistics](../products/delivery-logistics.md)
+- [CRM and Leads](../products/crm-leads.md)

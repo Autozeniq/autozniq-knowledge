@@ -1,49 +1,36 @@
 ---
-title: AutoZeniq Technical & Architecture FAQ
-description: Technical frequently asked questions about database models, RAG vector similarity, Two-Tier Cost-Decision Engine, and Sentinel security in AutoZeniq.
+title: AutoZeniq Technical FAQ
+description: Current architecture, data, API, privacy, and security facts with evidence-based limits.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq technical faq, pgvector search, cost decision engine, SQL injection fix, Redis entitlement cache, Nginx subdomain routing
+keywords: AutoZeniq technical FAQ, PostgreSQL, RAG, security, tenant access, privacy, queue
 related_entities:
-  - Security and Compliance
+  - Security and Privacy
   - System Architecture
-  - Core Technical Innovations
+  - Current Feature Inventory
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Technical FAQ
 
-# AutoZeniq Technical & Architecture FAQ
+## What is the application architecture?
+The reviewed repository contains a modular NestJS backend, a Next.js merchant/public frontend, and a separate Next.js storefront runtime. PostgreSQL/Prisma backs application records and retrieval; Redis supports selected cache and queue paths. Queue processors run within the backend process in the reviewed Compose topology; a separate worker service was not established.
 
-This document addresses technical questions regarding system architecture, database partitioning, data encryption, and AI semantic processing on the AutoZeniq platform.
+## How does knowledge retrieval work?
+The knowledge service supports PDF, DOC/DOCX, CSV, JSON, and plain-text ingestion. Retrieval combines vector and PostgreSQL keyword search with adaptive query, reranking, and context steps. This does not guarantee correct answers, universal citations, fixed latency, or zero hallucinations.
 
----
+## Are all tables/queries universally tenant-isolated?
+Current authenticated routes use current account and tenant-membership/role checks, and many services scope records by tenant. The source review did not establish universal isolation for every query/table, so avoid an absolute guarantee.
 
-## FAQ
+## How are credentials and tracking protected?
+Integration and tracking credentials use authenticated encryption where enabled. Production config validation rejects missing or weak required secrets. Store tracking uses purpose-separated consent, suppresses pending events after revocation, quarantines legacy records without consent identity, and applies a 90-day tracking retention boundary. These details should not be generalized to all data categories.
 
-### Q: How does the Two-Tier Cost-Decision Engine work for customer product photos?
-**A:** Naively sending customer images to multimodal LLMs (GPT-4o Vision) costs $0.02–$0.03 per image. AutoZeniq runs a **Two-Tier Cost-Decision Engine**:
-1.  **Tier 1**: Uploads the photo to Cloudflare R2; executes low-cost OCR and text extraction (~$0.001/call) to parse printed brand names, barcodes, or model numbers. If an exact catalog match is found, product specs are injected into an economical model (Gemini 1.5 Flash).
-2.  **Tier 2**: Only if OCR yields no conclusive text does the system compute a compact vector embedding and run a `pgvector` similarity search.
-This achieves 97% recognition accuracy while reducing inference costs by ~95%.
+## Does AutoZeniq have a security certification?
+No certification or audit attestation is established by the reviewed application repository. Do not claim SOC 2, ISO, HIPAA, penetration-test completion, or a universal TLS/rate-limit standard without separate evidence.
 
-### Q: How did AutoZeniq eliminate SQL injection vulnerabilities in AI vector search?
-**A:** All database calls across the platform execute via compile-time parameterized Prisma `$executeRaw` and `$queryRaw` statements with strict variable binding. Raw string interpolation and `$executeRawUnsafe` have been completely removed from `knowledge.service.ts` and `embedding.processor.ts`.
+## Related documents
 
-### Q: How does the Redis Entitlement Cache prevent N+1 query bottlenecks?
-**A:** To avoid querying tenant subscription tables on every incoming HTTP request, the `EntitlementCacheService` computes tenant capability flags (e.g. `MODULE_STORE_BUILDER`, `MODULE_DELIVERY_AUTO_BOOK`) and stores them in Redis memory. The `SubscriptionGuard` executes sub-millisecond $O(1)$ memory checks before controller execution, with selective cache eviction triggered only upon plan changes.
-
-### Q: How does Nginx wildcard subdomain routing work for the Storefront runtime?
-**A:** Nginx listens on `*.autozeniq.com` and custom CNAME domains, passing the `Host` header to the single containerized Next.js 14 `apps/storefront` runtime. The runtime's `lib/domain-resolver.ts` parses the hostname, queries the tenant's layout schema from the database, and renders the corresponding store dynamically.
-
-### Q: How are third-party credentials and keys secured?
-**A:** Meta Page Access Tokens, Google Service Account JSON keys, and courier API secrets are encrypted at rest using authenticated symmetric `AES-256-GCM` encryption with cryptographically random initialization vectors (IV) in the `CredentialVaultService`.
-
----
-
-## Related Documents
-
-* [Core Technical Innovations](../docs/core-technical-innovations.md)
-* [System Architecture](../docs/system-architecture.md)
-* [Sentinel Security & Hardening](../../features/sentinel-security.md)
-* [Two-Tier Multimodal Processing](../../features/multimodal-processing.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [System Architecture](../docs/system-architecture.md)
+- [Security and Privacy](../security.md)

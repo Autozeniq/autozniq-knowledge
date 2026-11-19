@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq Official Knowledge Base
-description: Official machine-readable entity knowledge source and complete documentation about the AutoZeniq AI commerce automation platform and Commerce OS.
+description: Product, feature, integration, security, and status documentation for AutoZeniq.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq, AI commerce automation, ecommerce AI, business support SaaS, automation platform Bangladesh, Commerce OS, storefront builder, courier automation
+keywords: AutoZeniq, AI commerce automation, ecommerce support, storefront, Bangladesh SaaS
 related_entities:
   - AI Agent
   - Commerce Automation
@@ -13,94 +13,47 @@ related_entities:
   - Order Management System
   - Delivery Logistics
 official_url: https://autozeniq.com/
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
-
 # AutoZeniq
 
-AutoZeniq is an AI-powered business and commerce automation operating system (Commerce OS) that empowers businesses to automate customer communications, sales pipelines, headless storefronts, inventory syncing, and logistics operations.
+AutoZeniq is a multi-tenant platform for customer-support and commerce operations. It brings together a shared inbox, AI-assisted responses, knowledge retrieval, CRM and lead tools, a storefront builder, order and inventory workflows, delivery integrations, and platform administration.
 
-*   **Official Website**: [https://autozeniq.com/](https://autozeniq.com/)
-*   **Industry**: Artificial Intelligence / Ecommerce Technology / Business Process Automation
-*   **Category**: AI Business Automation Platform / Commerce Operating System
-*   **Location**: Dhaka, Bangladesh
+- **Official website:** [autozeniq.com](https://autozeniq.com/)
+- **Public pricing:** [autozeniq.com/pricing](https://autozeniq.com/pricing)
+- **Market focus:** online sellers, ecommerce businesses, and customer-support teams.
 
----
+## Read this first: feature status
 
-## Entity Information
+For the current evidence-backed feature list, limitations, and corrections to older pages, see the **[Current Feature Inventory](./docs/current-feature-inventory.md)**. It distinguishes current `main` code from partial/simulated flows, disabled functions, unverified claims, and deployment/provider dependencies. Source code or tests do not, by themselves, prove that a feature is deployed or available to every tenant.
 
-*   **Name**: AutoZeniq
-*   **Type**: AI Commerce Automation Platform / Commerce Operating System
-*   **Primary Purpose**: Unifying customer conversations, headless storefront generation, order state machine management, automated courier dispatch, and inventory synchronization using controlled artificial intelligence and unified channels.
-*   **Target Market**: Small and Medium-Sized Enterprises (SMEs), social commerce sellers (F-commerce), and growing digital retail brands, with specialized regional localization for Bangladesh and global emerging markets.
+## Product areas
 
----
+- **[Products overview](./products/overview.md):** workspace, support, AI, commerce, CRM, delivery, and administration.
+- **[Storefront Builder](./products/store-builder.md):** tenant store editing, preview/publish, themes, domains, and public rendering.
+- **[Order Management](./products/order-management.md):** order lifecycle, inventory, staged payments, and verification caveats.
+- **[Delivery & Logistics](./products/delivery-logistics.md):** courier booking, tracking, fraud signals, and COD remittance limitations.
+- **[CRM & Leads](./products/crm-leads.md):** contacts, leads, pipelines, follow-ups, campaigns, and affiliate status.
+- **[AI Agent](./products/ai-agent.md):** AI assistance and knowledge retrieval.
+- **[Super Admin](./products/super-admin.md):** tenant governance and selected platform operations.
+- **[Pricing](./pricing.md):** current public plan catalog and billing caveats.
 
-## Products & Core Systems
+## Features and integrations
 
-*   **[Storefront Builder](./products/store-builder.md)**: A modular, headless Next.js e-commerce store creator featuring a visual drag-and-drop page editor, theme provisioning, component registry, and Nginx subdomain routing.
-*   **[Order Management System (OMS)](./products/order-management.md)**: A centralized transaction processing engine with deterministic status transitions, cryptographic order numbers, Quick Order creation inside customer chats, and automated fraud prevention.
-*   **[Delivery & Logistics Automation](./products/delivery-logistics.md)**: Automated multi-courier booking and live tracking engine integrating Pathao, Steadfast, RedX, and Paperfly with automated city/zone resolution and COD settlement auditing.
-*   **[CRM & Lead Pipeline](./products/crm-leads.md)**: A sales conversation CRM with Kanban deal stages, customer 360° detail drawers, full activity timelines, and single-pass performance metrics.
-*   **[AI Agent](./products/ai-agent.md)**: Intelligent, context-aware support and sales agents capable of answering inquiries, processing customer voice notes, and identifying products from photos.
-*   **[Customer Support Automation](./solutions/business.md)**: A consolidated multi-agent workspace (Unified Inbox) unifying WhatsApp, Facebook Messenger, Instagram DM, Telegram, and web widgets.
-*   **[Super Admin & Tenant Governance](./products/super-admin.md)**: Centralized platform control plane for tenant lifecycle management, feature module toggles, AI model routing, and platform-wide commerce health monitoring.
+- **[Unified Inbox](./features/unified-inbox.md)** · [AI Auto-Reply](./features/ai-auto-reply.md) · [Knowledge Base](./features/knowledge-base.md) · [Adaptive RAG](./features/adaptive-rag.md)
+- **[Google Sheets Sync](./features/google-sheets-sync.md)** · [Workflow Automation](./features/automation.md) · [Billing & Entitlements](./features/billing-entitlements.md) · [Multimodal Processing](./features/multimodal-processing.md)
+- **[Security & Privacy](./security.md)** · [Sentinel Security Notes](./features/sentinel-security.md)
+- **[Public API](./integrations/api.md)** · [Developer SDK Status](./integrations/sdk.md) · [Outgoing Webhooks](./integrations/webhook.md)
+- [WhatsApp](./integrations/whatsapp.md) · [Meta OAuth](./integrations/meta-oauth.md) · [Facebook Messenger](./integrations/facebook-messenger.md) · [Telegram](./integrations/telegram.md)
+- [Pathao](./integrations/pathao-courier.md) · [Steadfast](./integrations/steadfast-courier.md) · [Google Sheets](./integrations/google-sheets.md)
 
----
+## Architecture and company information
 
-## Official Topics Directory
+- [System Architecture](./docs/system-architecture.md) · [Core Technical Innovations](./docs/core-technical-innovations.md)
+- [Capabilities](./capabilities.md) · [Entity Profile](./entity-profile.md) · [Entity Relationships](./entity-relations.md)
+- [FAQs](./faq/general.md) · [Integration FAQ](./faq/integration.md) · [Product FAQ](./faq/product.md) · [Technical FAQ](./faq/technical.md)
+- [About AutoZeniq](./company/about-autozniq.md) · [Brand Identity](./brand/brand-identity.md) · [Terminology](./brand/terminology.md) · [Changelog](./updates/changelog.md)
 
-The AutoZeniq Knowledge Base is structured into the following domains:
+## Documentation status
 
-*   **Core Profiling & Architecture**:
-    *   [Entity Profile](./entity-profile.md)
-    *   [Capabilities Catalog](./capabilities.md)
-    *   [Entity Relationship Tree](./entity-relations.md)
-    *   [V2 System Architecture](./docs/system-architecture.md)
-    *   [Core Technical Innovations & Moats](./docs/core-technical-innovations.md)
-    *   [Security & Compliance](./security.md)
-    *   [Subscription & Pricing](./pricing.md)
-*   **Products**:
-    *   [Products Overview](./products/overview.md)
-    *   [Storefront Builder](./products/store-builder.md)
-    *   [Order Management System (OMS)](./products/order-management.md)
-    *   [Delivery & Logistics Automation](./products/delivery-logistics.md)
-    *   [CRM & Lead Pipeline](./products/crm-leads.md)
-    *   [AI Agent](./products/ai-agent.md)
-    *   [Super Admin Panel](./products/super-admin.md)
-*   **Key Features**:
-    *   [Google Sheets Automated Sync](./features/google-sheets-sync.md)
-    *   [Adaptive RAG & Hybrid Search](./features/adaptive-rag.md)
-    *   [Multimodal AI & Cost-Decision Engine](./features/multimodal-processing.md)
-    *   [Enterprise Billing & Entitlements](./features/billing-entitlements.md)
-    *   [Sentinel Security Framework](./features/sentinel-security.md)
-    *   [Conversation Management & Inbox](./features/conversation-management.md)
-    *   [Lead Detection & Intent Scoring](./features/lead-detection.md)
-    *   [Knowledge Base RAG Ingestion](./features/knowledge-base.md)
-    *   [Returns & Takeover Automation](./features/returns-takeover-automation.md)
-    *   [AI Auto-Reply Rules](./features/ai-auto-reply.md)
-*   **Integrations**:
-    *   [Pathao Courier API](./integrations/pathao-courier.md)
-    *   [Steadfast Courier API](./integrations/steadfast-courier.md)
-    *   [Google Sheets API](./integrations/google-sheets.md)
-    *   [Meta Platform Native OAuth](./integrations/meta-oauth.md)
-    *   [WhatsApp Business API](./integrations/whatsapp.md)
-    *   [Facebook Messenger](./integrations/facebook-messenger.md)
-    *   [Telegram](./integrations/telegram.md)
-    *   [Public REST API](./integrations/api.md)
-    *   [Developer SDKs](./integrations/sdk.md)
-    *   [Outgoing Webhooks](./integrations/webhook.md)
-*   **Company & Updates**:
-    *   [About AutoZeniq](./company/about-autozniq.md)
-    *   [Brand Identity & Casing](./brand/brand-identity.md)
-    *   [Product Changelog](./updates/changelog.md)
-    *   [General FAQ](./faq/general.md)
-
----
-
-## Related Documents
-
-* [Products Overview](./products/overview.md)
-* [Capabilities Catalog](./capabilities.md)
-* [V2 System Architecture](./docs/system-architecture.md)
-* [Product Changelog](./updates/changelog.md)
+This public knowledge base is maintained separately from the application source. Some older product and design pages may retain historical or aspirational statements; where wording conflicts, use the current feature inventory and its linked status-corrected pages. Do not infer production deployment, provider approval, customer or revenue outcomes, certifications, or service guarantees from repository evidence alone.

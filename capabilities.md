@@ -1,10 +1,10 @@
 ---
-title: AutoZeniq Capabilities
-description: Factual capabilities checklist and operational boundaries of the AutoZeniq AI Commerce OS platform.
+title: AutoZeniq Capabilities and Boundaries
+description: Evidence-based overview of current AutoZeniq product capabilities, limitations, and availability dependencies.
 entity: AutoZeniq
 type: Platform
 category: features
-keywords: AutoZeniq capabilities, system functions, AI assistance, automation list, Commerce OS, store builder, courier automation, Google Sheets sync, Adaptive RAG
+keywords: AutoZeniq capabilities, current features, implementation status, commerce automation, support, storefront
 related_entities:
   - AI Agent
   - Commerce Automation
@@ -13,91 +13,62 @@ related_entities:
   - Order Management System
   - Delivery Logistics
 official_url: https://autozeniq.com/features
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
-
 # AutoZeniq Capabilities
 
-## Overview
+This page summarizes important product capabilities based on the application repository's default branch. It describes code paths and tests, not a deployment guarantee. Real availability can depend on plan entitlements, workspace settings, migrations, credentials, provider account approvals, and production configuration. The [Current Feature Inventory](./docs/current-feature-inventory.md) provides detailed status and documentation corrections.
 
-This capabilities guide outlines what the AutoZeniq platform is technically equipped to execute. It details the functional parameters of the conversational AI engine, omnichannel messaging workspace, headless storefront builder, order management state machine, courier logistics network, and automated inventory synchronization pipelines.
+## Customer support and AI
 
----
+- A tenant-scoped shared inbox provides conversation lists, message history, human replies, assignment, and AI pause/takeover/resume controls.
+- AI Copilot can draft suggestions for a human agent; suggestions are not automatically sent.
+- Guarded AI auto-reply, configurable AI settings/rules, and an AI playground are present. Auto-reply depends on entitlements, supported channels, available models, and configuration.
+- Image and voice processing paths are available subject to file validation, quotas, configuration, and plan access.
+- Some channel-specific capabilities vary. The reviewed code does not establish universal typing/presence/read receipts, internal notes, ticketing, or automated team routing.
 
-## Capabilities Catalog
+## Knowledge and automation
 
-### 1. Customer Communication & Unified Messaging
-*   **Omnichannel Ingestion**: Collects, verifies, and parses inbound events from WhatsApp Business API, Facebook Messenger, Facebook Page Comments, Instagram DM, Telegram, and embeddable website live chat widgets.
-*   **Unified Agent Workspace**: Renders real-time message streams, customer verification badges, lifetime value, and order history in a single shared interface.
-*   **Real-Time Collaboration**: Broadcasts typing indicators, delivery/read receipts, agent presence, and internal team annotations via WebSockets (`Socket.IO`).
-*   **Media Composer & Cloud Storage**: Supports rich media communications (customer voice note playback, audio recording, high-resolution product photography, PDF catalogs) securely stored on Cloudflare R2 object storage.
-*   **Human Takeover & Routing**: One-click toggling between automated AI responder and human operator control, with automated quiet queues for unhandled queries.
+- Tenant-authorized PDF, DOC/DOCX, CSV, JSON, and text sources can be parsed and indexed in background jobs.
+- Knowledge retrieval combines semantic vector search and keyword search. Conversational retrieval can expand/rewrite queries, rank sources, and detect possible conflicts.
+- Google Sheets processing can classify tabs, map common English and Bengali headers, update product/inventory data, and report progress. Verified behavior is primarily pull-oriented; parts of the add-source UI are simulated.
+- Workflow graphs can be saved, validated, published, and queued. Verified triggers include `order_placed` and `chat_keyword`; `notify_agent` is the executable action found in the reviewed path. Unsupported actions fail closed.
 
-### 2. Storefront Builder & Headless Commerce
-*   **Visual Drag-and-Drop Editor**: Real-time layout customization for desktop, tablet, and mobile viewports with zero coding required.
-*   **Dynamic Theme Provisioning**: Instant instantiation of industry-tailored starter themes with automated home, catalog, product details, cart, and checkout page scaffolding.
-*   **Component Registry**: Composable UI component library (`packages/storefront-ui`) containing Hero Banners, Product Grids, Announcement Bars, Features Lists, and Slide-out Cart Drawers.
-*   **Subdomain & Custom Domain Routing**: Instant automated subdomains (`*.autozeniq.com`) and custom domain DNS mapping supported by Nginx reverse proxy routing.
-*   **Localized Mobile Checkout**: Streamlined single-page checkout optimized for Cash on Delivery (COD) and mobile wallets (bKash, Nagad), with native BDT (`৳`) currency formatting.
+## Storefront, products, orders, and inventory
 
-### 3. Order Management System (OMS) & Transaction Lifecycle
-*   **Deterministic State Machine**: Strict mathematical transition validation across order statuses (`PENDING`, `CONFIRMED`, `PROCESSING`, `SHIPPED`, `DELIVERED`, `CANCELLED`, `RETURNED`).
-*   **Cryptographic Order Generation**: Generates non-sequential, tamper-resistant order numbers (`ORD-YYYYMMDD-XXXXXXXX`) using cryptographically secure random bytes.
-*   **Quick Order In-Chat Drawer**: Enables support and sales agents to create, customize, and submit orders directly from live customer chat threads.
-*   **Transactional Stock Reservation**: Decrements product and variant stock atomically upon order confirmation, and automatically restocks items upon order cancellation or return.
-*   **Integrated Fraud Risk Scoring**: Calculates customer risk profiles based on historical return rates, phone verification, and shipping anomaly patterns before dispatch.
+- Product tools manage tenant-scoped products, variants, categories, images, stock fields, publication state, and bulk operations.
+- Inventory workflows distinguish reservation, deduction, release, adjustment, and eligible restocking.
+- The storefront supports product/category pages, cart and checkout, delivery quotes, customer/shipping details, configured payment modes, coupon validation, order submission, and public tracking.
+- Order records include validated status transitions and related item/payment/timeline records. Reviews require signed purchase verification and a delivered order. Merchants can manage eligible return/exchange requests.
+- The store builder provides page editing, draft preview, publishing, version history, navigation, themes, and domain management. The reviewed default themes are `modern`, `elegant`, and `minimal`.
+- Custom domains route only when ownership, DNS, TLS, and freshness checks pass.
 
-### 4. Automated Delivery & Multi-Courier Logistics
-*   **Unified Courier Registry**: Modular adapter architecture integrating Bangladesh's premier couriers: **Pathao**, **Steadfast**, **RedX**, and **Paperfly**.
-*   **Automated Consignment Creation**: One-click and automated bulk consignment generation, mapping customer addresses and package weights into courier payloads.
-*   **Zone-Based Shipping Pricing**: Dynamic delivery fee resolution for Inside Dhaka, Suburbs (Gazipur/Narayanganj), and Outside Dhaka (Inter-District) plus weight tier increments.
-*   **Real-Time Tracking Webhooks**: Ingests courier delivery milestones, automatically updating order statuses and sending tracking notifications to shoppers.
-*   **Cash on Delivery (COD) Settlement**: Audits courier remittance statements and collection charges against recorded order values.
+## Payments, delivery, and CRM
 
-### 5. Data Sources & Google Sheets Synchronization
-*   **Bilingual Column Header Auto-Mapping**: Automatically detects and pairs catalog columns in English and Bengali (`পণ্যের নাম`, `মূল্য`, `দাম`, `স্টক`, `ক্যাটাগরি`, `সাইজ`, `ওজন`).
-*   **Automated Tab Classification**: Heuristically categorizes spreadsheet tabs into Products, FAQs, Policies, or Business Knowledge.
-*   **Bi-Directional Inventory Reconciliation**: Synchronizes stock levels between spreadsheets and active sales channels, with optional two-way order appending.
-*   **Asynchronous Processing**: Ingests high-volume catalogs via BullMQ queues, providing live WebSocket progress updates to the dashboard.
+- Current public plans are Starter (BDT 999/month or BDT 9,990/year), Growth (BDT 2,999/month or BDT 29,990/year), and Enterprise (custom/contact sales). See [Pricing](./pricing.md) for the exact reviewed catalog.
+- Subscription checkout paths include SSLCommerz in BDT and direct bKash tokenized checkout, with server-side provider verification. Immediate upgrades require verified payment settlement; proration can provide a quote.
+- Store checkout supports COD-only, advance-plus-COD, full online, and partial payment modes when configured. Verified customer COD collection credit is currently unavailable on the reviewed default branch; courier remittance is not payment proof.
+- Delivery paths include Pathao, Paperfly, RedX, and Steadfast booking/tracking, conditional auto-booking, and courier remittance records. The delivery analytics page includes sample data and should not be read as live performance reporting.
+- CRM includes contacts, leads, assignment, pipelines/deals, activities, work queue, scheduled follow-ups, and queued campaigns. Default pipeline stages are New Lead, Contacted, Qualified, Proposal Sent, and Negotiation.
+- Affiliate applications are closed, terms/rates are unset, and earning, approval, and payout actions are disabled.
 
-### 6. CRM & Sales Pipeline Management
-*   **Visual Kanban Deals Board**: Tracks prospective buyers across customizable sales stages (`NEW`, `CONTACTED`, `QUALIFIED`, `PROPOSAL_SENT`, `WON`, `LOST`).
-*   **Customer 360° Detail Drawer**: Displays comprehensive customer profiles, order history, communication logs, and lifetime value across the workspace.
-*   **Activity Logging Timeline**: Chronological append-only record of messages, site visits, invoices, and staff interactions.
-*   **Consolidated Single-Pass Metrics**: High-performance database aggregation calculating lead metrics, stage velocity, and conversion ratios in a single roundtrip.
+## Integrations, security, and operations
 
-### 7. Adaptive RAG & Multimodal Artificial Intelligence
-*   **Hybrid Search Engine**: Combines `pgvector` dense vector similarity with PostgreSQL full-text lexical search using Reciprocal Rank Fusion.
-*   **Multi-Query Reflection**: Generates semantic sub-queries to capture ambiguous customer intents across English, standard Bengali, and phonetic Banglish.
-*   **Two-Tier Multimodal Cost-Decision Engine**: Transcribes voice notes via Whisper STT; processes product photos via lightweight OCR and catalog text matching, avoiding expensive vision LLM traps while maintaining 97% accuracy.
-*   **Dynamic Model Router**: Intelligently balances requests across OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Google Gemini 1.5 Flash with automatic failover and token cost tracking.
+- Provider connections/OAuth exist for supported messaging channels; API access uses scoped developer keys. API key plaintext is shown once and stored as a bcrypt hash. Website widgets use separate public keys and can enforce allowed domains.
+- Outgoing webhooks have endpoint, delivery-history, and replay paths. Secret API keys should never be placed in browser code.
+- Store tracking separates analytics, advertising, and matching consent; optional purposes default to denied. Invalid, stale, expired, or withdrawn consent can suppress queued event delivery. Tracking retention is 90 days.
+- Scoped controls include live workspace authorization, encrypted integration credentials, webhook signatures, AI input/output guardrails, public API/widget rate controls, and fail-closed production configuration.
+- PostgreSQL/pgvector and Redis are used with selected BullMQ background processors. Processors are registered in the backend application; a separate worker service is not established by the reviewed Compose file. Storage supports R2 when configured and local persistent fallback.
+- Production deployment is manually dispatched from `main` after migration/compatibility checks. Runtime validation rejects weak or missing production configuration; database rollback is not automatic.
 
-### 8. Sentinel Security Framework & Governance
-*   **Sliding Window IP Rate Limiting**: Mitigates brute-force and DoS attacks on public widget and search endpoints.
-*   **SQL Injection Immunity**: Enforces parameterized Prisma `$executeRaw` queries across all vector search and data processing services.
-*   **AES-256-GCM Credential Vault**: Secures external API keys, OAuth refresh tokens, and courier secrets with random IVs and automated regression tests.
-*   **XSS Neutralization**: Employs DOMPurify to sanitize blog and documentation markdown content.
-*   **Super Admin Governance**: Granular tenant feature module toggling, AI cost safeguards, operator impersonation, and audit trails.
+## Claims not established by repository evidence
 
----
+Do not present unverified statements as shipped or guaranteed capabilities. The reviewed source does not substantiate universal typing/read receipts, internal notes, ticketing, arbitrary automation actions, full bidirectional Sheets order sync, all advertised SDK packages, immediate plan upgrades, verified COD payment credit, live delivery sample charts, universal tenant isolation claims, a universal public rate limit, zero-hallucination or fixed accuracy/latency outcomes, SOC 2/HIPAA certification, data residency, or an SLA. See the [Current Feature Inventory](./docs/current-feature-inventory.md) for status details.
 
-## FAQ
+## Related documents
 
-### Q: Can AutoZeniq operate without an existing Shopify or WooCommerce store?
-**A:** Yes. With the built-in [Storefront Builder](./products/store-builder.md), merchants can build, host, and run their entire e-commerce store directly within AutoZeniq without needing any third-party e-commerce platform.
-
-### Q: How does the system ensure fast response times for customers during high-volume sales campaigns?
-**A:** AutoZeniq offloads media processing, Google Sheets syncing, and courier bookings to distributed Redis BullMQ worker queues, while frontend routes leverage in-memory Redis caching for sub-millisecond entitlement and session checks.
-
----
-
-## Related Documents
-
-* [Entity Profile](./entity-profile.md)
-* [Entity Relationships](./entity-relations.md)
-* [Products Overview](./products/overview.md)
-* [Storefront Builder](./products/store-builder.md)
-* [Order Management System](./products/order-management.md)
-* [Delivery & Logistics Automation](./products/delivery-logistics.md)
-* [Google Sheets Synchronization](./features/google-sheets-sync.md)
-* [V2 System Architecture](./docs/system-architecture.md)
+- [Products Overview](./products/overview.md)
+- [Current Feature Inventory](./docs/current-feature-inventory.md)
+- [Pricing](./pricing.md)
+- [System Architecture](./docs/system-architecture.md)
+- [Security](./security.md)

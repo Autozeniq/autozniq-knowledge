@@ -1,74 +1,42 @@
 ---
-title: AutoZeniq E-commerce Solutions
-description: Comprehensive retail automation frameworks, native Next.js storefront builder, in-chat checkouts, and multi-courier logistics for AutoZeniq.
+title: AutoZeniq E-commerce Capabilities
+description: Status-qualified overview of storefront, order, messaging, courier, catalog, and CRM capabilities for online sellers.
 entity: AutoZeniq
 type: Solution
 category: solutions
-keywords: AutoZeniq E-commerce, ecommerce chatbot, storefront builder, order management system, courier automation, Pathao, Steadfast, Google Sheets sync
+keywords: AutoZeniq ecommerce, online sellers, storefront, orders, couriers, Google Sheets
 related_entities:
-  - AutoZeniq AI Agent
+  - AI Agent
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
 official_url: https://autozeniq.com/solutions/ecommerce
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq E-commerce Capabilities
 
-# AutoZeniq E-commerce Solutions
+AutoZeniq's application `main` includes tenant-workspace tools for online sellers: a shared customer inbox, AI assistance, a store builder and checkout, order and inventory management, courier integrations, knowledge sources, CRM, and selected reporting. Which functions are available depends on the workspace plan, settings, provider access, and deployment.
 
-AutoZeniq operates as an end-to-end **Commerce Operating System (Commerce OS)** for retail, social commerce, and digital brands. Combining a native headless storefront builder, unified social messaging inbox, deterministic order state machine, and automated courier dispatching, the platform turns conversational interactions into completed, fulfilled transactions.
+## What the codebase supports
 
----
+- **Storefront:** edit and publish tenant pages, preview drafts, manage versions, and configure managed/custom domains. Custom domains require verified ownership, DNS, and TLS readiness.
+- **Orders and catalog:** manage products and variants, inventory, checkout, order lifecycle, payment records, and merchant-mediated returns/exchanges.
+- **Delivery:** adapters for Pathao, Steadfast, RedX, and Paperfly are present with booking/tracking flows; live use requires account credentials and provider readiness.
+- **Google Sheets:** queued, scheduled, primarily pull-oriented synchronization can classify tabs and map common English/Bengali catalog headers. The dashboard wizard has simulated states in parts; bidirectional order append is not verified.
+- **CRM and messaging:** tenant-scoped contacts, leads, deals, follow-ups, campaigns, supported messaging-provider paths, and AI suggestions.
 
-## Core Capabilities
+## Payment and courier note
 
-The E-commerce solution contains five integrated subsystems:
+Store checkout can be configured for COD-only, advance-plus-COD, full online, or partial payment. An advance-plus-COD rule must specify an amount or percentage. Online capture requires server-side provider verification. Verified customer COD collection credit is currently disabled; courier delivery/remittance records are not proof that the customer paid and do not automatically mark an order paid.
 
-*   **Native Headless Storefront Builder**: Instantly launches high-speed Next.js 14 online storefronts with visual drag-and-drop page editing, mobile-optimized single-page checkouts, and automated subdomain routing (`*.autozeniq.com`).
-*   **Centralized Order Management (OMS)**: Captures orders from social chats, web storefronts, or phone inquiries into a strict state machine (`PENDING` $\rightarrow$ `CONFIRMED` $\rightarrow$ `PROCESSING` $\rightarrow$ `SHIPPED` $\rightarrow$ `DELIVERED`) with atomic stock reservation.
-*   **Automated Multi-Courier Logistics**: Directly connects with regional delivery networks—**Pathao**, **Steadfast**, **RedX**, and **Paperfly**—to auto-generate consignments, calculate zone-based delivery pricing, and reconcile Cash on Delivery (COD) collections.
-*   **Live Google Sheets Catalog Sync**: Synchronizes products, variants, pricing, and stock levels bi-directionally with merchants' Google Sheets, featuring bilingual English/Bengali header mapping (`পণ্যের নাম`, `দাম`, `স্টক`).
-*   **External Storefront Bridging**: Seamlessly synchronizes with existing Shopify and WooCommerce stores for merchants requiring multi-platform consistency.
+## Availability caveat
 
----
+An adapter, screen, API path, or test in the source repository is not evidence of production deployment, connected provider accounts, published availability, or measured outcomes. Refer to the [Current Feature Inventory](../docs/current-feature-inventory.md) for status details.
 
-## Technical Workflow Architecture
+## Related documents
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Customer as Customer (WhatsApp / Web Store)
-    participant Agent as AutoZeniq AI Agent
-    participant OMS as Order Management System
-    participant Logistics as Courier Registry (Pathao/Steadfast)
-    participant Sheet as Google Sheets / Inventory
-
-    Customer->>Agent: "I want to buy the black polo shirt (Size L)"
-    Agent->>Sheet: Verify live stock for SKU
-    Sheet-->>Agent: Stock Available (Qty: 14)
-    Agent-->>Customer: "In stock at ৳950. Please provide your delivery name, address, and phone number."
-    Customer->>Agent: "Fahim, Road 4, Dhanmondi, Dhaka, 017xxxxxxxx"
-    Agent->>OMS: Create Order (Status: CONFIRMED, Atomic Stock Hold)
-    OMS-->>Agent: Order Number: ORD-20261003-8A2F1C3D
-    OMS->>Logistics: Auto-Book Consignment (Inside Dhaka Flat Rate)
-    Logistics-->>OMS: Consignment ID & Pathao Tracking URL
-    Agent-->>Customer: "Order confirmed! Tracking Code: PT104928. Pay ৳1010 on delivery (COD)."
-```
-
----
-
-## Key Benefits
-
-*   **Closed-Loop Conversions**: Customers can complete purchases directly inside WhatsApp, Messenger, or the native storefront without friction.
-*   **Eliminates Logistics Overhead**: Consignments, address validations, and shipping labels are generated automatically without logging into courier merchant portals.
-*   **Real-Time Stock Accuracy**: Atomic stock locking prevents overselling across social media channels and digital storefronts.
-
----
-
-## Related Documents
-
-* [Storefront Builder](../products/store-builder.md)
-* [Order Management System](../products/order-management.md)
-* [Delivery & Logistics Automation](../products/delivery-logistics.md)
-* [Google Sheets Synchronization](../features/google-sheets-sync.md)
-* [Multimodal AI Processing](../features/multimodal-processing.md)
+- [Products Overview](../products/overview.md)
+- [Order Management](../products/order-management.md)
+- [Delivery and Logistics](../products/delivery-logistics.md)
+- [Storefront Builder](../products/store-builder.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)

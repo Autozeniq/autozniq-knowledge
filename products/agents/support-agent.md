@@ -1,50 +1,21 @@
 ---
-title: AutoZeniq Support Agent
-description: Technical specifications, capabilities, and system configuration for the AutoZeniq Customer Support sub-agent.
+title: Customer Support and AI Assistance
+description: Verified shared inbox, knowledge retrieval, AI draft, and human takeover paths; no separate Support Agent behavior is assumed.
 entity: AutoZeniq
-type: Agent
+type: Product Reference
 category: product
-keywords: AutoZeniq Support Agent, Customer Support sub-agent, RAG support, support automation
+keywords: AutoZeniq support, shared inbox, AI assistance, knowledge retrieval, human handover
 related_entities:
   - AutoZeniq AI Agent
-  - Customer Support Automation
-official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-06-24
+  - Customer Support Workflows
+  - Knowledge Base
+last_updated: 2026-11-20
 ---
 
-# AutoZeniq Support Agent
+# Customer Support and AI Assistance
 
-The **AutoZeniq Support Agent** is a specialized sub-agent of the AutoZeniq AI Agent system designed to automate customer service interactions. It handles queries by reading verified corporate documentation, FAQ sets, and operational guidelines, resolving user tickets instantly without human intervention.
+The reviewed application `main` includes a tenant-scoped shared inbox, human message replies, conversation assignment, AI pause/takeover/resume controls, AI Copilot draft suggestions, and guarded automated-response paths. It does not substantiate a separate autonomous “Support Agent” with a fixed confidence threshold, sentiment classifier, or guaranteed ticket resolution.
 
----
+Knowledge ingestion supports selected document and data formats with asynchronous parsing and indexing. Conversational retrieval combines semantic vector search with PostgreSQL keyword search. This can provide useful context but does not guarantee correctness, universal citations, or zero hallucinations. Review critical customer-facing answers.
 
-## User Explanation
-
-The Support Agent acts as a 24/7 automated support representative for businesses. It reads the documents, FAQs, and policies uploaded to the knowledge base and uses that information to answer customer questions about business hours, delivery charges, return procedures, and product availability. If a question is too complex, it automatically flags the thread for a human agent.
-
----
-
-## Technical Specifications
-
-The Support Agent is configured to operate strictly within the boundaries of the RAG context:
-
-*   **Prompt Constraints**: Anchored with a system prompt that forbids speculation or answering questions using external training data. If the answer cannot be retrieved from the vector search context, it responds with a fallback message and raises a human intervention flag.
-*   **Context Scoring**: Uses a cosine similarity threshold check (default: `0.75`) against vectorized knowledge snippets retrieved from the `pgvector` store. Segment matches below this threshold are discarded.
-*   **Session Management**: Maintains a sliding context window of the last 10 messages in the database to parse relative pronouns and conversational references.
-*   **Escalation Triggers**: Switches thread control state to `human` if similarity scores remain below the threshold for two consecutive turns or if sentiment analysis detects high-intensity negative words.
-
----
-
-## Use Cases
-
-*   **Refund & Return Guidance**: Directing customers on how to return items and where to ship them according to store policies.
-*   **Delivery Status FAQs**: Providing default delivery timelines and charge details for local and international zones.
-*   **Store Information**: Informing buyers of physical store addresses, maps, and holiday schedules.
-
----
-
-## Related Documents
-
-*   [AutoZeniq AI Agent](../ai-agent.md)
-*   [Customer Support Feature](../../features/customer-support.md)
-*   [Knowledge Base Feature](../../features/knowledge-base.md)
+Channel connection, provider approval, workspace settings, entitlements, and deployment affect availability. See the [Current Feature Inventory](../../docs/current-feature-inventory.md), [Customer Support Workflows](../../features/customer-support.md), and [Knowledge Base](../../features/knowledge-base.md).

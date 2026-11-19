@@ -1,85 +1,41 @@
 ---
-title: AutoZeniq AI Agent
-description: Technical specifications, multimodal processing pipeline, and operational architecture of the AutoZeniq Conversational AI Agent.
-keywords: AutoZeniq AI Agent, conversational AI, Adaptive RAG, hybrid search, voice note transcription, photo product matching, model router
+title: AutoZeniq AI Assistance
+description: Reviewed AI assistance, retrieval, configuration, and human-review paths, with availability and automation limits.
+keywords: AutoZeniq AI, AI Copilot, Adaptive RAG, reply suggestions, human takeover
 category: product
 entity: AutoZeniq
-type: Agent
+type: Product
 related_entities:
   - Customer Support Automation
   - Commerce Automation
   - Adaptive RAG
-  - Multimodal AI Processing
+  - Media Processing
 official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
 
-# [AutoZeniq AI Agent](https://autozeniq.com/features/ai-agent)
+# AutoZeniq AI Assistance
 
-## Overview
+The reviewed application `main` contains AI-assisted customer support paths, tenant AI settings and rules, knowledge retrieval, and human controls. The AI Copilot can prepare reply suggestions for an agent. These suggestions are drafts, not automatically sent messages.
 
-The **AutoZeniq AI Agent** is an autonomous, context-aware conversational engine designed for retail sales, customer support, and commercial workflow execution. Operating across WhatsApp, Facebook Messenger, Instagram DM, Telegram, and website chat widgets, the agent goes beyond static question-answering by listening to customer voice notes, recognizing products from uploaded photos, validating live stock, and initiating checkout orders.
+Other guarded AI auto-reply paths are present in the code, but their use depends on tenant configuration, channel/provider setup, entitlements, and deployment. The existence of these paths is not a promise that every conversation receives an automatic AI response or that AI can independently complete an order.
 
----
+## Knowledge retrieval and media
 
-## Technical Architecture
+Conversational retrieval combines semantic vector search with PostgreSQL keyword search and can apply query adaptation, reranking, context expansion, thresholds, and conflict checks. The inbox has text, image, and voice media upload/processing paths. See [Adaptive Retrieval and RAG](../features/adaptive-rag.md) and [Media Processing](../features/multimodal-processing.md) for scope and limits.
 
-The AI Agent combines multi-channel ingestion, multimodal pre-processing, hybrid retrieval, and dynamic model routing:
+## Human review and limitations
 
-```mermaid
-graph TD
-    A[Inbound Customer Message: Text / Voice / Photo] --> B[Multimodal Ingestion Gateway]
-    B -->|Audio Voice Note| C[Whisper STT Transcoding]
-    B -->|Product Photo| D[Lightweight OCR / Barcode Matcher]
-    B -->|Text Query| E[Adaptive RAG 2.0 Engine]
-    C --> E
-    D -->|Identified Product SKU| E
-    E -->|Hybrid Vector + Full-Text Search| F[(PostgreSQL pgvector & tsvector)]
-    F -->|Reciprocal Rank Fusion| G[Multi-Stage Confidence Evaluator]
-    G -->|Confidence >= 78%| H[Prompt Builder & Guardrails]
-    G -->|Confidence < 78%| I[Human Takeover Escalation]
-    H --> J[Resilient Multi-Provider Model Router]
-    J -->|Inference Execution| K[GPT-4o / Claude 3.5 / Gemini 1.5]
-    K --> L[Response Guard & Channel Dispatcher]
-```
+Agents can pause, take over, and resume AI handling where configured. Retrieved context and guardrails can help constrain responses, but they do not eliminate hallucinations or guarantee factual correctness. No fixed accuracy, latency, cost-savings, conversion, or support-deflection figure is established by the reviewed source. Verify important policies, prices, stock, and order details before acting on an AI response.
 
-### Architectural Subsystems
+## Availability
 
-1. **Multimodal Audio & Vision Pipelines**:
-   * **Voice Notes**: Uses `VoiceService` and Whisper STT to transcribe customer voice notes across English, standard Bengali, and colloquial Banglish into normalized text streams.
-   * **Cost-Decision Vision**: Employs lightweight OCR (via Sharp / Google Vision) to locate text, model numbers, and barcodes from customer screenshots (~$0.001/call), falling back to `pgvector` visual embeddings only if text matching is inconclusive.
-2. **Adaptive RAG 2.0 with Hybrid Search**:
-   * Merges dense vector embeddings (`pgvector` HNSW cosine similarity) with sparse lexical search (PostgreSQL `tsvector`) using Reciprocal Rank Fusion (RRF).
-   * Decomposes ambiguous customer phrasing into structured sub-queries via multi-query reflection.
-3. **Multi-Stage Confidence Safeguards**:
-   * Evaluates semantic relevance scores. If composite confidence drops below tenant thresholds (e.g. 0.78), the agent suppresses autonomous replies and quietly routes the thread to human operators.
-4. **Resilient Multi-Provider Model Router**:
-   * Routes prompt payloads across OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Google Gemini 1.5 Flash with automated circuit-breaker failover and per-message token cost tracking.
+Model/provider configuration, tenant AI settings, channel connection, entitlements, and deployment affect availability. A connector or model mapping in source code does not prove an account is approved or operational in production.
 
----
+## Related documents
 
-## Core Features
-
-*   **Closed-Loop Commerce**: Answers product questions, verifies live inventory stock, calculates zone-based shipping, and generates verified orders directly in chat.
-*   **Multimodal Audio & Photo Understanding**: Handles customer voice notes and product photos natively without requiring manual text typing.
-*   **Trilingual Comprehension**: Native fluency in standard English, formal Bengali, and phonetic Banglish ("eitar price koto?", "delivery charge koto?").
-*   **Deterministic Business Rules**: Overrides AI generation with exact business logic when specific trigger phrases (e.g., return disputes, wholesale requests) are detected.
-*   **Human Takeover & Collaboration**: Instant handoff between automated AI responses and human agents with quiet queues for unhandled tickets.
-
----
-
-## Benefits
-
-*   **Zero Hallucinations**: Responses are strictly bound to tenant-provided documents, product catalogs, and verified database rows.
-*   **Massive Cost Efficiency**: Two-tier cost-decision engine slashes multimodal inference expenses by over 95%.
-*   **24/7 Instant Response**: Eliminates customer wait times during peak sales campaigns and nighttime hours.
-
----
-
-## Related Documents
-
-* [Adaptive RAG Feature](../features/adaptive-rag.md)
-* [Multimodal AI Processing](../features/multimodal-processing.md)
-* [Order Management System](./order-management.md)
-* [Conversation Management](../features/conversation-management.md)
-* [Core Technical Innovations](../docs/core-technical-innovations.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Adaptive Retrieval and RAG](../features/adaptive-rag.md)
+- [Media Processing](../features/multimodal-processing.md)
+- [Order Management](./order-management.md)
+- [Conversation Management](../features/conversation-management.md)

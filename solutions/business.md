@@ -1,69 +1,37 @@
 ---
-title: AutoZeniq Business Automation Solutions
-description: Factual workflows, lead qualification mechanics, visual Kanban sales pipeline, and corporate CRM automation for AutoZeniq.
+title: AutoZeniq Business Workflows
+description: Source-qualified overview of CRM, lead, pipeline, activity, and campaign workflows in AutoZeniq.
 entity: AutoZeniq
 type: Solution
 category: solutions
-keywords: AutoZeniq Business, sales automation, lead management, custom workflows, CRM pipeline, Kanban deals, work queue
+keywords: AutoZeniq business workflows, CRM pipeline, leads, follow-ups, campaigns
 related_entities:
-  - AutoZeniq AI Agent
-  - Lead Detection Feature
-  - CRM & Lead Pipeline
+  - AutoZeniq AI Assistance
+  - Lead and Contact Workflows
+  - CRM and Lead Management
 official_url: https://autozeniq.com/solutions/sales-automation
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
 
-# AutoZeniq Business Automation Solutions
+# AutoZeniq Business Workflows
 
-AutoZeniq offers automated workflows for service providers, corporate business models, and high-volume B2B enterprises. The platform unifies conversational lead acquisition, automated prospect qualification, visual Kanban deal stages, and customer relationship management into a single dashboard.
+AutoZeniq's reviewed application `main` includes tenant-scoped CRM contacts and leads, configurable deal pipelines, activity records, assignment paths, scheduled follow-ups, and campaign broadcasting. These are workflow tools for organizing customer and sales activity; they do not establish an autonomous sales qualification or external CRM synchronization service.
 
----
+## CRM and pipeline
 
-## Core Capabilities
+Teams can work with contact and lead records, assign or bulk-assign leads, convert leads to deals, update deals across valid stages, record activities, and use a work queue. The default deal pipeline stages are **New Lead**, **Contacted**, **Qualified**, **Proposal Sent**, and **Negotiation**. `WON` and `LOST` are outcomes/statuses, not default stages. Workspace configuration may change the pipeline.
 
-The Business Automation solution is built around four operational blocks:
+## Follow-ups and campaigns
 
-*   **Native CRM & Visual Kanban Pipeline**: Tracks prospective deals across configurable sales stages (`NEW`, `CONTACTED`, `QUALIFIED`, `PROPOSAL_SENT`, `WON`, `LOST`) with high-performance single-pass SQL metrics calculation.
-*   **Conversational Lead Qualification**: Runs structured conversational questionnaires on WhatsApp, Messenger, and Telegram to filter prospects based on budget, organization size, location, and commercial intent.
-*   **Customer 360° Detail Drawer**: Centralized profile accessible across the workspace showing customer contact info, interaction history, lifetime value, and append-only activity timelines.
-*   **Automated Work Queues & Task Reminders**: Automatically assigns leads to sales reps and generates follow-up reminders when high-value prospects go cold.
-*   **External Enterprise CRM Sync**: Synchronizes qualified leads to external enterprise CRMs (HubSpot, Salesforce) via authenticated, HMAC-SHA256 signed webhooks.
+Activity and scheduled follow-up paths are present. Campaign creation and queued broadcasts are subject to workspace permissions, plan entitlements, quotas, and provider setup. Dashboard read/reply figures are estimates based on recipient counts, not verified engagement data from messaging providers.
 
----
+## Limits to keep in mind
 
-## Technical Workflow Architecture
+The reviewed source does not establish zero-manual-entry contact capture, automatic budget/company qualification, assignment of every prospect to a representative, specific 24-hour reminders, HubSpot or Salesforce synchronization, revenue outcomes, or CRM performance at a particular scale. Lead creation and data entry should be verified for the relevant channel and configuration.
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Prospect as Lead (WhatsApp / Messenger)
-    participant Agent as AutoZeniq Lead Agent
-    participant CRM as AutoZeniq CRM Pipeline
-    participant Rep as Sales Representative Drawer
-    
-    Prospect->>Agent: "We need an enterprise business automation setup."
-    Agent->>Prospect: "I can help connect you with our solutions team. What is your company name and team size?"
-    Prospect->>Agent: "Apex Digital, 50 employees"
-    Agent->>Prospect: "Please provide your corporate phone and email."
-    Prospect->>Agent: "018xxxxxxxx, contact@apexdigital.com"
-    Agent->>CRM: Create Deal (Stage: QUALIFIED, Value: ৳50,000, Intent: 92)
-    CRM->>Rep: Push High-Priority Task to Agent Work Queue
-    Rep-->>Prospect: Instant Outreach from Assigned Account Manager
-```
+## Related documents
 
----
-
-## Key Benefits
-
-*   **Zero Manual Data Entry**: Extracts customer names, phone numbers, and company details directly from chat conversations without requiring forms.
-*   **Accelerates Sales Velocity**: Instantly routes qualified high-ticket inquiries to senior account managers.
-*   **High Performance at Scale**: Consolidated single-pass database queries maintain snappy CRM dashboard performance even across hundreds of thousands of active leads.
-
----
-
-## Related Documents
-
-* [CRM & Lead Pipeline](../products/crm-leads.md)
-* [Lead Detection Feature](../features/lead-detection.md)
-* [Conversation Management](../features/conversation-management.md)
-* [Adaptive RAG Feature](../features/adaptive-rag.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [CRM and Lead Management](../products/crm-leads.md)
+- [Lead and Contact Workflows](../features/lead-detection.md)
+- [Conversation Management](../features/conversation-management.md)

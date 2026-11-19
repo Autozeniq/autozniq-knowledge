@@ -1,54 +1,28 @@
 ---
-title: AutoZeniq Lead Agent
-description: Technical specifications, intent detection, slot-filling flows, and CRM integration details for the AutoZeniq Lead Qualification sub-agent.
+title: Lead Management and CRM Workflows
+description: Verified CRM contacts, leads, pipelines, assignments, activities, and follow-ups; no separate Lead Agent is established.
 entity: AutoZeniq
-type: Agent
+type: Product Reference
 category: product
-keywords: AutoZeniq Lead Agent, Lead Agent, Lead capture, lead qualification, CRM integration
+keywords: AutoZeniq lead management, contacts, CRM, pipeline, assignments, follow-ups
 related_entities:
   - AutoZeniq AI Agent
-  - Lead Detection Feature
-official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-06-24
+  - Lead and Contact Workflows
+  - CRM and Lead Management
+last_updated: 2026-11-20
 ---
 
-# AutoZeniq Lead Agent
+# Lead Management and CRM Workflows
 
-The **AutoZeniq Lead Agent** is a specialized sub-agent of the AutoZeniq AI Agent framework that detects user purchase intent, extracts buyer details, and logs verified contacts as qualified leads into the system CRM.
+The reviewed application `main` contains tenant-scoped contacts and leads, lead assignment and bulk-assignment paths, lead conversion, deal pipelines, activity records, work-queue items, and scheduled follow-ups. It does not establish a separate autonomous “Lead Agent” that continuously detects intent, collects and validates personal details, and creates qualified leads from every conversation.
 
----
+## Verified CRM scope
 
-## User Explanation
+The default deal pipeline stages are **New Lead**, **Contacted**, **Qualified**, **Proposal Sent**, and **Negotiation**; pipeline configuration may differ by workspace. The reviewed contact-creation path uses a tenant/channel/external-identifier combination for duplicate detection, not phone number alone. Campaign broadcasting is queued subject to entitlement and quota limits, and displayed read/reply metrics are estimates rather than provider-verified engagement.
 
-The Lead Agent acts as an automated sales assistant. When a customer shows interest in buying a product or asks about services, the Lead Agent initiates a friendly conversation to collect their contact details (like name, phone number, and location). It verifies that the details are correct and immediately saves them in the customer dashboard so that the sales team can follow up or fulfill orders.
+## Related documents
 
----
-
-## Technical Specifications
-
-The Lead Agent utilizes a combined slot-filling framework and regex validation pipeline:
-
-*   **Intent Detection**: Continuously monitors the conversation thread for purchase-oriented or inquiry-oriented intents (such as "I want to buy", "how much is this", or "is it available").
-*   **Slot-Filling State Machine**: When intent is active, the agent enters a structured questionnaire loop to extract the following entity slots:
-    *   `customer_name` (parsed via Named Entity Recognition)
-    *   `phone_number` (validated against local regex patterns; e.g. for Bangladesh numbers: `^(?:\+88|88)?(01[3-9]\d{8})$`)
-    *   `email_address` (standard RFC 5322 validation)
-    *   `delivery_address` (free-form text verification)
-*   **Validation Guard**: If the user provides an invalid phone number format, the Lead Agent prompts the user politely to correct it before proceeding to the next slot.
-*   **Database Ingestion**: Once the critical slots (`customer_name` and `phone_number`) are filled, the Lead Agent dispatches a payload to the backend CRM service, creating or updating a record in the `contacts` table associated with the corresponding `tenant_id`.
-
----
-
-## Use Cases
-
-*   **Offline Lead Capture**: Collecting shopper details during non-business hours when human support agents are offline.
-*   **Ad Campaign Conversions**: Qualifying users who click through Meta message ads and automatically registering their purchase requirements.
-*   **E-commerce Checkout Prefill**: Collecting delivery info inside WhatsApp prior to launching checkouts.
-
----
-
-## Related Documents
-
-*   [AutoZeniq AI Agent](../ai-agent.md)
-*   [Lead Detection Feature](../../features/lead-detection.md)
-*   [Unified Inbox Feature](../../features/unified-inbox.md)
+- [Current Feature Inventory](../../docs/current-feature-inventory.md)
+- [Lead and Contact Workflows](../../features/lead-detection.md)
+- [CRM and Lead Management](../crm-leads.md)
+- [AI Agent](../ai-agent.md)

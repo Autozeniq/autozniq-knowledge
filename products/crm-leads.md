@@ -1,103 +1,52 @@
 ---
-title: AutoZeniq CRM & Lead Pipeline
-description: Comprehensive documentation for the AutoZeniq CRM, pipeline stages, customer detail drawer, activity timelines, deal tracking, and consolidated metrics.
+title: AutoZeniq CRM and Lead Management
+description: Current contact, lead, deal pipeline, follow-up, and campaign workflows with verified analytics limits.
 entity: AutoZeniq
 type: Product
 category: products
-keywords: AutoZeniq CRM, lead management, sales pipeline, customer drawer, activity logging, deal tracking, customer lifetime value
+keywords: AutoZeniq CRM, contacts, leads, sales pipeline, deals, follow-ups, campaigns
 related_entities:
   - Lead Detection
   - Customer Support Automation
   - Order Management System
 official_url: https://autozeniq.com/products/crm-leads
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq CRM and Lead Management
 
-# [AutoZeniq CRM & Lead Pipeline](https://autozeniq.com/products/crm-leads)
+The CRM codebase contains tenant-scoped contact and lead records, deal pipelines, activity and work-queue paths, scheduled follow-ups, and campaign broadcasting. Access and available operations depend on workspace permissions, plan entitlements, and configuration.
 
-## Overview
+## Contacts and leads
 
-The **AutoZeniq CRM & Lead Pipeline** module transforms fragmented social chat interactions into organized customer relationship profiles, deals, and structured sales stages. Integrated directly with the omnichannel inbox and e-commerce storefront, the CRM provides sales teams with full context on every prospect: conversation transcripts, shopping carts, lifetime purchase value, and automated follow-up reminders.
+Contacts support paginated search, lifecycle/VIP/tag filters, channel metadata, and related order, conversation, and deal context. The reviewed create path detects duplicates using a tenant/channel/external-identifier combination; it does not establish phone number as the sole primary deduplication key.
 
-By applying single-pass database metric calculations and automated activity tracking, sales teams can prioritize high-value prospects without switching between separate CRM tools.
+Lead tools support list/filter views, status/grade/notes/follow-up changes, assignment, bulk assignment, deal conversion, customer marking, reopening, and timeline events. Avoid claiming every conversation automatically creates or updates a lead unless the specific path is verified.
 
----
+## Deals and pipeline
 
-## Technical Architecture
+Deals can be created, filtered, updated, moved between valid stages, marked won/lost, and reopened, with timeline events. The current default pipeline stages are:
 
-```mermaid
-graph TD
-    A[Customer Interaction: Chat / Storefront] --> B[AI Intent & Lead Detection Engine]
-    B -->|Extracts Profile Data| C[CRM Pipeline Service]
-    C -->|Calculates Single-Pass Metrics| D[(PostgreSQL Database)]
-    C -->|Logs Event| E[Activity Service]
-    E --> F[Customer Activity Timeline]
-    C --> G[Work Queue & Follow-up Service]
-    G -->|Pushes Task| H[Agent Dashboard Drawer]
-```
+1. New Lead
+2. Contacted
+3. Qualified
+4. Proposal Sent
+5. Negotiation
 
-### Architecture Specifications
+`WON` and `LOST` are deal outcomes/statuses, not the default pipeline stages. The pipeline can be configured; do not present the default stages as the only possible configuration.
 
-1. **Pipeline Service (`pipeline.service.ts`)**:
-   * Manages deal progression through customizable stages: `NEW`, `CONTACTED`, `QUALIFIED`, `PROPOSAL_SENT`, `WON`, `LOST`.
-   * Calculates deal values, expected close dates, and probability weighted revenue.
-2. **Consolidated Lead Metrics (Bolt Performance Optimization)**:
-   * Replaced sequential multi-query aggregations with a consolidated single-pass SQL aggregation query that computes total leads, conversion ratios, average deal size, and stage velocity in a single database roundtrip.
-3. **Activity Logging Engine (`activity.service.ts`)**:
-   * Automatically records customer events (messages received, orders placed, delivery status changes, payment attempts, agent notes) into an append-only timeline.
-4. **Work Queue & Follow-up Scheduler (`work-queue.service.ts`, `follow-up.service.ts`)**:
-   * Generates tasks for agents when leads become inactive, abandoned carts are detected, or high-intent inquiries remain unanswered past predefined SLAs.
+## Follow-ups and campaigns
 
----
+CRM activities and delayed follow-ups are present. Scheduled follow-up records can be queued and written to the contact timeline; the default delay in the reviewed maybe-later flow is five days unless tenant settings provide another delay.
 
-## Core Features
+The campaigns area supports entitlement-guarded campaign creation, audience selection, quota checks, and staggered broadcast queueing. Counts shown as campaign reads/replies in the UI are calculated estimates from recipient counts, not verified provider engagement telemetry.
 
-### 1. Customer Detail Drawer & 360° Profile View
-* Accessible from anywhere in the dashboard (Inbox, Orders, Leads table) by clicking a customer name or phone number.
-* Displays:
-  * Contact info (Phone, Email, Alternate Numbers, Social Handles).
-  * Delivery addresses with default shipping tags.
-  * Lifetime Value (LTV), total orders placed, and average order value (AOV).
-  * Fraud risk indicators and return history.
+## Affiliate program status
 
-### 2. Visual Sales Pipeline (Kanban & List Views)
-* Drag-and-drop Kanban board enabling sales representatives to move prospects across stages.
-* Quick-add deal modals to specify products of interest, expected purchase amounts, and priority tags (`Hot`, `Warm`, `Cold`).
+The public affiliate program is currently closed: applications are not accepted, rates and payout terms are unset, and affiliate earning, approval, activation, and payout actions are disabled. The authenticated affiliate view is read-only. Do not publish commission rates, earnings estimates, or payout availability.
 
-### 3. Comprehensive Activity Timeline
-* A chronological log of every interaction:
-  * Inbound & outbound messages across WhatsApp, Facebook, and Web Chat.
-  * Storefront visit logs and cart additions.
-  * Invoices generated and payment statuses.
-  * Internal staff annotations and task assignments.
+## Related documents
 
-### 4. Smart Lead Scoring & Automated Tagging
-* AI algorithms evaluate inquiry depth, response speed, and price queries to calculate a dynamic Lead Score (0–100).
-* Automatically tags leads based on source campaigns, post IDs, or geographic regions.
-
----
-
-## Benefits
-
-* **Contextual Conversations**: Agents never have to ask "What is your order number?" or "What was your delivery address?"—all information is visible instantly.
-* **Higher Conversion Rates**: Automated follow-up tasks prevent prospective buyers from being forgotten during busy sales periods.
-* **Zero Disconnect between Support and Sales**: Support agents can convert support questions into sales opportunities and pass them to account managers with one click.
-
----
-
-## FAQ
-
-### Q: Can customer profiles be imported from existing spreadsheets?
-**A:** Yes. The CRM supports CSV/Excel contact imports and synchronizes with customer lists extracted via the [Google Sheets Synchronization](../features/google-sheets-sync.md) service.
-
-### Q: How does the CRM prevent duplicate contacts when a customer contacts us on Facebook and later WhatsApp?
-**A:** The platform uses phone numbers as primary deduplication keys. When a Facebook user provides their phone number, their social profile ID is linked to their existing contact record.
-
----
-
-## Related Documents
-
-* [Lead Detection Feature](../features/lead-detection.md)
-* [Conversation Management](../features/conversation-management.md)
-* [Order Management System](./order-management.md)
-* [Google Sheets Synchronization](../features/google-sheets-sync.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Lead Detection](../features/lead-detection.md)
+- [Automation](../features/automation.md)
+- [Pricing](../pricing.md)

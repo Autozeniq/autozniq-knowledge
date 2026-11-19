@@ -1,80 +1,40 @@
 ---
-title: Customer Support Automation Features
-description: Features of the AutoZeniq customer support automation module, detailing RAG knowledge bases, routing, and live agent handovers.
+title: Customer Support Workflows
+description: Verified inbox, AI assistance, knowledge retrieval, and human handover paths with current limitations.
 entity: AutoZeniq
-type: Platform
+type: Feature
 category: features
-keywords: AutoZeniq customer support, RAG, human takeover, ticketing system, message routing, pgvector
+keywords: AutoZeniq customer support, shared inbox, AI assistance, knowledge retrieval, human takeover
 related_entities:
   - AI Agent
   - Customer Support Automation
+  - Adaptive RAG
 official_url: https://autozeniq.com/solutions/customer-support
-last_updated: 2026-06-24
+last_updated: 2026-11-20
 ---
 
-# [Customer Support Automation Features](https://autozeniq.com/solutions/customer-support)
+# Customer Support Workflows
 
-## Overview
+The reviewed application `main` contains a tenant-scoped shared inbox for conversation search and listing, message history, human replies, assignment, AI pause/takeover/resume, and selected real-time updates. Configured AI paths can use indexed knowledge context, and AI Copilot suggestions are drafts for an agent to review.
 
-The [AutoZeniq Customer Support Automation](https://autozeniq.com/solutions/customer-support) module manages client interactions by blending artificial intelligence replies with human support. It unites communication channels under a single workflow, automating routine answers while retaining manual routing capabilities.
+## Knowledge and AI assistance
 
----
+Supported document and data sources can be parsed and indexed asynchronously. Conversational retrieval combines semantic vector search with PostgreSQL keyword search and can apply query adaptation, reranking, context expansion, thresholds, and conflict checks. These mechanisms can help constrain replies, but they do not guarantee correctness or eliminate hallucinations.
 
-## Architecture and Flow
+Guarded AI auto-reply paths exist in the reviewed code, but availability depends on AI settings, channel/provider configuration, entitlements, and deployment. A draft suggestion is not automatically sent. Verify important prices, policies, stock, and order information before replying.
 
-This module operates on a hybrid RAG (Retrieval-Augmented Generation) and websocket architecture:
+## Human handling
 
-### Simple Explanation
-Business owners upload documents detailing their services, products, and policies. When a customer sends a message on WhatsApp or Facebook, the AutoZeniq AI reads the documents to find the correct answer. If the customer asks a complex question that is not in the documents, the AI stops responding and alerts a human team member to take over the chat.
+Agents can use inbox controls to reply, assign conversations, and pause or take over AI handling where supported. The reviewed source does not establish a complete ticketing system, internal team notes, universal round-robin assignment, user-visible confidence thresholds, URL crawling, or automatic escalation for every unsupported answer.
 
-### Technical Explanation
-1.  **Ingestion & Vector Indexing**: Business reference documents (PDF, text, URLs) are parsed, segmented into chunks, and processed into embeddings. These embeddings are stored in a PostgreSQL database using the `pgvector` extension.
-2.  **Semantic Search & Prompt Construction**: Upon receiving an incoming client message, the backend generates an embedding of the query and executes a cosine similarity search against the tenant's vector database records. The top matching chunks are retrieved and injected into the LLM system prompt window as context.
-3.  **Real-Time Sync & WebSocket Takeover**: The interface communicates with NestJS backend gateways using `Socket.IO` (WebSockets). When a human takeover event is triggered (either programmatically by low LLM confidence or manually via the dashboard), the database conversation record status is updated to `open` (human-managed), silencing the automated AI response triggers.
+## Availability notes
 
----
+A channel adapter or OAuth path in source is not proof that a provider account is approved or connected. Real-time behavior is limited to selected updates; do not claim universal typing indicators, read receipts, presence, or collision locks.
 
-## Core Features
+## Related documents
 
-*   **[RAG Knowledge Base](https://autozeniq.com/features/knowledge-base)**: A document management interface to upload reference materials, configure crawlable URLs, and define custom Q&A datasets.
-*   **[Unified Agent Inbox](https://autozeniq.com/features/omnichannel-inbox)**: A multi-agent dashboard for reviewing and replying to active threads across [WhatsApp](https://autozeniq.com/integrations/whatsapp), Messenger, and [web chat widget](https://autozeniq.com/integrations/website-widget).
-*   **[Human Takeover / Live Chat](https://autozeniq.com/features/live-chat)**: A manual toggle in the conversation UI, alongside automated threshold triggers (confidence scores below set margins).
-*   **Agent Assignment**: Manual and rule-based conversation assignment, allowing managers to assign threads to specific [ticket-system](https://autozeniq.com/features/ticket-system) support roles.
-*   **Internal Collaboration Notes**: Allows human agents to post internal annotations within conversation logs that are invisible to the customer.
-
----
-
-## Benefits
-
-*   **24/7 Response Capability**: Instantaneous handling of standard operational questions.
-*   **Consistency**: Guarantees that the AI only responds using verified information, avoiding inaccurate content.
-*   **Reduced Handling Time**: Pre-qualifies customer needs before human agent handoff.
-
----
-
-## Use Cases
-
-*   **Policy Inquiries**: Automating answers regarding return windows, refund procedures, and warranty terms.
-*   **Store Locations and Hours**: Explaining branch hours and offering Google Maps links to nearby stores.
-*   **Agent Escalation**: Passing angry customers or payment disputes directly to experienced team members with complete logs.
-
----
-
-## FAQ
-
-### Q: How does the AI decide when to hand over to a human agent?
-**A:** Handover is triggered by three conditions:
-1.  **Confidence Threshold**: The similarity search score of the RAG context falls below the minimum limit configured by the administrator.
-2.  **Trigger Rules**: The customer uses specific trigger words defined in the Rule Engine (e.g., "speak to manager").
-3.  **No Context Found**: The RAG search yields no matching documents.
-
-### Q: Can multiple agents view the same thread?
-**A:** Yes. The unified inbox supports collaborative viewing and ticket re-assignment, with roles defining who has write and read permissions.
-
----
-
-## Related Documents
-
-*   [Product Overview](../products/overview.md)
-*   [AI Agent](../products/ai-agent.md)
-*   [Automation Features](./automation.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Knowledge Base](./knowledge-base.md)
+- [Conversation Management](./conversation-management.md)
+- [AI Agent](../products/ai-agent.md)
+- [Adaptive Retrieval and RAG](./adaptive-rag.md)

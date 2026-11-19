@@ -1,49 +1,39 @@
 ---
-title: AutoZeniq Integration & Channels FAQ
-description: Frequently asked questions about connecting messaging channels, courier networks, and Google Sheets to AutoZeniq.
+title: AutoZeniq Integration FAQ
+description: Status-qualified answers about channel and courier connections, Google Sheets, Public API, and webhooks.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq integration faq, Meta OAuth, Pathao API, Steadfast courier, Google Sheets API, courier integration
+keywords: AutoZeniq integrations, Meta OAuth, courier, Google Sheets, API, webhook
 related_entities:
   - Delivery Logistics
   - Google Sheets Synchronization
   - WhatsApp Integration
-  - Facebook Messenger Integration
+  - Public API Integration
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Integration FAQ
 
-# AutoZeniq Integration & Channels FAQ
+## Are the couriers connected automatically?
+No. Adapter code exists for Pathao, Steadfast, RedX, and Paperfly, but a merchant needs a valid provider account and configured credentials. Provider permissions, account approval, and deployment determine live availability.
 
-This document covers common questions regarding connecting, authorizing, and managing social channels, courier networks, and spreadsheet databases on the AutoZeniq platform.
+## Does a courier delivery or remittance prove COD payment?
+No. COD amount sent during a booking is a collection instruction. Delivery and remittance records do not prove customer payment; verified customer COD credit is disabled in the reviewed default branch.
 
----
+## Does Google Sheets use OAuth or a Service Account?
+The backend contains a scheduled/queued sync flow, but complete dashboard OAuth/service-account setup has not been established by reviewed source. Some connection and preview steps are simulated. Check current in-app options and do not treat a preview as a saved connection.
 
-## FAQ
+## Which messaging channels can be connected?
+Provider connection/OAuth paths exist for several channels including WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and a website widget. Actual channel use depends on provider approval, account permissions, feature entitlements, credentials, and deployment settings.
 
-### Q: How do I connect Pathao Courier to AutoZeniq?
-**A:** In the AutoZeniq dashboard under **Settings > Integrations > Delivery > Pathao**, enter your Pathao Developer Client ID, Client Secret, Username, and Password. AutoZeniq exchanges these credentials for an auto-renewing OAuth bearer token, retrieves your pickup store IDs, and enables automatic consignment creation.
+## Can I connect many social or courier accounts?
+Limits depend on the workspace plan and the current connection implementation. Do not assume every plan supports multiple accounts or provider-specific routing based only on older descriptions.
 
-### Q: How does Steadfast Courier connect to AutoZeniq?
-**A:** Under **Settings > Integrations > Delivery > Steadfast**, enter your Steadfast API Key and Secret Key found in your Steadfast Merchant Portal. All communications are secured using header-based authentication, enabling instant parcel dispatch and automated tracking updates.
+## Related documents
 
-### Q: What is the difference between connecting Google Sheets via OAuth vs. Service Account?
-**A:**
-*   **One-Click Google OAuth**: Best for small merchants. Click "Connect with Google", approve read access, and select your sheet.
-*   **Google Service Account**: Recommended for enterprise teams. Upload a Google Cloud Service Account JSON key and share the Google Sheet with the generated service account email.
-
-### Q: How does the Meta OAuth integration work?
-**A:** AutoZeniq uses an official Meta Business Login popup dialog. Merchants click "Connect Meta", approve page permissions in the secure popup, and the system automatically exchanges the code for a 60-day long-lived token, subscribes the page to webhooks, and starts a daily token validation cron worker.
-
-### Q: Can I connect multiple Facebook pages or couriers to a single workspace?
-**A:** Yes. Depending on your subscription plan, multiple Facebook Pages, Instagram profiles, and multiple courier accounts (e.g. Pathao for Dhaka, Steadfast for outside Dhaka) can be connected simultaneously.
-
----
-
-## Related Documents
-
-* [Pathao Courier Integration](../integrations/pathao-courier.md)
-* [Steadfast Courier Integration](../integrations/steadfast-courier.md)
-* [Google Sheets Integration Guide](../integrations/google-sheets.md)
-* [Meta Platform Native OAuth](../integrations/meta-oauth.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Delivery and Logistics](../products/delivery-logistics.md)
+- [Google Sheets Integration](../integrations/google-sheets.md)
+- [Public API](../integrations/api.md)
+- [Webhook Integration](../integrations/webhook.md)

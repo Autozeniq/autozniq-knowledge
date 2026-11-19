@@ -1,112 +1,56 @@
 ---
-title: AutoZeniq Enterprise Billing & Entitlements Engine
-description: Comprehensive specifications for the AutoZeniq billing system, Redis entitlement caching, usage metering, subscription lifecycle, and SSLCommerz payment integration.
+title: AutoZeniq Billing and Entitlements
+description: Current subscription, plan-entitlement, payment-verification, invoice, and plan-change behavior.
 entity: AutoZeniq
 type: Feature
 category: features
-keywords: AutoZeniq billing, entitlement caching, usage metering, subscription guard, SSLCommerz, modular licensing, SaaS monetization
+keywords: AutoZeniq billing, entitlements, subscription, usage, invoice, SSLCommerz, bKash
 related_entities:
   - Pricing
-  - Super Admin & Tenant Governance
+  - Super Admin and Tenant Governance
 official_url: https://autozeniq.com/features/billing-entitlements
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# Billing and Entitlements
 
-# [AutoZeniq Enterprise Billing & Entitlements Engine](https://autozeniq.com/features/billing-entitlements)
+AutoZeniq's billing area models subscription plans, versioned plan terms, feature/limit entitlements, usage, tenant overrides, payment records, and invoices. Access decisions can use the current subscription state, configured plan limits/features, usage, seats, add-ons, and tenant-specific overrides. A Redis-backed cache is used where configured; access must not be inferred from a cache design description alone.
 
-## Overview
+## Public catalog and trial
 
-The **AutoZeniq Enterprise Billing & Entitlements Engine** governs tenant subscriptions, modular feature authorizations, real-time resource metering, and automated invoicing. Designed to support flexible commercial packages—from free trials and starter SME tiers to enterprise-grade bespoke agreements—the engine enforces strict entitlement policies across every protected API route without incurring database latency.
+The reviewed public catalog is **Starter: BDT 999/month or BDT 9,990/year**, **Growth: BDT 2,999/month or BDT 29,990/year**, and **Enterprise: custom/contact sales**. Current published limits are Starter: 1,000 messages/month, 1 team member, 2 channels; Growth: 5,000 messages/month, 5 team members, 6 channels; Enterprise limits are contract-defined. Starter and Growth are the self-serve trial/checkout plans. The default trial period is 14 days.
 
-Featuring a high-performance Redis entitlement cache, automated AI token metering, plan proration calculations, and native payment gateway integration via SSLCommerz (enabling bKash, Nagad, and credit cards), the platform delivers frictionless financial operations.
+Use [pricing.md](../pricing.md) for the current public catalog. Do not copy older plan matrices or treat the CMS display catalog as proof that runtime entitlements have been provisioned in a particular deployment.
 
----
+## Verified subscription payment paths
 
-## Technical Architecture
+The reviewed default branch contains SSLCommerz BDT checkout and direct bKash tokenized subscription checkout. Payment intents are created server-side and the provider result is verified against the expected tenant, plan, cycle, currency, and exact amount before subscription activation. Callback handling and payment-ledger records use idempotency controls.
 
-```mermaid
-graph TD
-    A[Incoming API Request] --> B[Subscription & Entitlement Guard]
-    B --> C[Entitlement Cache Service]
-    C -->|Cache Hit: O 1 Lookup| D[(Redis In-Memory Store)]
-    C -->|Cache Miss: Fallback| E[(PostgreSQL Tenant Entitlements)]
-    E -->|Populates Cache with TTL| D
-    B -->|Entitlement Verified| F[Target Module Controller]
-    F -->|Consumes AI / Message Resource| G[Usage Metering Processor]
-    G -->|BullMQ Batch Ingestion| H[(Usage Records Database)]
-    H -->|Threshold Exceeded| I[Notification & Plan Upgrade Trigger]
-```
+Durable invoice snapshots are linked to verified subscription/manual-payment records. The invoice service includes a recovery path for successful payments whose invoice persistence needs repair. These implementation paths do not prove that every provider or payment method appearing in a frontend list is enabled for subscriptions.
 
-### Architecture Specifications
+## Plan changes and manual operations
 
-1. **Entitlement Cache Service (`entitlement-cache.service.ts`)**:
-   * Eliminates the N+1 query antipattern where every incoming HTTP request queried tenant subscriptions and feature tables.
-   * Caches evaluated tenant permissions and capability flags in Redis with smart eviction hooks triggered only upon plan changes or renewals.
-2. **Subscription Guard (`subscription.guard.ts`)**:
-   * Evaluates required module capabilities (e.g., `@RequireCapability('MODULE_STORE_BUILDER')`) before allowing request execution, instantly rejecting unauthorized calls with a `403 Forbidden` response.
-3. **Usage Metering Processor (`usage-metering.processor.ts`)**:
-   * Aggregates AI token consumption, automated response counts, and courier booking operations via Redis BullMQ batch queues, writing consolidated ledger entries to prevent database write bottlenecks.
-4. **SSLCommerz Payment Adapter (`adapters/sslcommerz.adapter.ts`)**:
-   * Facilitates localized payment processing in Bangladeshi Taka (BDT).
-   * Validates server-to-server IPN (Instant Payment Notification) hashes to prevent transaction spoofing.
+Proration can calculate a quote. An immediate upgrade is not a completed change until a compatible payment intent is available and verified. Scheduled downgrades depend on billing-provider configuration and are not universally available. Manual plan assignments in the platform control plane are administrative actions, not paid upgrades; they must not be described as payment records.
 
----
+Manual/offline payment operations require their own authorization and verification workflow. Do not claim that any manual payment automatically creates a paid subscription unless the specific verified path is configured and completed.
 
-## Modular Licensing Capabilities
+## Storefront payment modes are separate
 
-Tenants can be granted access to base subscription packages as well as standalone modular add-ons:
+Tenant storefronts can configure COD-only, advance-plus-COD, full online, and partial payment modes. Advance-plus-COD requires an explicit fixed or percentage rule. Orders may be paid in stages and through multiple methods; payment status should reflect provider verification or verified courier collection, not an order status or an unverified remittance record.
 
-| Capability Flag | Description | Default Plan Inclusion |
-| :--- | :--- | :--- |
-| `CAPABILITY_UNIFIED_INBOX` | Omnichannel messaging inbox & web chat widget | All Plans (Starter, Growth, Enterprise) |
-| `CAPABILITY_AI_AGENT` | Automated AI chat replies & Adaptive RAG | All Plans (with tiered message quotas) |
-| `CAPABILITY_STORE_BUILDER` | Headless Next.js storefront builder & custom domains | Growth & Enterprise |
-| `CAPABILITY_COURIER_LOGISTICS` | Auto-booking for Pathao, Steadfast, RedX, Paperfly | Growth & Enterprise |
-| `CAPABILITY_GOOGLE_SHEETS_SYNC`| Bi-directional spreadsheet catalog synchronization | Starter, Growth, Enterprise |
-| `CAPABILITY_MULTIMODAL_AI` | Voice note transcription & photo-to-product matching | Enterprise (or Growth Add-on) |
-| `CAPABILITY_CRM_PIPELINE` | Visual sales Kanban, deals, and work queue | Growth & Enterprise |
+The current main branch explicitly disables verified customer COD collection credit because the available courier adapters do not establish the required collection evidence. Do not claim that COD remittance automatically marks an order paid.
 
----
+## Affiliate economics are disabled
 
-## Core Features
+Affiliate program tables and read-only views exist, but the current code hard-disables commission earning, commission approval, and payouts. The public affiliate program is closed and rates/terms are unset. Do not publish commission rates, expected earnings, approval workflows, or payout availability.
 
-### 1. Flexible Subscription Tiers & Free Trials
-* **14-Day Full-Featured Trial**: Automatically provisions complete platform capabilities to new workspaces upon registration.
-* **Automated Trial Expiration (`trial.service.ts`)**: Transitions expired accounts to a restricted read-only mode, alerting workspace administrators to select a payment tier.
+## What this page does not promise
 
-### 2. Real-Time Resource Metering & Soft Limits
-* Tracks monthly AI message credits and active agent seat allocations.
-* Emits proactive alerts when 80% and 95% of quota is consumed, preventing abrupt disruption of customer conversations.
+This page does not claim an active public add-on checkout, a full-featured trial, automatic read-only trial expiration, instant upgrades, sub-millisecond response guarantees, universal no-overuse enforcement, or every UI-listed payment method. Availability depends on configuration, entitlements, provider access, and verified transactions.
 
-### 3. Plan Upgrades & Proration Engine (`plan-proration.service.ts`)
-* Calculates exact credit adjustments when tenants upgrade mid-cycle, crediting unused days from previous plans toward new subscriptions.
+## Related documents
 
-### 4. Enterprise Custom Plan Builder
-* Allows Super Administrators to tailor bespoke plans with custom seat counts, dedicated LLM model routing, and dedicated account management.
-
----
-
-## Benefits
-
-* **Sub-Millisecond Guard Checks**: In-memory Redis entitlement verification guarantees zero measurable overhead on API response times.
-* **Eliminates Unpaid Overuse**: Hard and soft enforcement gates ensure tenants operate strictly within paid resource allocations.
-* **Frictionless Local Payments**: Native bKash and Nagad payment flows achieve high checkout conversion for regional business owners.
-
----
-
-## FAQ
-
-### Q: Can an enterprise tenant pay via traditional offline bank transfer?
-**A:** Yes. The Super Admin module includes a Manual Payment Approval service where enterprise invoices can be marked as settled after verifying wire receipts.
-
-### Q: Does adding team members immediately charge the merchant?
-**A:** If the tenant has available unused agent seats in their plan quota, new members can be invited at no extra charge. If seat limits are reached, the system prompts the administrator to purchase additional seat add-ons.
-
----
-
-## Related Documents
-
-* [Pricing Specifications](../pricing.md)
-* [Super Admin & Tenant Governance](../products/super-admin.md)
-* [Security & Sentinel Framework](./sentinel-security.md)
-* [System Architecture](../docs/system-architecture.md)
+- [Pricing](../pricing.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Order Management](../products/order-management.md)
+- [Super Admin](../products/super-admin.md)
+- [Security](../security.md)

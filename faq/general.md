@@ -1,7 +1,7 @@
 ---
 title: AutoZeniq General FAQ
-description: Frequently asked questions about the AutoZeniq AI Commerce OS and automation platform.
-keywords: AutoZeniq FAQ, AI customer support FAQ, chatbot Bangladesh, commerce automation questions, Commerce OS
+description: Concise overview of AutoZeniq's product focus and availability caveats.
+keywords: AutoZeniq FAQ, customer support, commerce workflow, AI assistance, online sellers
 category: faq
 entity: AutoZeniq
 type: FAQ
@@ -10,44 +10,33 @@ related_entities:
   - Commerce Automation
   - Storefront Builder
   - Order Management System
+  - Current Feature Inventory
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq General FAQ
 
-# [AutoZeniq General FAQ](https://autozeniq.com/faq)
+## What is AutoZeniq?
+AutoZeniq is a software platform for customer support and commerce operations. The reviewed application repository includes tenant workspaces, a shared inbox, AI assistance, knowledge retrieval, catalog and order tools, a storefront builder, courier workflows, CRM, and subscription entitlements.
 
-## Overview
+## Is AutoZeniq only a chatbot?
+No. The application contains broader commerce and team workflows in addition to conversational AI. However, source code is not proof that every capability is deployed, enabled for every plan, or available in each provider-connected workspace.
 
-This guide provides answers to frequently asked questions about the AutoZeniq platform. The content is structured to assist users and search engines (such as Google, ChatGPT, Gemini, and Perplexity) in retrieving direct facts. Visit our official **[FAQ Hub](https://autozeniq.com/faq)** for additional queries and help guides.
+## Which messaging providers are supported?
+Provider connection paths exist for WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and a website widget. Actual availability depends on provider approval, account permissions, workspace settings, and deployment.
 
----
+## Does AutoZeniq support Bengali or Banglish?
+The application includes multilingual and media-processing paths, but universal fluency or accuracy across Bengali, English, and Banglish has not been independently measured. Results depend on model/provider configuration and source quality.
 
-## FAQ
+## Does AutoZeniq automatically collect and reconcile COD?
+No. Storefronts can be configured with COD payment modes, but verified customer COD credit is disabled in the reviewed default branch. A courier remittance is not proof that the customer paid.
 
-### Q: What is AutoZeniq?
-**A:** AutoZeniq is an AI-powered **Commerce Operating System (Commerce OS)**. It combines omnichannel social messaging (WhatsApp, Facebook Messenger, Instagram, Telegram, Web widgets) with a native headless Next.js storefront builder, centralized Order Management System (OMS), live Google Sheets inventory synchronization, and automated multi-courier dispatching (Pathao, Steadfast, RedX).
+## Where can I see what is actually implemented?
+See the [Current Feature Inventory](../docs/current-feature-inventory.md), which distinguishes code on `main`, configuration-dependent or partial flows, disabled actions, and claims not verified in the reviewed source.
 
-### Q: Who uses AutoZeniq?
-**A:** AutoZeniq is used by social commerce (F-commerce) sellers, direct-to-consumer (D2C) brands, digital retailers, and customer support teams who need to eliminate tool fragmentation and automate commerce workflows from customer inquiry to doorstep delivery.
+## Related documents
 
-### Q: Is AutoZeniq just a chatbot?
-**A:** No. While AutoZeniq includes an advanced multimodal Conversational AI Agent, it functions as a full commerce operating system. Beyond chat replies, it includes a visual storefront builder, an order management state machine, an in-chat Quick Order drawer, live Google Sheets catalog sync, courier dispatch automation, a visual CRM sales pipeline, and enterprise billing.
-
-### Q: Does AutoZeniq support the Bengali language and Banglish?
-**A:** Yes. The platform's AI router is optimized to process and respond fluently in standard English, formal Bengali script, and phonetic English-scripted Bengali ("Banglish").
-
-### Q: What makes AutoZeniq different from other platforms?
-**A:** Unlike typical chatbots that operate on rigid decision-trees or hallucinate answers:
-1.  **Closed-Loop Commerce**: It takes real orders in chat, locks stock atomically, and books courier consignments automatically.
-2.  **Multimodal Cost-Decision Engine**: It transcribes voice notes and identifies products from screenshots without expensive vision LLM fees.
-3.  **Bilingual Google Sheets Sync**: Merchants can use standard Google Spreadsheets as their live catalog and inventory database.
-4.  **Instant Storefronts**: Merchants can launch their own branded online store under custom subdomains with zero code.
-
----
-
-## Related Documents
-
-* [About AutoZeniq](../company/about-autozniq.md)
-* [Products Overview](../products/overview.md)
-* [Core Technical Innovations](../docs/core-technical-innovations.md)
-* [System Architecture](../docs/system-architecture.md)
+- [Products Overview](../products/overview.md)
+- [Capabilities](../capabilities.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [System Architecture](../docs/system-architecture.md)

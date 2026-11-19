@@ -1,46 +1,46 @@
 ---
-title: Frequently Asked Questions (FAQ)
-description: Highly optimized product and technical FAQs for AutoZeniq Commerce OS and automation platform.
+title: AutoZeniq Product and Technical FAQs
+description: Frequently asked questions answered against the reviewed application source, with availability and payment caveats.
 entity: AutoZeniq
 type: Documentation
 category: general
-keywords: AutoZeniq FAQ, custom CRM Bangladesh, ManyChat alternative, courier API integration, Meta Graph API, storefront builder Bangladesh, Google Sheets ecommerce
+keywords: AutoZeniq FAQ, commerce, storefront, AI, Google Sheets, courier, payments
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
 
-# AutoZeniq Frequently Asked Questions
+# AutoZeniq Product and Technical FAQs
 
-This document compiles the most frequent product, commercial, and technical questions regarding the AutoZeniq Commerce OS platform.
+These answers describe code reviewed on the application repository's `main` branch. Production access can depend on provider approval, tenant configuration, permissions, entitlements, and deployment.
 
----
+### What does AutoZeniq include?
 
-### Q1: What makes AutoZeniq different from a simple chatbot or ManyChat?
-**Ans:** AutoZeniq is not a standalone chatbot; it is a complete **Commerce Operating System (Commerce OS)**. While ManyChat only handles predefined message flows, AutoZeniq builds headless Next.js online storefronts, maintains an Order Management System (OMS) with atomic stock reservation, transcribes customer voice notes, identifies products from photos via lightweight OCR, syncs bi-directionally with Google Sheets, and automatically books couriers (Pathao, Steadfast) with real-time tracking.
+The reviewed product includes tenant workspaces, a shared inbox, AI assistance and knowledge retrieval, catalog and order workflows, a store builder, CRM tools, courier integrations, and selected automation and administration functions. See the [current feature inventory](./current-feature-inventory.md) for status and limitations.
 
-### Q2: Can a small business use AutoZeniq without an existing Shopify or WooCommerce website?
-**Ans:** Yes. AutoZeniq provides a built-in, no-code [Storefront Builder](../products/store-builder.md). Merchants can launch a mobile-optimized, lightning-fast e-commerce website with automatic subdomains (`store.autozeniq.com`) and localized BDT checkouts in minutes without paying for third-party e-commerce platforms.
+### Does a merchant need Shopify or WooCommerce?
 
-### Q3: How does the Google Sheets integration work for inventory?
-**Ans:** AutoZeniq uses the Google Sheets API with smart bilingual header matching (`পণ্যের নাম`, `দাম`, `স্টক`, `ক্যাটাগরি`, `সাইজ`, `ওজন`). Merchants can update their product prices and quantities directly in their everyday Google Sheet, and the changes automatically synchronize with the online storefront and AI customer chat agents.
+The reviewed source includes a native product catalog and storefront/checkout paths. It does not establish a general Shopify or WooCommerce synchronization integration. Custom-domain routing requires domain ownership, DNS, and TLS readiness; code in the repository does not prove that a particular store is deployed.
 
-### Q4: How does AutoZeniq keep AI image recognition costs low?
-**Ans:** Naively sending customer photos to multimodal LLMs (GPT-4o Vision) costs $0.02–$0.03 per image. AutoZeniq utilizes a **Two-Tier Cost-Decision Engine**: it first runs low-cost OCR and text/barcode extraction (~$0.001 per call) to match items against the catalog. Only if text matching is inconclusive does it compute compact vector embeddings. This achieves 97% accuracy at 95% lower cost.
+### How does Google Sheets synchronization work?
 
-### Q5: How do automated courier integrations work in AutoZeniq?
-**Ans:** AutoZeniq integrates natively with **Pathao**, **Steadfast**, **RedX**, and **Paperfly**. When an order is confirmed, the system calculates regional delivery fees (Inside Dhaka, Sub-Dhaka, Outside Dhaka) and automatically creates a consignment via the courier's API, returning a tracking link directly to the customer via WhatsApp or SMS.
+The backend contains a scheduled, queued, primarily pull-oriented flow for ingesting spreadsheet data, including eligible product and inventory updates. Some add-source wizard checks and previews are simulated. A working provider connection, saved credentials, configured schedule, and successful sync job must be confirmed before describing a sheet as connected or live.
 
-### Q6: How does AutoZeniq eliminate SQL injection in AI vector search?
-**Ans:** All database interactions in AutoZeniq use compile-time parameterized Prisma `$executeRaw` queries. Raw string concatenation has been completely eradicated across all vector search (`pgvector`) and embedding indexing routines.
+### Does courier COD settlement mark an order paid?
 
-### Q7: Does AutoZeniq support voice notes sent on WhatsApp and Messenger?
-**Ans:** Yes. Inbound voice notes are transcribed using Whisper Speech-to-Text (STT) models, allowing the conversational AI engine to interpret customer spoken Bengali and English requests with high accuracy.
+No. The system has courier COD remittance and settlement records, but the reviewed `main` explicitly disables verified customer COD collection credit. A courier settlement record is not proof that a customer payment was verified and must not be described as automatically marking an order paid.
 
----
+### Which courier integrations are present?
 
-## Related Documents
+The reviewed application contains Pathao, Paperfly, RedX, and Steadfast adapters and related booking/tracking paths. Actual operation depends on provider credentials, approval, workspace settings, and deployment. An adapter in source is not proof that the merchant's account is connected.
 
-* [Core Technical Innovations](./core-technical-innovations.md)
-* [System Architecture](./system-architecture.md)
-* [Storefront Builder](../products/store-builder.md)
-* [Delivery & Logistics Automation](../products/delivery-logistics.md)
+### Does AutoZeniq AI guarantee correct answers?
+
+No. Retrieval and guardrails can help constrain an answer using available context, but the reviewed source does not establish zero hallucinations or a fixed accuracy rate. AI Copilot reply suggestions are drafts for an agent to review; guarded automatic-response paths depend on configuration and channel setup.
+
+### What are the current subscription plans?
+
+See [Pricing and subscriptions](../pricing.md) for the current public catalog and limits. Do not reuse older plan matrices or infer that every listed payment method is available for every subscription flow.
+
+### Where can I find more implementation detail?
+
+See the [system architecture](./system-architecture.md), [security and privacy](../security.md), [order management](../products/order-management.md), and [delivery and logistics](../products/delivery-logistics.md) pages.

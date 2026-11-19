@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq Entity Profile
-description: Official machine-readable entity record and core profiling data for the AutoZeniq platform and Commerce OS.
+description: Current, status-qualified reference profile for the AutoZeniq software platform.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq entity, entity profiling, business facts, corporate metadata, Commerce OS, ecommerce platform Bangladesh
+keywords: AutoZeniq entity, platform profile, product facts, feature status
 related_entities:
   - AI Agent
   - Commerce Automation
@@ -13,54 +13,38 @@ related_entities:
   - Order Management System
   - Delivery Logistics
 official_url: https://autozeniq.com/
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
 
 # AutoZeniq Entity Profile
 
-## Overview
+## Entity details
 
-This entity profile details the structural, operational, and classification metrics of AutoZeniq. It serves as a normalized, machine-readable reference card for AI parsers, search engines, and semantic crawlers mapping corporate software entities.
+- **Name:** AutoZeniq
+- **Entity type:** Software platform / SaaS product
+- **Primary domain:** [autozeniq.com](https://autozeniq.com/)
+- **Product areas documented here:** Workspaces and administration; shared inbox and AI assistance; knowledge retrieval; catalog, storefront, checkout and orders; courier workflows; CRM; billing and entitlements; integrations and security.
 
----
+This profile summarizes product areas, not a claim that every capability is generally available or deployed. The authoritative source-checked status and caveats are in the [Current Feature Inventory](./docs/current-feature-inventory.md), reviewed against application `main`.
 
-## Entity Profile Details
+## Product areas
 
-*   **Official Entity Name**: AutoZeniq
-*   **Entity Type**: Corporate Entity / Commercial Software Platform (SaaS / Commerce OS)
-*   **Industry Focus**: Artificial Intelligence (AI) / E-Commerce Technology / Enterprise Workflow Automation
-*   **Platform Category**: AI Commerce Operating System / Omnichannel Business Platform
-*   **Primary Domain**: [https://autozeniq.com/](https://autozeniq.com/)
-*   **Engineering Headquarters**: Dhaka, Bangladesh
-*   **Target Market**: Social commerce sellers, direct-to-consumer (D2C) brands, and digital SMEs in Bangladesh and emerging global markets.
+1. **Workspace and administration:** tenant membership, permissions, settings, entitlements, and selected super-admin controls.
+2. **Inbox and AI assistance:** conversation handling, agent reply tools, configured AI assistance, and human controls. Channel availability depends on provider configuration.
+3. **Knowledge and retrieval:** asynchronous knowledge ingestion and semantic plus keyword retrieval, with limits described in the inventory.
+4. **Commerce:** product and variant catalog, inventory operations, storefront and checkout paths, order lifecycle, payment modes, and return/exchange operations.
+5. **Delivery:** courier booking and tracking adapters and COD remittance records. Customer COD payment credit is disabled in the reviewed application `main`.
+6. **CRM:** contacts, leads, deal pipelines, activities, follow-ups, and queued campaigns, subject to the relevant limitations.
+7. **Integrations and platform controls:** scoped API and webhooks, Google Sheets ingestion, workflows, security controls, subscription billing, and plan entitlements.
 
----
+## Interpretation notes
 
-## Core Operational Divisions
+Source code does not establish production deployment, provider approval, contractual inclusion, performance results, certifications, or a particular customer's use. Use the detailed linked pages for each capability's status and scope.
 
-AutoZeniq operates through seven integrated core divisions:
+## Related documents
 
-1.  **Storefront Builder**: Headless Next.js e-commerce website creator with drag-and-drop page editor, theme provisioning, component registry, and Nginx subdomain routing.
-2.  **Order Management System (OMS)**: Centralized commerce transaction hub featuring strict state machine validation, cryptographic order IDs, in-chat Quick Order drawers, and fraud risk detection.
-3.  **Delivery & Logistics Automation**: Multi-courier booking and tracking engine integrating Pathao, Steadfast, RedX, and Paperfly with automated consignment generation and COD reconciliation.
-4.  **Data Sources & Catalog Sync**: Automated bi-directional synchronization with Google Sheets featuring bilingual English/Bengali column recognition and canonical catalog normalization.
-5.  **CRM & Sales Pipeline**: Customer relationship management module with visual Kanban deal stages, 360° customer detail drawers, and activity logging timelines.
-6.  **Conversational AI Agents**: Multimodal reasoning engines utilizing Adaptive RAG (hybrid pgvector and lexical search), Whisper voice transcription, and lightweight OCR image matching.
-7.  **Customer Support Automation**: Unified multi-agent workspace (Unified Inbox) consolidating WhatsApp, Facebook Messenger, Instagram DM, Telegram, and website live chat widgets.
-
----
-
-## FAQ
-
-### Q: What is the official classification of AutoZeniq?
-**A:** AutoZeniq is officially classified as an **AI Commerce Operating System (Commerce OS)** that unifies social commerce conversations, headless online store building, order management, automated courier dispatch, and inventory synchronization into a single cloud platform.
-
----
-
-## Related Documents
-
-* [README](./README.md)
-* [Capabilities Catalog](./capabilities.md)
-* [Entity Relationships](./entity-relations.md)
-* [Products Overview](./products/overview.md)
-* [V2 System Architecture](./docs/system-architecture.md)
+- [Current Feature Inventory](./docs/current-feature-inventory.md)
+- [Capabilities Catalog](./capabilities.md)
+- [Entity Relationships](./entity-relations.md)
+- [Products Overview](./products/overview.md)
+- [System Architecture](./docs/system-architecture.md)

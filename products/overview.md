@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq Products Overview
-description: High-level overview of the complete product suite offered by the AutoZeniq Commerce OS platform.
+description: Status-qualified overview of AutoZeniq support, AI, commerce, CRM, delivery, and platform administration.
 entity: AutoZeniq
 type: Platform
 category: product
-keywords: AutoZeniq products, storefront builder, order management, delivery logistics, CRM, AI customer support, commerce automation
+keywords: AutoZeniq products, storefront, order management, delivery, CRM, AI support, commerce
 related_entities:
   - Storefront Builder
   - Order Management System
@@ -12,84 +12,49 @@ related_entities:
   - AI Agent
   - Customer Support Automation
 official_url: https://autozeniq.com/features
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Products Overview
 
-# [AutoZeniq Products Overview](https://autozeniq.com/features)
+AutoZeniq brings customer-support and commerce workflows into a multi-tenant workspace. The current application source includes a shared inbox, guarded AI assistance, tenant knowledge and retrieval, CRM and lead tools, product/inventory management, storefront checkout, order and delivery workflows, integrations, and platform administration.
 
-## Overview
+The [Current Feature Inventory](../docs/current-feature-inventory.md) distinguishes current `main` code from partial/simulated flows, disabled actions, and unverified claims. Repository evidence is not proof of production deployment, provider approval, or general availability.
 
-[AutoZeniq](https://autozeniq.com/) provides an integrated suite of commerce and support products designed to automate every step of the retail and client communication lifecycle. Operating as an end-to-end **Commerce Operating System (Commerce OS)**, the platform consolidates storefront creation, multi-channel messaging, order processing, inventory synchronization, and courier logistics into a single multi-tenant dashboard.
+## Product areas
 
----
+### [Storefront Builder](./store-builder.md)
+Manage storefront pages and settings, preview drafts, publish changes, review versions, configure navigation, and use the reviewed `modern`, `elegant`, and `minimal` base themes. Managed subdomains and custom-domain routing depend on domain readiness checks. The storefront supports product/category pages, cart and checkout, delivery quotes, coupons, and order tracking.
 
-## The Product Suite
+### [Order Management](./order-management.md)
+Create and manage tenant orders through validated states, with item/payment/timeline records, inventory workflows, configurable payment modes, and order submission safeguards. A courier remittance record does not by itself verify customer payment.
 
-### 1. [Storefront Builder](./store-builder.md)
-*   **Visual Drag-and-Drop Page Designer**: Build desktop- and mobile-optimized online stores with no coding knowledge.
-*   **Modular Component Registry**: High-converting starter themes, Hero Banners, Product Grids, and slide-out Cart Drawers.
-*   **Automated Subdomains & Custom Domains**: Instant SSL-secured subdomains (`*.autozeniq.com`) and custom domain DNS mapping.
-*   **Mobile-First Checkout**: Frictionless single-page checkout optimized for Cash on Delivery (COD) and mobile wallets (bKash, Nagad).
+### [Delivery & Logistics](./delivery-logistics.md)
+The codebase includes Pathao, Paperfly, RedX, and Steadfast adapters, consignment booking, tracking, conditional auto-booking, COD remittance records, and fraud scoring. Verified customer COD collection credit is currently unavailable in the reviewed implementation. Some delivery analytics are sample data.
 
-### 2. [Order Management System (OMS)](./order-management.md)
-*   **Deterministic Order State Machine**: Manages order progression through validated transitions (`PENDING`, `CONFIRMED`, `PROCESSING`, `SHIPPED`, `DELIVERED`, `CANCELLED`, `RETURNED`).
-*   **Quick Order In-Chat Drawer**: Support and sales agents can configure and submit customer orders directly inside live conversation threads.
-*   **Cryptographic Transaction Security**: Unique order identifiers (`ORD-YYYYMMDD-XXXXXXXX`) generated with secure cryptographic random bytes.
-*   **Atomic Stock Reservation**: Prevents overselling by reserving inventory upon order confirmation and restocking on cancellation.
+### [CRM & Leads](./crm-leads.md)
+Manage contacts and leads, assign work, maintain deals and pipelines, schedule follow-ups, and queue campaigns. Current default pipeline stages are New Lead, Contacted, Qualified, Proposal Sent, and Negotiation. Campaign read/reply figures shown in the UI are not provider-measured analytics.
 
-### 3. [Delivery & Logistics Automation](./delivery-logistics.md)
-*   **Multi-Courier Registry**: Native integration with Bangladesh's leading logistics providers: **Pathao**, **Steadfast**, **RedX**, and **Paperfly**.
-*   **Automated Consignment Creation**: One-click and automated bulk consignment generation mapping addresses and parcel weights into courier payloads.
-*   **Dynamic Regional Pricing**: Automated delivery rate calculation based on destination city zones (Inside Dhaka, Sub-Dhaka, Outside Dhaka) and weight tiers.
-*   **Live Tracking Webhooks & COD Settlement**: Real-time status synchronization and automated reconciliation of collected COD balances.
+### [AI and customer support](./ai-agent.md)
+Use a tenant-scoped inbox, human replies, assignment, and AI takeover controls alongside knowledge-grounded AI assistance, rules, and agent suggestions. Copilot suggestions are drafts and are not sent automatically. Channel support and AI behavior depend on entitlements and configuration.
 
-### 4. [Data Sources & Google Sheets Synchronization](../features/google-sheets-sync.md)
-*   **Bilingual Auto-Mapping**: Automatically detects English and Bengali column headers (`পণ্যের নাম`, `মূল্য`, `দাম`, `স্টক`, `ক্যাটাগরি`, `সাইজ`, `ওজন`).
-*   **Continuous Background Reconciliation**: Scheduled polling and instant manual triggers keep spreadsheet data in sync with active storefront catalogs.
-*   **BullMQ High-Volume Queue**: Robust background worker architecture preventing timeouts on large product sheets.
+### [Knowledge and data sources](../features/knowledge-base.md)
+Ingest supported files for background indexing and retrieval. Google Sheets synchronization is primarily pull-oriented; parts of the add-source UI are simulated. See [Google Sheets Sync](../features/google-sheets-sync.md).
 
-### 5. [CRM & Lead Pipeline](./crm-leads.md)
-*   **Visual Kanban Sales Pipeline**: Drag-and-drop deal tracking across custom sales stages (`NEW`, `CONTACTED`, `QUALIFIED`, `WON`, `LOST`).
-*   **Customer 360° Detail Drawer**: Centralized panel displaying purchase history, shipping addresses, lifetime value (LTV), and communication logs.
-*   **Consolidated Single-Pass Metrics**: Optimized database queries calculating sales conversion rates and pipeline velocity in a single roundtrip.
+### [Billing and entitlements](../features/billing-entitlements.md)
+The reviewed public catalog has Starter, Growth, and Enterprise options. Subscription payment verification, tenant commerce payment modes, staged order payments, invoice records, and disabled affiliate economics are distinct workflows. See [Pricing](../pricing.md).
 
-### 6. [Conversational AI Agent](./ai-agent.md)
-*   **Adaptive RAG Engine**: Hybrid retrieval combining `pgvector` dense vector embeddings and PostgreSQL lexical search with multi-query reflection.
-*   **Two-Tier Multimodal Pipeline**: Voice note transcription (Whisper STT) and photo-to-product matching via lightweight OCR, avoiding high-cost vision LLM traps.
-*   **Multi-Provider Model Router**: Dynamic routing across GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Flash with automatic failover and token cost tracking.
+### [Super Admin](./super-admin.md)
+Platform administrators have tenant governance and selected operational controls. Authentication and authorization use shared account handling with current database-backed roles; older claims of separate admin login or mandatory 2FA are not verified.
 
-### 7. [Customer Support Automation](../solutions/business.md)
-*   **Unified Omnichannel Inbox**: Consolidates conversations from WhatsApp Business, Facebook Messenger, Facebook Comments, Instagram DM, Telegram, and Web Chat widgets.
-*   **Real-Time Collaboration**: WebSocket presence indicators, agent typing states, and internal private staff notes.
-*   **Human Takeover & Smart Escalation**: Seamless handoff between automated AI responses and human agents with quiet queues for unhandled tickets.
+## Important boundaries
 
-### 8. [Super Admin & Tenant Governance](./super-admin.md)
-*   **Multi-Tenant Governance**: Central control plane for tenant lifecycle tracking, subscription overrides, and platform health monitoring.
-*   **Modular Feature Flagging**: Enable or disable specific modules (Store Builder, Courier Auto-Booking, Google Sheets Sync) per tenant.
-*   **AI Cost Safeguards & Impersonation**: Budget caps preventing API cost spikes, alongside secure operator diagnostic sessions.
+- Feature availability may depend on tenant entitlement, plan, provider credentials, account approval, configuration, and deployment.
+- A design document, feature-key constant, UI screen, sample chart, or remote branch alone does not prove an enabled end-to-end feature.
+- Do not publish unverified accuracy, latency, cost, conversion, customer/revenue, compliance, uptime, or SLA figures as measured facts.
 
----
+## Related documents
 
-## Benefits
-
-*   **Complete Commercial Unification**: Eliminates the need for 5+ fragmented tools (e-commerce builders, separate chat apps, CRM spreadsheets, courier portals).
-*   **Zero Latency & Extreme Reliability**: Redis-backed entitlement caching and distributed BullMQ queues ensure high responsiveness under traffic spikes.
-*   **Localized for Regional Growth**: Native support for Bengali language understanding, regional mobile payments (bKash/Nagad), and local logistics networks.
-
----
-
-## FAQ
-
-### Q: Can modules be adopted independently?
-**A:** Yes. Merchants can begin using only the Unified Inbox and AI Agent, and later activate the Storefront Builder, Google Sheets Sync, or Courier Logistics as their business scales.
-
----
-
-## Related Documents
-
-* [Storefront Builder](./store-builder.md)
-* [Order Management System](./order-management.md)
-* [Delivery & Logistics Automation](./delivery-logistics.md)
-* [CRM & Lead Pipeline](./crm-leads.md)
-* [AI Agent](./ai-agent.md)
-* [V2 System Architecture](../docs/system-architecture.md)
+- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Capabilities](../capabilities.md)
+- [Pricing](../pricing.md)
+- [System Architecture](../docs/system-architecture.md)
