@@ -1,85 +1,41 @@
 ---
-title: AutoZeniq AI Agent
-description: Technical specifications, multimodal processing pipeline, and operational architecture of the AutoZeniq Conversational AI Agent.
-keywords: AutoZeniq AI Agent, conversational AI, Adaptive RAG, hybrid search, voice note transcription, photo product matching, model router
+title: AutoZeniq AI Assistance
+description: Merchant guide to AI reply drafts, business knowledge, human review, and setup boundaries.
+keywords: AutoZeniq AI, AI Copilot, reply suggestions, human takeover, knowledge sources
 category: product
 entity: AutoZeniq
-type: Agent
+type: Product
 related_entities:
   - Customer Support Automation
   - Commerce Automation
   - Adaptive RAG
-  - Multimodal AI Processing
+  - Media Processing
 official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq AI Assistance
 
-# [AutoZeniq AI Agent](https://autozeniq.com/features/ai-agent)
+**Status: Partially Available.** AI assistance can help merchant support teams prepare replies and use business information more consistently in a shared inbox. It supports eligible team members who review customer conversations; it is not a separately confirmed autonomous agent. Exact availability depends on the workspace, plan, role, AI settings, model or provider access, and connected channel.
 
-## Overview
+## What is available
 
-The **AutoZeniq AI Agent** is an autonomous, context-aware conversational engine designed for retail sales, customer support, and commercial workflow execution. Operating across WhatsApp, Facebook Messenger, Instagram DM, Telegram, and website chat widgets, the agent goes beyond static question-answering by listening to customer voice notes, recognizing products from uploaded photos, validating live stock, and initiating checkout orders.
+- **Available:** AI Copilot drafts for a team member to review and send.
+- **Partially Available:** Retrieval that can use processed workspace knowledge sources.
+- **Partially Available:** Automated replies and media-assisted workflows on supported channels where enabled.
+- **Configuration Required:** An eligible AI and Inbox setup, a connected supported channel, model or provider access, and knowledge sources where needed.
 
----
+## How to set it up
 
-## Technical Architecture
+A workspace admin or other permitted team member should confirm the AI and Inbox access, connect an approved channel, and add or connect the business information the team wants AI assistance to use. Set the available tone, language, and business rules, review source-processing status, then test a representative conversation in a test workspace or suitable test conversation. Review every draft before sending. Use pause or take-over controls where the workspace and channel provide them.
 
-The AI Agent combines multi-channel ingestion, multimodal pre-processing, hybrid retrieval, and dynamic model routing:
+Supported channels, models or providers, quotas, citations, media types, and live availability must be confirmed for the specific workspace. Supported message and media types vary by channel and configuration.
 
-```mermaid
-graph TD
-    A[Inbound Customer Message: Text / Voice / Photo] --> B[Multimodal Ingestion Gateway]
-    B -->|Audio Voice Note| C[Whisper STT Transcoding]
-    B -->|Product Photo| D[Lightweight OCR / Barcode Matcher]
-    B -->|Text Query| E[Adaptive RAG 2.0 Engine]
-    C --> E
-    D -->|Identified Product SKU| E
-    E -->|Hybrid Vector + Full-Text Search| F[(PostgreSQL pgvector & tsvector)]
-    F -->|Reciprocal Rank Fusion| G[Multi-Stage Confidence Evaluator]
-    G -->|Confidence >= 78%| H[Prompt Builder & Guardrails]
-    G -->|Confidence < 78%| I[Human Takeover Escalation]
-    H --> J[Resilient Multi-Provider Model Router]
-    J -->|Inference Execution| K[GPT-4o / Claude 3.5 / Gemini 1.5]
-    K --> L[Response Guard & Channel Dispatcher]
-```
+## Limits and troubleshooting
 
-### Architectural Subsystems
+AI output is not guaranteed to be factually correct, arrive within a fixed time, reduce costs, increase conversions, or deflect support work. Verify policies, prices, stock, and order details before acting. Human review remains important, especially for COD instructions, payment status, and delivery questions.
 
-1. **Multimodal Audio & Vision Pipelines**:
-   * **Voice Notes**: Uses `VoiceService` and Whisper STT to transcribe customer voice notes across English, standard Bengali, and colloquial Banglish into normalized text streams.
-   * **Cost-Decision Vision**: Employs lightweight OCR (via Sharp / Google Vision) to locate text, model numbers, and barcodes from customer screenshots (~$0.001/call), falling back to `pgvector` visual embeddings only if text matching is inconclusive.
-2. **Adaptive RAG 2.0 with Hybrid Search**:
-   * Merges dense vector embeddings (`pgvector` HNSW cosine similarity) with sparse lexical search (PostgreSQL `tsvector`) using Reciprocal Rank Fusion (RRF).
-   * Decomposes ambiguous customer phrasing into structured sub-queries via multi-query reflection.
-3. **Multi-Stage Confidence Safeguards**:
-   * Evaluates semantic relevance scores. If composite confidence drops below tenant thresholds (e.g. 0.78), the agent suppresses autonomous replies and quietly routes the thread to human operators.
-4. **Resilient Multi-Provider Model Router**:
-   * Routes prompt payloads across OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Google Gemini 1.5 Flash with automated circuit-breaker failover and per-message token cost tracking.
+If AI does not respond, check workspace access, channel connection and approval, AI settings, provider access, and knowledge-source processing. If a draft is incorrect, update the relevant source and keep human review enabled. Do not share credentials in prompts or support requests.
 
----
+## Related features
 
-## Core Features
-
-*   **Closed-Loop Commerce**: Answers product questions, verifies live inventory stock, calculates zone-based shipping, and generates verified orders directly in chat.
-*   **Multimodal Audio & Photo Understanding**: Handles customer voice notes and product photos natively without requiring manual text typing.
-*   **Trilingual Comprehension**: Native fluency in standard English, formal Bengali, and phonetic Banglish ("eitar price koto?", "delivery charge koto?").
-*   **Deterministic Business Rules**: Overrides AI generation with exact business logic when specific trigger phrases (e.g., return disputes, wholesale requests) are detected.
-*   **Human Takeover & Collaboration**: Instant handoff between automated AI responses and human agents with quiet queues for unhandled tickets.
-
----
-
-## Benefits
-
-*   **Zero Hallucinations**: Responses are strictly bound to tenant-provided documents, product catalogs, and verified database rows.
-*   **Massive Cost Efficiency**: Two-tier cost-decision engine slashes multimodal inference expenses by over 95%.
-*   **24/7 Instant Response**: Eliminates customer wait times during peak sales campaigns and nighttime hours.
-
----
-
-## Related Documents
-
-* [Adaptive RAG Feature](../features/adaptive-rag.md)
-* [Multimodal AI Processing](../features/multimodal-processing.md)
-* [Order Management System](./order-management.md)
-* [Conversation Management](../features/conversation-management.md)
-* [Core Technical Innovations](../docs/core-technical-innovations.md)
+AI assistance works within the [Unified Inbox](../features/unified-inbox.md), can use configured [Knowledge Base and Retrieval](../features/knowledge-base.md), and may depend on [Adaptive Retrieval](../features/adaptive-rag.md) and [Media Processing](../features/multimodal-processing.md). These related features do not establish channel or live availability by themselves.

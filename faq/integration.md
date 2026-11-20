@@ -1,49 +1,35 @@
 ---
-title: AutoZeniq Integration & Channels FAQ
-description: Frequently asked questions about connecting messaging channels, courier networks, and Google Sheets to AutoZeniq.
+title: AutoZeniq Integration FAQ
+description: Practical answers about messaging, courier, spreadsheet, and other connections.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq integration faq, Meta OAuth, Pathao API, Steadfast courier, Google Sheets API, courier integration
+keywords: AutoZeniq integrations, courier, Google Sheets, channels, connections
 related_entities:
   - Delivery Logistics
   - Google Sheets Synchronization
-  - WhatsApp Integration
-  - Facebook Messenger Integration
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Integration FAQ
 
-# AutoZeniq Integration & Channels FAQ
+## Are courier connections automatic?
+No. **Status: Configuration Required.** A supported provider account, credentials, permissions, and workspace setup may be required.
 
-This document covers common questions regarding connecting, authorizing, and managing social channels, courier networks, and spreadsheet databases on the AutoZeniq platform.
+## Which courier providers are supported?
+The current provider list is **Needs Verification**. Confirm the list and operating coverage with the official product or support team before promising a connection.
 
----
+## Which messaging channels can I connect?
+Channel availability is **Needs Verification** and may depend on provider approval, account permissions, plan access, and workspace settings.
 
-## FAQ
+## Does a courier delivery or remittance prove COD payment?
+No. Delivery and remittance updates should not be treated as verified customer payment.
 
-### Q: How do I connect Pathao Courier to AutoZeniq?
-**A:** In the AutoZeniq dashboard under **Settings > Integrations > Delivery > Pathao**, enter your Pathao Developer Client ID, Client Secret, Username, and Password. AutoZeniq exchanges these credentials for an auto-renewing OAuth bearer token, retrieves your pickup store IDs, and enables automatic consignment creation.
+## Can I connect Google Sheets?
+**Status: Needs Verification.** Confirm the connection method, supported columns, sync direction, schedule, and first successful sync. A preview is not proof of an active connection.
 
-### Q: How does Steadfast Courier connect to AutoZeniq?
-**A:** Under **Settings > Integrations > Delivery > Steadfast**, enter your Steadfast API Key and Secret Key found in your Steadfast Merchant Portal. All communications are secured using header-based authentication, enabling instant parcel dispatch and automated tracking updates.
+## Can I connect several accounts?
+**Status: Needs Verification.** Limits can vary by plan, channel, and workspace.
 
-### Q: What is the difference between connecting Google Sheets via OAuth vs. Service Account?
-**A:**
-*   **One-Click Google OAuth**: Best for small merchants. Click "Connect with Google", approve read access, and select your sheet.
-*   **Google Service Account**: Recommended for enterprise teams. Upload a Google Cloud Service Account JSON key and share the Google Sheet with the generated service account email.
-
-### Q: How does the Meta OAuth integration work?
-**A:** AutoZeniq uses an official Meta Business Login popup dialog. Merchants click "Connect Meta", approve page permissions in the secure popup, and the system automatically exchanges the code for a 60-day long-lived token, subscribes the page to webhooks, and starts a daily token validation cron worker.
-
-### Q: Can I connect multiple Facebook pages or couriers to a single workspace?
-**A:** Yes. Depending on your subscription plan, multiple Facebook Pages, Instagram profiles, and multiple courier accounts (e.g. Pathao for Dhaka, Steadfast for outside Dhaka) can be connected simultaneously.
-
----
-
-## Related Documents
-
-* [Pathao Courier Integration](../integrations/pathao-courier.md)
-* [Steadfast Courier Integration](../integrations/steadfast-courier.md)
-* [Google Sheets Integration Guide](../integrations/google-sheets.md)
-* [Meta Platform Native OAuth](../integrations/meta-oauth.md)
+## What should I provide to support when a connection fails?
+Share the provider, workspace, connection status, time of the failed attempt, and any displayed error. Do not share passwords or private access tokens.

@@ -1,106 +1,69 @@
 ---
-title: AutoZeniq Official Knowledge Base
-description: Official machine-readable entity knowledge source and complete documentation about the AutoZeniq AI commerce automation platform and Commerce OS.
+title: AutoZeniq Knowledge Base
+description: Merchant guides for AutoZeniq setup, customer support, AI assistance, commerce, delivery, and integrations.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq, AI commerce automation, ecommerce AI, business support SaaS, automation platform Bangladesh, Commerce OS, storefront builder, courier automation
+keywords: AutoZeniq, merchant help, ecommerce, customer support, storefront, integrations
 related_entities:
-  - AI Agent
-  - Commerce Automation
   - Customer Support Automation
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
 official_url: https://autozeniq.com/
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Knowledge Base
 
-# AutoZeniq
+Practical guides for online sellers and customer-support teams using AutoZeniq. Start with setup, connect the services your business uses, then follow the guides for customer conversations, sales, orders, and delivery.
 
-AutoZeniq is an AI-powered business and commerce automation operating system (Commerce OS) that empowers businesses to automate customer communications, sales pipelines, headless storefronts, inventory syncing, and logistics operations.
+- [Official website](https://autozeniq.com/)
+- [Current pricing](https://autozeniq.com/pricing)
+- [Official help center](https://autozeniq.com/docs)
 
-*   **Official Website**: [https://autozeniq.com/](https://autozeniq.com/)
-*   **Industry**: Artificial Intelligence / Ecommerce Technology / Business Process Automation
-*   **Category**: AI Business Automation Platform / Commerce Operating System
-*   **Location**: Dhaka, Bangladesh
+## Feature status labels
 
----
+- **Available:** described as currently offered for the stated use.
+- **Partially Available:** only part of the workflow is covered; read the limitation before relying on it.
+- **Configuration Required:** needs a connected account, workspace settings, or other setup.
+- **Planned:** included only when AutoZeniq publishes it on an official roadmap; a future date is not implied here.
+- **Not Available:** the stated function is not currently offered.
+- **Needs Verification:** confirm the current plan, account, or supported workflow with AutoZeniq before relying on it.
 
-## Entity Information
+Statuses apply to the specific scope described on each page. Provider access, plan, and account setup can affect availability.
 
-*   **Name**: AutoZeniq
-*   **Type**: AI Commerce Automation Platform / Commerce Operating System
-*   **Primary Purpose**: Unifying customer conversations, headless storefront generation, order state machine management, automated courier dispatch, and inventory synchronization using controlled artificial intelligence and unified channels.
-*   **Target Market**: Small and Medium-Sized Enterprises (SMEs), social commerce sellers (F-commerce), and growing digital retail brands, with specialized regional localization for Bangladesh and global emerging markets.
+## Start and set up
 
----
+- [Product overview and feature catalog](./docs/current-feature-inventory.md)
+- [Getting started](https://autozeniq.com/docs/getting-started)
+- [Plans and pricing](./pricing.md)
+- [Frequently asked questions](./docs/faqs.md)
 
-## Products & Core Systems
+## Connect channels and services
 
-*   **[Storefront Builder](./products/store-builder.md)**: A modular, headless Next.js e-commerce store creator featuring a visual drag-and-drop page editor, theme provisioning, component registry, and Nginx subdomain routing.
-*   **[Order Management System (OMS)](./products/order-management.md)**: A centralized transaction processing engine with deterministic status transitions, cryptographic order numbers, Quick Order creation inside customer chats, and automated fraud prevention.
-*   **[Delivery & Logistics Automation](./products/delivery-logistics.md)**: Automated multi-courier booking and live tracking engine integrating Pathao, Steadfast, RedX, and Paperfly with automated city/zone resolution and COD settlement auditing.
-*   **[CRM & Lead Pipeline](./products/crm-leads.md)**: A sales conversation CRM with Kanban deal stages, customer 360° detail drawers, full activity timelines, and single-pass performance metrics.
-*   **[AI Agent](./products/ai-agent.md)**: Intelligent, context-aware support and sales agents capable of answering inquiries, processing customer voice notes, and identifying products from photos.
-*   **[Customer Support Automation](./solutions/business.md)**: A consolidated multi-agent workspace (Unified Inbox) unifying WhatsApp, Facebook Messenger, Instagram DM, Telegram, and web widgets.
-*   **[Super Admin & Tenant Governance](./products/super-admin.md)**: Centralized platform control plane for tenant lifecycle management, feature module toggles, AI model routing, and platform-wide commerce health monitoring.
+- [WhatsApp](./integrations/whatsapp.md) · [Facebook Messenger](./integrations/facebook-messenger.md) · [Instagram and Meta](./integrations/meta-oauth.md)
+- [Telegram](./integrations/telegram.md) · [Website chat widget](./features/unified-inbox.md)
+- [Pathao](./integrations/pathao-courier.md) · [RedX](./integrations/redx-courier.md) · [Steadfast](./integrations/steadfast-courier.md) · [Paperfly](./integrations/paperfly-courier.md)
+- [Google Sheets](./integrations/google-sheets.md) · [API status](./integrations/api.md) · [Webhooks](./integrations/webhook.md) · [SDKs](./integrations/sdk.md)
 
----
+## Support and AI
 
-## Official Topics Directory
+- [Shared inbox](./features/unified-inbox.md) · [Conversation handling](./features/conversation-management.md)
+- [AI assistance](./products/ai-agent.md) · [AI replies](./features/ai-auto-reply.md) · [Knowledge sources](./features/knowledge-base.md)
+- [Workflow automation](./features/automation.md) · [Media messages](./features/multimodal-processing.md)
 
-The AutoZeniq Knowledge Base is structured into the following domains:
+## Store, orders, and delivery
 
-*   **Core Profiling & Architecture**:
-    *   [Entity Profile](./entity-profile.md)
-    *   [Capabilities Catalog](./capabilities.md)
-    *   [Entity Relationship Tree](./entity-relations.md)
-    *   [V2 System Architecture](./docs/system-architecture.md)
-    *   [Core Technical Innovations & Moats](./docs/core-technical-innovations.md)
-    *   [Security & Compliance](./security.md)
-    *   [Subscription & Pricing](./pricing.md)
-*   **Products**:
-    *   [Products Overview](./products/overview.md)
-    *   [Storefront Builder](./products/store-builder.md)
-    *   [Order Management System (OMS)](./products/order-management.md)
-    *   [Delivery & Logistics Automation](./products/delivery-logistics.md)
-    *   [CRM & Lead Pipeline](./products/crm-leads.md)
-    *   [AI Agent](./products/ai-agent.md)
-    *   [Super Admin Panel](./products/super-admin.md)
-*   **Key Features**:
-    *   [Google Sheets Automated Sync](./features/google-sheets-sync.md)
-    *   [Adaptive RAG & Hybrid Search](./features/adaptive-rag.md)
-    *   [Multimodal AI & Cost-Decision Engine](./features/multimodal-processing.md)
-    *   [Enterprise Billing & Entitlements](./features/billing-entitlements.md)
-    *   [Sentinel Security Framework](./features/sentinel-security.md)
-    *   [Conversation Management & Inbox](./features/conversation-management.md)
-    *   [Lead Detection & Intent Scoring](./features/lead-detection.md)
-    *   [Knowledge Base RAG Ingestion](./features/knowledge-base.md)
-    *   [Returns & Takeover Automation](./features/returns-takeover-automation.md)
-    *   [AI Auto-Reply Rules](./features/ai-auto-reply.md)
-*   **Integrations**:
-    *   [Pathao Courier API](./integrations/pathao-courier.md)
-    *   [Steadfast Courier API](./integrations/steadfast-courier.md)
-    *   [Google Sheets API](./integrations/google-sheets.md)
-    *   [Meta Platform Native OAuth](./integrations/meta-oauth.md)
-    *   [WhatsApp Business API](./integrations/whatsapp.md)
-    *   [Facebook Messenger](./integrations/facebook-messenger.md)
-    *   [Telegram](./integrations/telegram.md)
-    *   [Public REST API](./integrations/api.md)
-    *   [Developer SDKs](./integrations/sdk.md)
-    *   [Outgoing Webhooks](./integrations/webhook.md)
-*   **Company & Updates**:
-    *   [About AutoZeniq](./company/about-autozniq.md)
-    *   [Brand Identity & Casing](./brand/brand-identity.md)
-    *   [Product Changelog](./updates/changelog.md)
-    *   [General FAQ](./faq/general.md)
+- [Storefront builder](./products/store-builder.md) · [Order management](./products/order-management.md)
+- [Delivery and logistics](./products/delivery-logistics.md) · [Returns and exchanges](./features/returns-takeover-automation.md)
+- [Product and payment capabilities](./glossary/commerce-automation.md)
 
----
+## Business tools and help
 
-## Related Documents
+- [CRM and leads](./products/crm-leads.md) · [Follow-ups and lead management](./features/lead-detection.md)
+- [Analytics status](./products/agents/analyst-agent.md) · [Account roles and access](./products/super-admin.md)
+- [Security and privacy guidance](./security.md) · [Troubleshooting](./faq/technical.md)
 
-* [Products Overview](./products/overview.md)
-* [Capabilities Catalog](./capabilities.md)
-* [V2 System Architecture](./docs/system-architecture.md)
-* [Product Changelog](./updates/changelog.md)
+## About this knowledge base
+
+These pages focus on merchant-visible behavior, setup requirements, limitations, and practical next steps. They do not make guarantees about AI accuracy, provider performance, delivery time, or regulatory certification. For a feature marked **Needs Verification**, check the in-app options or ask AutoZeniq support before building a business process around it.

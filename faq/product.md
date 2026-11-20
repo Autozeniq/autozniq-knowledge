@@ -1,47 +1,33 @@
 ---
-title: AutoZeniq Product & Features FAQ
-description: Frequently asked questions about product features, storefront builder, order state machine, courier dispatching, and agent controls in AutoZeniq.
+title: AutoZeniq Product FAQ
+description: Answers about storefronts, orders, payments, inventory, and delivery.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq product faq, storefront builder, courier booking, quick order drawer, google sheets sync, OMS state machine
+keywords: AutoZeniq product FAQ, storefront, orders, courier, inventory, payments
 related_entities:
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
-  - Google Sheets Synchronization
 official_url: https://autozeniq.com/faq
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Product FAQ
 
-# AutoZeniq Product & Features FAQ
+## Does AutoZeniq include an online store?
+Storefront capability is **Partially Available** and depends on the workspace and configuration. Confirm domain, catalog, checkout, and publishing options before launch.
 
-This guide answers questions about utilizing the AutoZeniq dashboard features, designing online stores, managing orders, booking couriers, and synchronizing spreadsheets.
+## Can I manage products and inventory?
+**Status: Partially Available.** Catalog and inventory tools may be available, but supported fields and operations depend on the current product configuration.
 
----
+## Which payment modes are available?
+**Status: Needs Verification.** Storefront payment choices depend on enabled providers and workspace configuration. Do not promise a payment method without confirming it.
 
-## FAQ
+## Does delivery update an order to paid?
+No. Delivery or courier remittance is not, by itself, proof of customer payment.
 
-### Q: How does the Storefront Builder work?
-**A:** Located under **Store Builder** in the dashboard, the visual drag-and-drop editor allows merchants to customize page layouts (Home, Catalog, Product Details, Cart, Checkout) across desktop and mobile viewports. Stores are served via an optimized Next.js 14 runtime under `store.autozeniq.com` or custom merchant CNAME domains.
+## Can I sync a spreadsheet both ways?
+**Status: Needs Verification.** Confirm whether the current setup supports one-way or two-way sync and which records are included.
 
-### Q: What is the In-Chat Quick Order Drawer?
-**A:** While conversing with a customer in the Omnichannel Inbox, support agents or sales reps can slide open the Quick Order drawer. Staff can search the live catalog, pick sizes/colors, apply custom shipping discounts, and confirm orders directly into the OMS without switching tabs.
-
-### Q: How does AutoZeniq connect to regional couriers?
-**A:** AutoZeniq's `CourierRegistry` supports **Pathao**, **Steadfast**, **RedX**, and **Paperfly**. Merchants configure their API keys or OAuth credentials once in Settings. When an order is confirmed, the system can automatically book a consignment, generate a tracking code, and notify the customer via SMS or WhatsApp.
-
-### Q: How does the Google Sheets integration stay up to date?
-**A:** The Google Sheets Sync service polls connected spreadsheets on scheduled intervals (hourly or daily) or upon clicking "Sync Now". The service uses smart auto-mapping for English and Bengali headers (`পণ্যের নাম`, `দাম`, `স্টক`) and processes updates asynchronously via BullMQ.
-
-### Q: What happens if an order is cancelled?
-**A:** The deterministic state machine validates the cancellation, updates the order status to `CANCELLED`, and executes an atomic database transaction to return the reserved product quantities back to available stock.
-
----
-
-## Related Documents
-
-* [Storefront Builder](../products/store-builder.md)
-* [Order Management System](../products/order-management.md)
-* [Delivery & Logistics Automation](../products/delivery-logistics.md)
-* [Google Sheets Synchronization](../../features/google-sheets-sync.md)
+## Can I return or exchange an order?
+**Status: Needs Verification.** Confirm the applicable policy and workspace tools before promising a return or exchange workflow.

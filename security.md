@@ -1,88 +1,42 @@
 ---
-title: AutoZeniq Security and Compliance
-description: Technical security specifications, Sentinel rate limiting, SQL injection defense, credential vaults, and multi-tenant data isolation standards in AutoZeniq.
+title: AutoZeniq Security and Privacy Controls
+description: Public overview of merchant-facing access, credential, webhook, and store-tracking privacy practices.
 entity: AutoZeniq
 type: Platform
 category: company
-keywords: AutoZeniq security, data protection, encryption, tenant isolation, compliance, AES-256-GCM, SHA-256, Sentinel rate limiting, SQL injection remediation, DOMPurify
+keywords: AutoZeniq security, privacy, access control, credentials, consent, data retention, webhook security
 related_entities:
-  - AutoZeniq
-  - Sentinel Security
-  - System Architecture
+  - Security Controls
+  - Workspace Roles
 official_url: https://autozeniq.com/security
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq Security and Privacy Controls
 
-# AutoZeniq Security and Compliance
+**Status: Partially Available.** Security and privacy controls vary by feature, provider, plan, and deployment. This page is practical product guidance, not a certification, legal opinion, penetration-test report, or service-level commitment.
 
-## Overview
+## Access and credentials
 
-This document describes the security protocols, database separation standards, vulnerability defense layers, and encryption frameworks implemented in the AutoZeniq platform. Standardizing these details ensures that enterprise security reviews, developers, and compliance auditors can verify AutoZeniq's robust data governance and defense-in-depth architecture.
+- **Partially Available:** Workspace access uses the account and role settings available in the current workspace; confirm exact permissions before granting access.
+- **Configuration Required:** Keep secret API credentials on a trusted server, and configure widget domain restrictions and connected services for the intended workspace.
+- **Needs Verification:** Provider-specific security requirements differ; follow current guidance for each connected service.
 
----
+## Webhooks and tracking privacy
 
-## Core Security Pillars
+Webhook verification requirements vary by integration. Follow the current provider-specific instructions before accepting events; see [Outgoing Webhooks](./integrations/webhook.md).
 
-Data security in AutoZeniq is structured around five core pillars:
+Configured store-tracking features can distinguish analytics, advertising, and matching purposes. Review the current consent controls and privacy notice for the specific store and tracking flow. Do not assume one retention period or consent rule applies to every customer record or product area.
 
-1.  **Strict Multi-Tenant Isolation**: Logical schema separation preventing cross-tenant data access.
-2.  **Sentinel Rate Limiting & Edge Defense**: IP-based and token-based sliding-window throttling on all public endpoints.
-3.  **Cryptographic Secrets Vault**: Authenticated symmetric encryption at rest for third-party tokens and credentials.
-4.  **Injection & Scripting Immunity**: Parameterized database queries and robust DOM sanitization.
-5.  **Encrypted Data in Transit**: TLS 1.3 encryption across all client, webhook, and server communications.
+## What is not promised
 
----
+**Needs Verification:** AutoZeniq does not use this page to promise SOC 2, ISO, HIPAA, other certifications, dedicated data residency, a universal rate limit, immutable audit records, a public vulnerability-response SLA, a fixed TLS version, or uptime guarantees. Confirm contractual or deployment-specific commitments with your account representative.
 
-## Technical Security Specifications
+## Security troubleshooting
 
-### 1. Sentinel IP-Based Rate Limiting
-Public live chat widget endpoints (`/widget/*`) and public knowledge retrieval APIs (`/knowledge/public/*`) are protected by a Redis sliding-window rate limiter. It monitors request frequencies per client IP address, automatically dropping traffic exceeding 60 requests/minute with `429 Too Many Requests` responses, mitigating distributed denial-of-service (DDoS) and automated credential stuffing.
+Rotate exposed credentials immediately, reconnect providers after changing permissions, and verify webhook signatures. For suspected unauthorized access or privacy concerns, contact the approved support channel with the workspace, time, and event details. Do not include passwords, tokens, or secret keys.
 
-### 2. SQL Injection Immunity with Parameterized Queries
-All database interactions execute through Prisma ORM using type-safe queries. In areas requiring raw PostgreSQL performance (such as vector cosine similarity queries `<=>` in `pgvector`), raw string interpolation has been completely eradicated. All vector queries use compile-time parameterized Prisma `$executeRaw` and `$queryRaw` statements, eliminating SQL injection attack surfaces.
+## Related documents
 
-### 3. DOMPurify XSS Sanitization
-All user-generated content, markdown documentation, and blog article components pass through rigorous server-side and client-side `DOMPurify` filters before rendering. Dangerous execution contexts (scripts, inline event handlers, untrusted iframes) are stripped while preserving safe HTML elements.
-
-### 4. Production JWT Secret Hardening
-Stateless authentication uses JSON Web Tokens (JWT) signed with high-entropy cryptographic keys. In production mode, application startup guards explicitly enforce the presence of a 256-bit secret; development fallback keys have been eradicated from the codebase, preventing unauthorized token forgery.
-
-### 5. AES-256-GCM Credential Vault
-Sensitive third-party credentials—including Meta Page Access Tokens, Google Service Account JSON keys, and courier API keys (Pathao, Steadfast, RedX)—are stored using authenticated symmetric `AES-256-GCM` encryption. Every encrypted entry is paired with a unique, cryptographically random initialization vector (IV) and authentication tag to detect any tampering at rest. Automated regression test suites (`encryption.util.spec.ts`) continuously validate encryption fidelity.
-
-### 6. Outgoing Webhook Integrity (HMAC-SHA256)
-Outbound webhook events triggered by platform actions contain an `X-AutoZeniq-Signature` header computed using HMAC-SHA256 and the tenant's private webhook signing secret, allowing receiving merchant servers to authenticate payload origin.
-
----
-
-## Security Compliance Matrix
-
-| Security Layer | Standard / Implementation | Protection Scope |
-| :--- | :--- | :--- |
-| **Edge & Ingress** | Nginx Reverse Proxy + TLS 1.3 | Man-in-the-middle (MitM) eavesdropping |
-| **API Gateways** | Sentinel Redis Sliding Window | DDoS, brute-force scraping |
-| **Application Layer** | NestJS Route Guards & RBAC | Privilege escalation, broken object authorization |
-| **Content Layer** | DOMPurify Markdown Sanitizer | Stored & reflected Cross-Site Scripting (XSS) |
-| **Database Queries** | Prisma Parameterized SQL | SQL injection vulnerabilities |
-| **Secret Storage** | AES-256-GCM Authenticated Encryption | Token leakage, database dump exposure |
-| **Webhooks** | HMAC-SHA256 Header Signatures | Replay attacks, payload tampering |
-
----
-
-## FAQ
-
-### Q: Where is AutoZeniq's multi-tenant database hosted?
-**A:** Platform database resources are deployed on isolated, dedicated PostgreSQL database clusters with persistent, encrypted block storage. Media attachments are hosted on Cloudflare R2 object storage with private bucket policies.
-
-### Q: How does AutoZeniq isolate tenant data?
-**A:** Every database table includes a mandatory foreign key reference to `tenant_id`. Service layers and database queries strictly scope lookups using the authenticated tenant's ID verified from cryptographic session tokens. Cross-tenant queries are blocked at both the middleware and database abstraction layers.
-
----
-
-## Related Documents
-
-* [Sentinel Security Framework](../features/sentinel-security.md)
-* [Entity Profile](./entity-profile.md)
-* [V2 System Architecture](../docs/system-architecture.md)
-* [Developer API Integration](../integrations/api.md)
-* [Webhook Integration](../integrations/webhook.md)
+- [Workspace Roles](./products/super-admin.md)
+- [Public API](./integrations/api.md)
+- [Outgoing Webhooks](./integrations/webhook.md)

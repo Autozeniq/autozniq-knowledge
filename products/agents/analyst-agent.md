@@ -1,53 +1,29 @@
 ---
-title: AutoZeniq Analyst Agent
-description: Technical specifications, aggregate queries, log parsing, and metric compilation details for the AutoZeniq Analyst sub-agent.
+title: AutoZeniq Analytics and Reports
+description: Merchant guide to reviewing conversation, message, and lead activity reports.
 entity: AutoZeniq
-type: Agent
+type: Product Reference
 category: product
-keywords: AutoZeniq Analyst Agent, Analyst Agent, analytics agent, dashboard metrics, customer logs
+keywords: AutoZeniq analytics, reports, conversations, messages, leads, CSV
 related_entities:
-  - AutoZeniq AI Agent
-  - Terminology
-official_url: https://autozeniq.com/features/ai-agent
-last_updated: 2026-06-24
+  - CRM and Lead Management
+  - Current Feature Inventory
+last_updated: 2026-11-20
 ---
+# AutoZeniq Analytics and Reports
 
-# AutoZeniq Analyst Agent
+**Status: Needs Verification.** Analytics and Reports may help merchants review conversation, message, and lead activity for a selected date range. It is intended for shop owners, managers, and team members who need to review support and sales activity. Confirm which reports and permissions are enabled in your workspace.
 
-The **AutoZeniq Analyst Agent** is a data-oriented sub-agent of the AutoZeniq AI Agent system. It compiles customer interaction logs, evaluates conversion rates, calculates support resolution metrics, and generates analytical reports for the business dashboard.
+## What reports may include
 
----
+Depending on workspace access and available records, reports may show totals for conversations, messages, and leads; measurable rates; channel or lead breakdowns; and reply-time values or an unavailable state. Select the date range and review the filters and metric definitions before sharing results. CSV export is available only where permitted and shown in the workspace. The exact report set and live availability need confirmation.
 
-## User Explanation
+## Setup and limits
 
-The Analyst Agent acts as a business reporter. It reviews all chat histories, orders, and customer feedbacks to find important trends. It answers questions like: "What was our busiest hour yesterday?", "How many leads did we capture this week?", or "What are customers complaining about the most?". This helps business owners understand how their sales and support teams (and the AI itself) are performing.
+Access may depend on workspace plan, role, and the records available for the selected range. If a report is empty or a measure is unavailable, check the date range, source, filters, permissions, and available data before drawing a conclusion.
 
----
+Treat dashboard figures as decision support, not proof of revenue, payment, courier collection, service-level performance, accuracy, or guaranteed engagement. Do not infer provider-certified delivery or business outcomes from a count or rate. A separate autonomous “Analyst Agent” that continuously reviews every record is **Not Available** unless explicitly listed in current official product documentation.
 
-## Technical Specifications
+## Related features
 
-The Analyst Agent operates on read-only transaction and interaction logs:
-
-*   **Database Query Scope**: Executes read-only queries against tables such as `conversations`, `messages`, `contacts`, and `orders`. All database operations are restricted using parameterized SQL containing `WHERE tenant_id = :tenant_id` guards.
-*   **Metric Calculations**: Computes key performance indicators (KPIs) including:
-    *   *AI Auto-Resolution Rate*: Percentage of customer threads resolved by the AI without manual human agent takeover.
-    *   *Average Response Time*: The delay duration between incoming customer webhooks and outbound replies.
-    *   *Lead Conversion Rate*: Ratio of qualified leads (with contact information) to overall conversation threads.
-*   **Interaction Log Clustering**: Uses natural language processing models to group message contents into semantic clusters, highlighting top complaint topics or popular products.
-*   **Serialization**: Formats data responses into clean JSON datasets for dashboard rendering components or Markdown tables for admin summary emails.
-
----
-
-## Use Cases
-
-*   **Weekly Conversions Reports**: Summarizing the total count of captured leads and generated checkout invoices.
-*   **Common Complaint Identification**: Highlighting which keywords or product questions trigger the highest rate of manual agent escalations.
-*   **Performance Monitoring**: Monitoring hourly and daily chat volumes to adjust staff schedules.
-
----
-
-## Related Documents
-
-*   [AutoZeniq AI Agent](../ai-agent.md)
-*   [Terminology](../../brand/terminology.md)
-*   [Security Overview](../../security.md)
+[CRM and Lead Management](../crm-leads.md) explains customer and lead records that may relate to reports. [Current Feature Inventory](../../capabilities.md) summarizes the audited product areas. A related feature does not prove that its activity appears in a report.

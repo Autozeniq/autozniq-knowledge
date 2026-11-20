@@ -1,64 +1,38 @@
 ---
-title: Business Workflow Automation Features
-description: Features of the AutoZeniq Rule Engine, including conditional workflows, courier auto-booking, and database actions.
+title: AutoZeniq Workflow Automation
+description: Merchant guide to supported workflow triggers, team notifications, setup, and limits.
 entity: AutoZeniq
 type: Platform
 category: features
-keywords: AutoZeniq automation, Rule Engine, workflow automation, triggers, courier auto-booking, database connector, conditional logic
+keywords: AutoZeniq automation, workflows, triggers, notifications, order events, chat keywords
 related_entities:
   - Customer Support Automation
   - Commerce Automation
   - Order Management System
-  - Delivery Logistics
-official_url: https://autozeniq.com/solutions/sales-automation
-last_updated: 2026-10-03
+  - Unified Inbox
+official_url: https://autozeniq.com/features/workflow-builder
+last_updated: 2026-11-20
 ---
+# AutoZeniq Workflow Automation
 
-# [Business Workflow Automation Features](https://autozeniq.com/solutions/sales-automation)
+**Status: Partially Available.** Workflow Automation helps merchant teams notify a team agent when a supported order event occurs or an incoming chat matches a configured keyword. It is intended for workspace teams that coordinate customer support and order follow-up. Availability depends on plan access, workspace permissions, event or chat connection, and configuration.
 
-## Overview
+## Supported workflow scope
 
-The AutoZeniq Business Workflow Automation module allows merchants to build custom, event-driven business rules. Through the platform's visual **[Rule Engine / Workflow Builder](https://autozeniq.com/features/workflow-builder)**, users combine deterministic triggers with conditional logic to execute automated commercial actions—such as tagging high-intent leads, reserving product stock, auto-booking courier consignments with **Pathao** or **Steadfast**, or emitting outbound webhooks.
+The documented workflow scope includes two triggers: an order being placed and an incoming chat message matching a configured keyword. The supported action is notifying a team agent. Confirm that these options are enabled in your workspace; do not assume that an event or action is active just because it appears in a selector or roadmap discussion.
 
----
+Cart-abandonment triggers, WhatsApp message templates, coupon application, and arbitrary actions are **Not Available** in the documented workflow scope.
 
-## Technical Architecture
+## Setup and basic flow
 
-This module runs a centralized event-driven rule evaluator:
+Use a workspace role that can create workflows, and confirm plan access and any required order event or connected chat source. In the visual workflow, choose a supported trigger, set a keyword for a chat trigger if needed, and select **Notify agent**. Test with a non-production scenario, check the result, and publish only after the expected notification is confirmed. Publishing does not prove that every event source or action is configured.
 
-```mermaid
-graph TD
-    A[Inbound Event: Message / Order / Cart] --> B[Rule Evaluator Hook]
-    B --> C[AST Logic Engine (AND / OR Evaluation)]
-    C -->|Condition Met| D[Action Dispatcher (BullMQ Queue)]
-    D --> E1[Tag Lead in CRM]
-    D --> E2[Create Order in OMS]
-    D --> E3[Auto-Book Consignment via Courier Registry]
-    D --> E4[Trigger Outbound HMAC Webhook]
-```
+## Reliability limits and troubleshooting
 
-### Technical Execution Details
+A workflow may be delayed or skipped if an event is not received, a source is unavailable, a condition is not met, or workspace limits are reached. Do not assume that every action will retry or that external effects happen only once.
 
-1.  **Event Hook Ingestion**: When messages, orders, or cart updates occur, transaction hooks fire events to `RuleEngineService`.
-2.  **AST Evaluation (Abstract Syntax Tree)**: Compiles user rules into logical conditions containing inputs (`message.content`, `contact.tags`, `order.status`, `delivery.zone`, `time.current`).
-3.  **Action Dispatcher (BullMQ)**: Executes actions asynchronously through Redis BullMQ worker queues to guarantee execution and prevent API thread blocking.
+If a workflow does not run, check that it is published, the selected trigger is supported, the event or chat source is connected, and the expected event appears in the workspace. Review the run result and correct any validation errors before testing again. Do not rely on it for payment marking or other consequential actions unless those actions are explicitly enabled and verified.
 
----
+## Related features
 
-## Core Operational Actions
-
-*   **Courier Auto-Booking**: When an order transitions to `CONFIRMED`, automatically invokes `auto-booking.service.ts` to generate a live consignment with Pathao, Steadfast, RedX, or Paperfly.
-*   **Lead Intent Scoring & Pipeline Movement**: Detects buyer inquiries, calculates Intent Scores, and pushes deals to the `QUALIFIED` stage on the visual Kanban board.
-*   **Inventory Stock Alerts**: Monitors inventory levels; when variant stock falls below safety thresholds, automatically silences promotion rules and notifies the merchant.
-*   **Urgent Takeover Escalation**: Detects customer frustration, dispute terms, or refund demands, immediately bypassing the AI agent and alerting human operators via push notifications.
-*   **Google Sheets Sync Trigger**: Triggers automated catalog polling when high-volume campaigns are launched.
-
----
-
-## Related Documents
-
-* [Order Management System](../products/order-management.md)
-* [Delivery & Logistics Automation](../products/delivery-logistics.md)
-* [CRM & Lead Pipeline](../products/crm-leads.md)
-* [Conversation Management](./conversation-management.md)
-* [Adaptive RAG Feature](./adaptive-rag.md)
+Order triggers relate to [Order Management](../products/order-management.md); chat triggers and agent notifications relate to the [Unified Inbox](./unified-inbox.md). [CRM and Lead Management](../products/crm-leads.md) explains related customer records, but a workflow notification does not itself guarantee a complete lead record.

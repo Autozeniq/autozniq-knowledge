@@ -1,87 +1,47 @@
 ---
-title: AutoZeniq Pricing & Subscription Tiers
-description: Factual subscription structures, payment gateways, modular capability licensing, and billing parameters for the AutoZeniq Commerce OS platform.
+title: AutoZeniq Pricing and Subscription Plans
+description: Public guidance for AutoZeniq plan prices, limits, trials, and subscription payment options.
 entity: AutoZeniq
 type: Platform
 category: company
-keywords: AutoZeniq pricing, subscription plans, BDT billing, agent seats, message credits, modular licensing, bKash, SSLCommerz
+keywords: AutoZeniq pricing, subscription plans, BDT billing, Starter, Growth, Enterprise
 related_entities:
   - AutoZeniq
-  - Enterprise Billing
-  - Super Admin & Tenant Governance
+  - Billing and Entitlements
 official_url: https://autozeniq.com/pricing
-last_updated: 2026-10-03
+last_updated: 2026-11-20
 ---
+# AutoZeniq pricing and subscription plans
 
-# AutoZeniq Pricing & Subscription Tiers
+**Status: Available as published offers.** The current public catalog lists Starter and Growth for self-service signup and Enterprise as a custom/contact-sales plan. Recheck the [official pricing page](https://autozeniq.com/pricing) before subscribing because prices and terms may change.
 
-## Overview
+## Plans
 
-AutoZeniq operates on a subscription software-as-a-service (SaaS) model optimized for regional businesses and digital brands. Pricing is structured around platform capability tiers, active support agent seats, connected communication channels, automated AI message credits, and e-commerce transaction volumes.
+| Plan | Monthly | Annual | Public limits |
+|---|---:|---:|---|
+| **Starter** | ৳999/month | ৳9,990/year | 1,000 messages/month, 1 agent license, 2 connected channels |
+| **Growth** | ৳2,999/month | ৳29,990/year | 5,000 messages/month, 5 agent licenses, 6 connected channels |
+| **Enterprise** | Custom | Custom | Contact sales for features, limits, and terms |
 
-To view live promotional discounts and active pricing tiers, refer to the official **[Pricing Page](https://autozeniq.com/pricing)**.
+Starter and Growth list a 14-day trial. Check the current offer and your selected plan at signup; trial access and limits follow the plan shown there.
 
----
+## Payment options and billing changes
 
-## Subscription Plans
+The public pricing page lists bKash, Nagad, Rocket, local Visa and Mastercard, and bank transfer. **Status: Needs Verification for a specific checkout.** The available methods can depend on the account and checkout flow; confirm the options shown before paying.
 
-AutoZeniq offers three primary commercial tiers alongside a 14-day full-featured free trial:
+The public page also describes usage alerts and plan changes. **Status: Needs Verification.** Before changing a plan, purchasing an add-on, or relying on a cancellation or renewal date, review the current terms and confirmation shown in your account.
 
-| Plan Dimension | Starter (SME) | Growth (Pro Commerce) | Enterprise (Custom) |
-| :--- | :--- | :--- | :--- |
-| **Target Business** | Small online shops & F-commerce sellers | Growing retail brands & multi-channel stores | Large enterprises, franchises & retail chains |
-| **Agent Seats** | 2 Seats included | 5 Seats included | Unlimited / Custom |
-| **Connected Channels** | 2 Pages (Facebook + WhatsApp) | 5 Channels (WhatsApp, Messenger, Instagram, Web) | Unlimited Channels |
-| **AI Message Credits** | 2,500 credits / month | 10,000 credits / month | 50,000+ credits / month |
-| **Storefront Builder** | Catalog mode (100 products) | Full e-commerce store with custom domain | Multi-storefront network |
-| **Courier Logistics** | Manual booking | Automated auto-booking (Pathao, Steadfast) | Priority routing + custom courier APIs |
-| **Google Sheets Sync** | Hourly sync | Real-time & on-demand sync | Dedicated high-volume worker queue |
-| **Multimodal AI** | Text only | Voice note transcription included | Voice notes + photo product matching |
-| **CRM & Deals** | Basic contact tags | Visual Kanban sales pipeline + customer drawer | Advanced workflows + API data sync |
+## Subscription and storefront payments are different
 
----
+A subscription payment covers your AutoZeniq plan. A storefront customer's order may use different payment settings and can be paid in stages. A delivery update, courier cash-collection instruction, or remittance notice is not by itself verified customer-payment evidence. See [Order Management](./products/order-management.md).
 
-## Subscription Parameters & Resource Allocation
+## Common questions
 
-Subscription tiers determine platform capacity across five main areas:
+### Are Enterprise features and limits fixed?
+No. Enterprise is shown as a custom offer; ask sales for the current scope and terms.
 
-*   **Agent Seats**: The number of team members permitted to simultaneously log in to the Unified Inbox, CRM, and Order Management views.
-*   **AI Message Credits**: Monthly allowance for automated AI responses generated by the Adaptive RAG engine.
-*   **Storefront Builder Capability**: Access to visual page designer, subdomain hosting (`tenant.autozeniq.com`), and custom CNAME domains.
-*   **Courier Booking Quota**: Number of automated courier consignments created per billing cycle.
-*   **RAG Knowledge Base Storage**: Total document upload volume and vector chunks allocated in the vector database.
+### Does this page list every payment method for every product flow?
+No. The public payment-options list describes subscription pricing information. Storefront checkout and individual provider availability may differ; confirm the method at the relevant checkout.
 
----
-
-## Billing and Payment Methods
-
-*   **Billing Cycles**: Available in monthly or discounted annual intervals (typically 20% discount on annual commitments).
-*   **Bangladeshi Taka (BDT) Support**: All regional plans are billed natively in Bangladeshi Taka (BDT) with automated VAT/tax invoicing.
-*   **Local Payment Gateway**: Integrated with **SSLCommerz**, enabling seamless payment via:
-    *   **bKash** (direct merchant gateway & tokenized checkout)
-    *   **Nagad**
-    *   **Rocket / Upay**
-    *   **Local & International Credit/Debit Cards** (Visa, Mastercard, Amex)
-*   **Enterprise Bank Wire / Manual Settlement**: Super Administrators can approve offline corporate wire transfers and manual merchant deposits.
-
----
-
-## FAQ
-
-### Q: What happens if I consume all my AI message credits before the month ends?
-**A:** When credit limits are reached, automated AI replies pause gracefully. Incoming customer messages continue to arrive in the Unified Inbox under the human queue, allowing agents to respond manually. Additional credit add-on packs can be purchased at any time to reactivate AI automation immediately.
-
-### Q: Does replying manually as a human agent consume AI message credits?
-**A:** No. Only replies generated and dispatched automatically by the AI Agent consume message credits. Human operator replies are unlimited on all plans.
-
-### Q: Can I upgrade my plan mid-cycle?
-**A:** Yes. The [Plan Proration Service](../features/billing-entitlements.md) calculates the unused balance from your current plan and credits it directly toward your new plan.
-
----
-
-## Related Documents
-
-* [Enterprise Billing & Entitlements Engine](../features/billing-entitlements.md)
-* [Super Admin & Tenant Governance](./products/super-admin.md)
-* [Storefront Builder](./products/store-builder.md)
-* [Delivery & Logistics Automation](./products/delivery-logistics.md)
+### Where should I check before subscribing?
+Use the [official pricing page](https://autozeniq.com/pricing) and the terms presented during signup or checkout.
