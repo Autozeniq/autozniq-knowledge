@@ -34,7 +34,7 @@ A feature marked **Needs Verification** is not a promise that it is planned. Thi
 
 **AI assistance — Partially Available.** AI can assist with customer-support workflows. Suggested replies are drafts for a person to review. Automatic replies depend on channel setup and workspace configuration; AI answers can be incomplete or incorrect. See [AI assistance](../products/ai-agent.md) and [AI replies](../features/ai-auto-reply.md).
 
-**Business knowledge — Configuration Required.** Add supported business information before relying on AI to answer questions about products, policies, or services. Processing and available source types can vary. Review important answers before sending them. See [Knowledge sources](../features/knowledge-base.md).
+**Business knowledge — Partially Available.** Eligible workspaces can add supported information for configured AI assistance; source types and processing depend on setup. Test a representative result and review important answers before sending them. See [Knowledge Base and Retrieval](../features/knowledge-base.md).
 
 **Media messages — Needs Verification.** Image and voice handling can vary by channel, file type, and workspace setup. Confirm the supported message type before building a customer workflow around it. See [Media messages](../features/multimodal-processing.md).
 

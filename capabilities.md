@@ -22,7 +22,7 @@ AutoZeniq brings customer support and selected commerce workflows into a merchan
 
 - **Shared inbox — Partially Available:** channel-specific actions and media support vary; see [Unified Inbox](./features/unified-inbox.md).
 - **AI assistance — Partially Available:** AI can assist with replies and other support tasks; review important customer-facing answers before sending. Automatic replies need separate confirmation and setup; see [AI Assistance](./products/ai-agent.md).
-- **Business knowledge — Configuration Required:** add accurate, supported information and confirm that it has processed before relying on it in responses; see [Knowledge Sources](./features/knowledge-base.md).
+- **Business knowledge — Partially Available:** eligible workspaces can add supported information for configured AI assistance; source types, processing, and availability depend on setup. Review a test result before relying on it in a customer reply; see [Knowledge Base and Retrieval](./features/knowledge-base.md).
 - **Workflow automation — Partially Available:** only use triggers and actions shown as enabled in the current workspace; see [Workflow Automation](./features/automation.md).
 
 ## Store, products, orders, and delivery
