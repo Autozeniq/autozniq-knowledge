@@ -1,60 +1,40 @@
 ---
-title: AutoZeniq Products Overview
-description: Status-qualified overview of AutoZeniq support, AI, commerce, CRM, delivery, and platform administration.
+title: AutoZeniq Product Overview
+description: A task-oriented guide to AutoZeniq support, AI, selling, orders, delivery, and business tools.
 entity: AutoZeniq
 type: Platform
 category: product
-keywords: AutoZeniq products, storefront, order management, delivery, CRM, AI support, commerce
+keywords: AutoZeniq products, merchant workflows, storefront, support, orders, delivery
 related_entities:
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
-  - AI Agent
   - Customer Support Automation
 official_url: https://autozeniq.com/features
 last_updated: 2026-11-20
 ---
-# AutoZeniq Products Overview
+# AutoZeniq product overview
 
-AutoZeniq brings customer-support and commerce workflows into a multi-tenant workspace. The current application source includes a shared inbox, guarded AI assistance, tenant knowledge and retrieval, CRM and lead tools, product/inventory management, storefront checkout, order and delivery workflows, integrations, and platform administration.
+AutoZeniq brings customer-support and commerce tasks together for online sellers and support teams. Start with the [feature catalog](../docs/current-feature-inventory.md) for the status and limits of each product area.
 
-The [Current Feature Inventory](../docs/current-feature-inventory.md) distinguishes current `main` code from partial/simulated flows, disabled actions, and unverified claims. Repository evidence is not proof of production deployment, provider approval, or general availability.
+## Support customers
 
-## Product areas
+- **Shared inbox — Partially Available:** work with customer conversations and replies where the channel is configured. See [Unified Inbox](../features/unified-inbox.md).
+- **AI assistance — Partially Available:** use AI support features where available; review suggestions before sending. See [AI assistance](./ai-agent.md).
+- **Business knowledge — Configuration Required:** add current product and policy information before relying on AI answers. See [Knowledge sources](../features/knowledge-base.md).
+- **Channel connections — Configuration Required:** business accounts and permissions are needed. See the [integration guides](../README.md#connect-channels-and-services).
 
-### [Storefront Builder](./store-builder.md)
-Manage storefront pages and settings, preview drafts, publish changes, review versions, configure navigation, and use the reviewed `modern`, `elegant`, and `minimal` base themes. Managed subdomains and custom-domain routing depend on domain readiness checks. The storefront supports product/category pages, cart and checkout, delivery quotes, coupons, and order tracking.
+## Sell and fulfill orders
 
-### [Order Management](./order-management.md)
-Create and manage tenant orders through validated states, with item/payment/timeline records, inventory workflows, configurable payment modes, and order submission safeguards. A courier remittance record does not by itself verify customer payment.
+- **Storefront — Configuration Required:** configure store content, products, and checkout before inviting customers. See [Storefront Builder](./store-builder.md).
+- **Orders and payments — Partially Available:** payment settings and order workflows depend on your configuration. A courier delivery or cash-collection report is not payment confirmation. See [Order Management](./order-management.md).
+- **Courier services — Configuration Required or Needs Verification:** check the individual provider guide before relying on booking, tracking, or returns. See [Delivery and Logistics](./delivery-logistics.md).
+- **Returns and exchanges — Configuration Required:** merchant review and workspace settings may be required. See [Returns and Exchanges](../features/returns-takeover-automation.md).
 
-### [Delivery & Logistics](./delivery-logistics.md)
-The codebase includes Pathao, Paperfly, RedX, and Steadfast adapters, consignment booking, tracking, conditional auto-booking, COD remittance records, and fraud scoring. Verified customer COD collection credit is currently unavailable in the reviewed implementation. Some delivery analytics are sample data.
+## Manage business activity
 
-### [CRM & Leads](./crm-leads.md)
-Manage contacts and leads, assign work, maintain deals and pipelines, schedule follow-ups, and queue campaigns. Current default pipeline stages are New Lead, Contacted, Qualified, Proposal Sent, and Negotiation. Campaign read/reply figures shown in the UI are not provider-measured analytics.
+- **CRM and leads — Needs Verification:** confirm current workspace availability and lead-capture behavior. See [CRM and Leads](./crm-leads.md).
+- **Google Sheets — Partially Available:** imported data needs access permission and a successful sync. See [Google Sheets](../integrations/google-sheets.md).
+- **Plans and billing — Available as published offers:** see [current plans and pricing](../pricing.md).
 
-### [AI and customer support](./ai-agent.md)
-Use a tenant-scoped inbox, human replies, assignment, and AI takeover controls alongside knowledge-grounded AI assistance, rules, and agent suggestions. Copilot suggestions are drafts and are not sent automatically. Channel support and AI behavior depend on entitlements and configuration.
-
-### [Knowledge and data sources](../features/knowledge-base.md)
-Ingest supported files for background indexing and retrieval. Google Sheets synchronization is primarily pull-oriented; parts of the add-source UI are simulated. See [Google Sheets Sync](../features/google-sheets-sync.md).
-
-### [Billing and entitlements](../features/billing-entitlements.md)
-The reviewed public catalog has Starter, Growth, and Enterprise options. Subscription payment verification, tenant commerce payment modes, staged order payments, invoice records, and disabled affiliate economics are distinct workflows. See [Pricing](../pricing.md).
-
-### [Super Admin](./super-admin.md)
-Platform administrators have tenant governance and selected operational controls. Authentication and authorization use shared account handling with current database-backed roles; older claims of separate admin login or mandatory 2FA are not verified.
-
-## Important boundaries
-
-- Feature availability may depend on tenant entitlement, plan, provider credentials, account approval, configuration, and deployment.
-- A design document, feature-key constant, UI screen, sample chart, or remote branch alone does not prove an enabled end-to-end feature.
-- Do not publish unverified accuracy, latency, cost, conversion, customer/revenue, compliance, uptime, or SLA figures as measured facts.
-
-## Related documents
-
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [Capabilities](../capabilities.md)
-- [Pricing](../pricing.md)
-- [System Architecture](../docs/system-architecture.md)
+Statuses describe the specific scope on each page; they are not a promise that every feature is enabled for every account. For an overall summary, see [Features and availability](../docs/current-feature-inventory.md).

@@ -20,8 +20,8 @@ An **AI agent** is software that uses artificial intelligence to interpret input
 
 ## AI assistance in AutoZeniq
 
-The reviewed application `main` includes AI-assisted support paths, knowledge retrieval, tenant AI settings and rules, and human controls. AI Copilot can draft reply suggestions for an agent to review. Guarded automatic-response paths also exist, but whether they run depends on workspace settings, entitlements, channel/provider configuration, and deployment.
+AutoZeniq offers AI assistance for supported customer conversations. Depending on the workspace, an AI Copilot may draft a reply for a team member to review, and some automatic replies may be enabled for configured channels. These capabilities are **Partially Available** and depend on setup, plan, and provider access.
 
-The reviewed source does not establish automatic lead-detail capture from every chat, a dedicated autonomous Lead/Support/Analyst Agent, universal product or shipping lookups by AI, zero hallucinations, or fixed response quality. Agents should verify important customer-facing facts.
+An AI agent is not a guarantee of autonomous action, complete lead capture, product or shipping lookups, or correct answers. Verify important customer-facing details before sending or acting on a suggestion.
 
 See [AI Assistance](../products/ai-agent.md), [Adaptive Retrieval and RAG](../features/adaptive-rag.md), and the [Current Feature Inventory](../docs/current-feature-inventory.md).

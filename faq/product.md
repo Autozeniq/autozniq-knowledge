@@ -1,42 +1,33 @@
 ---
 title: AutoZeniq Product FAQ
-description: Status-qualified answers about storefront, orders, courier delivery, spreadsheets, and payment verification.
+description: Answers about storefronts, orders, payments, inventory, and delivery.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq product FAQ, storefront, orders, courier, Google Sheets, COD
+keywords: AutoZeniq product FAQ, storefront, orders, courier, inventory, payments
 related_entities:
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
-  - Google Sheets Synchronization
 official_url: https://autozeniq.com/faq
 last_updated: 2026-11-20
 ---
 # AutoZeniq Product FAQ
 
 ## Does AutoZeniq include an online store?
-The application repository includes a storefront editor, draft preview, publishing and version controls, product/category pages, cart, checkout, and tracking paths. Managed subdomains and custom domains are supported in code; custom domains require ownership, DNS, and TLS readiness. This does not prove a particular storefront is deployed.
+Storefront capability is **Partially Available** and depends on the workspace and configuration. Confirm domain, catalog, checkout, and publishing options before launch.
 
-## Which order statuses are used?
-The current source includes states such as `CREATED`, `PENDING_CONFIRMATION`, `CONFIRMED`, `PROCESSING`, `COURIER_BOOKED`, `SHIPPED`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `RTO`, `RETURNED`, and `EXCHANGED`, subject to validated transitions. Older simplified lifecycle diagrams are incomplete.
+## Can I manage products and inventory?
+**Status: Partially Available.** Catalog and inventory tools may be available, but supported fields and operations depend on the current product configuration.
 
-## Does a courier delivery update payment to paid?
-No. Courier delivery and remittance records do not verify that a customer paid. Verified customer COD credit is explicitly disabled in the reviewed default branch.
+## Which payment modes are available?
+**Status: Needs Verification.** Storefront payment choices depend on enabled providers and workspace configuration. Do not promise a payment method without confirming it.
 
-## How does COD/advance payment work?
-Storefronts can be configured for COD-only, advance-plus-COD, full online, or partial payment. Advance-plus-COD requires a configured fixed amount or percentage. Orders can be paid in stages and methods. Payment records require provider verification or verified courier collection evidence; the current COD credit path is disabled.
+## Does delivery update an order to paid?
+No. Delivery or courier remittance is not, by itself, proof of customer payment.
 
-## Can I sync Google Sheets both ways?
-The backend has scheduled/queued, primarily pull-oriented synchronization for eligible content. The dashboard wizard contains simulated connection checks/previews. Full bidirectional order append and every advertised schedule were not verified.
+## Can I sync a spreadsheet both ways?
+**Status: Needs Verification.** Confirm whether the current setup supports one-way or two-way sync and which records are included.
 
-## Are courier integrations automatically connected?
-Courier adapters for Pathao, Steadfast, RedX, and Paperfly exist in source. A tenant must configure a provider account; availability depends on provider permissions, credentials, and deployment. Booking results that are ambiguous require reconciliation.
-
-## Related documents
-
-- [Order Management](../products/order-management.md)
-- [Delivery and Logistics](../products/delivery-logistics.md)
-- [Storefront Builder](../products/store-builder.md)
-- [Google Sheets Synchronization](../features/google-sheets-sync.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+## Can I return or exchange an order?
+**Status: Needs Verification.** Confirm the applicable policy and workspace tools before promising a return or exchange workflow.

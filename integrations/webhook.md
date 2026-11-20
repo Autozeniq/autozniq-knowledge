@@ -1,29 +1,38 @@
 ---
 title: AutoZeniq Outgoing Webhooks
-description: Endpoint management, HMAC signing, queued delivery history, and status-qualified webhook capabilities.
-keywords: AutoZeniq webhooks, endpoint management, HMAC signing, delivery history, replay
+description: Webhook availability, endpoint setup, delivery handling, and verification boundaries.
+keywords: AutoZeniq webhooks, endpoint setup, delivery history, retries, event verification
 category: integrations
 entity: AutoZeniq
 type: Integration
 related_entities:
   - Public API Integration
-  - Current Feature Inventory
+  - SDK and Widget Integration
 official_url: https://autozeniq.com/docs
 last_updated: 2026-11-20
 ---
 # AutoZeniq Outgoing Webhooks
 
-The reviewed Public API integration contains tenant-scoped webhook endpoint management, queued outgoing delivery, delivery history, and replay paths. Webhook availability is subject to endpoint configuration, entitlements, event support, quotas, and deployment settings. Not every internal event or action is necessarily exposed as a public webhook.
+**Status: Needs Verification**
 
-## Security and delivery
+Webhook support and the current event catalog must be confirmed in the official AutoZeniq documentation or with support for the target workspace. Public documentation and current product understanding may differ; do not copy older routes, event names, verification details, or payload examples into a production integration.
 
-Outgoing payloads use HMAC signing with an endpoint-associated secret. Treat signatures as security controls, protect the secret, and verify against the exact raw request body using the current official instructions. Do not rely on the previous sample payload, signature header example, or verification snippet in this page; those details have not been revalidated against the complete current API contract.
+## Prerequisites and setup
 
-Delivery history and replay support do not guarantee delivery, exactly-once processing, a fixed retry count, fixed delivery latency, or a static source IP list. Receiving services should verify signatures and handle duplicate event delivery safely.
+- A workspace with webhook access enabled.
+- A public HTTPS receiver that can validate, acknowledge, and process deliveries safely.
+- The current official instructions for endpoint setup, supported events, payloads, and verification.
+- A plan for duplicate, delayed, malformed, and out-of-order deliveries.
 
-## Event catalog
+## Observable behavior and limits
 
-Use the current API/developer reference or endpoint settings to see the event types available to a workspace. Older examples listing `conversation.created`, `lead.qualified`, or other names are not an authoritative event catalog.
+When enabled, a configured endpoint may receive notifications for supported workspace events. Exact events, delivery timing, retry behavior, replay options, payload fields, and source-network details are **Needs Verification**. Webhooks do not guarantee that a downstream action succeeded or that a message was delivered by another provider.
+
+Keep event receipt separate from business confirmation. For example, a delivery notification is not proof of customer payment, and a webhook received by your server is not proof that your own processing completed.
+
+## Errors and safe handling
+
+Return the acknowledgement required by the current documentation, process asynchronously where appropriate, and make handlers idempotent. Record enough information to investigate failures without storing unnecessary personal data or secrets. If verification fails, the payload is incomplete, or a delivery is ambiguous, stop the affected action and contact support rather than guessing.
 
 ## Related documents
 

@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq Adaptive Retrieval and RAG
-description: Source-verified conversational retrieval, query adaptation, reranking, context handling, and confidence safeguards.
+description: Merchant-facing overview of knowledge retrieval, response context, availability, and limits.
 entity: AutoZeniq
 type: Feature
 category: features
-keywords: AutoZeniq RAG, hybrid search, PostgreSQL vector search, reranking, query rewriting, retrieval
+keywords: AutoZeniq RAG, hybrid search, query rewriting, retrieval
 related_entities:
   - RAG
   - AI Agent
@@ -14,19 +14,27 @@ last_updated: 2026-11-20
 ---
 # Adaptive Retrieval and RAG
 
-AutoZeniq's conversational retrieval code combines semantic vector search with PostgreSQL keyword search. Adaptive steps can cache retrieval results, rewrite or expand queries, route by query type, rerank sources, expand parent context, apply configured thresholds, and detect possible conflicts among retrieved material.
+**Status: Partially Available.** When a workspace has successfully processed knowledge sources and an eligible AI feature is enabled, AutoZeniq can retrieve relevant information to help prepare a response. Retrieval may combine meaning-based and keyword matching, adapt a question, rank results, and check for conflicting sources.
 
-## How it is used
+## Prerequisites
 
-When the AI reply flow has eligible indexed context, retrieval supplies context to response generation. Confidence/safety paths can constrain or defer uncertain responses. Availability and behavior depend on model/provider configuration, knowledge sources, entitlements, and tenant AI settings. AI Copilot suggestions are drafts; the existence of AI automation paths does not mean every reply is sent automatically.
+- A workspace role that can manage knowledge and AI settings.
+- At least one supported source added and successfully processed.
+- An enabled AI feature, supported channel, provider connection, and available entitlement.
+- Current product, policy, and pricing information in the connected sources.
 
-## What not to infer
+## Limits
 
-Source code does not substantiate zero hallucinations, a fixed 0.78 threshold across tenants, sub-800ms latency, universal source citations, guaranteed provider failover, specific current model rankings, or quantified savings/accuracy improvements. Do not claim that every product price or Google Sheet change is instantly indexed.
+Retrieval can reduce unsupported answers but does not guarantee correctness, citations, zero hallucinations, a fixed confidence score, provider failover, or a fixed response time. It does not guarantee that a recent product or spreadsheet change is immediately available to the AI.
+
+AI Copilot output is a draft for review. Confirm prices, stock, policies, and order details before sending or acting on a response.
+
+## Troubleshooting
+
+If responses do not use a source, confirm that processing finished successfully, the source is readable and current, the AI feature is enabled, and the conversation is on a supported channel. Reprocess or replace incomplete sources and retry. See [Knowledge Base](./knowledge-base.md) and [AI Assistance](../products/ai-agent.md).
 
 ## Related documents
 
 - [Knowledge Base](./knowledge-base.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [AI Agent](../products/ai-agent.md)
+- [AI Assistance](../products/ai-agent.md)
 - [Google Sheets Synchronization](./google-sheets-sync.md)

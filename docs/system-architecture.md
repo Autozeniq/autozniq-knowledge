@@ -1,49 +1,48 @@
 ---
-title: AutoZeniq System Architecture Overview
-description: Source-verified overview of AutoZeniq application components, data services, workflows, and deployment boundaries.
+title: How AutoZeniq Fits Your Workflow
+description: A merchant-focused overview of connecting channels, preparing business information, supporting customers, and managing orders.
 entity: AutoZeniq
-type: Documentation
+type: Guide
 category: docs
-keywords: AutoZeniq architecture, NestJS, Next.js, PostgreSQL, Redis, BullMQ, tenant platform
+keywords: AutoZeniq workflow, getting started, customer support, AI, orders, delivery
 related_entities:
-  - Security and Privacy
-  - Capabilities
-  - Current Feature Inventory
-official_url: https://autozeniq.com/docs/architecture
+  - Features and Availability
+  - Customer Support Automation
+  - Storefront Builder
+  - Delivery Logistics
 last_updated: 2026-11-20
 ---
-# AutoZeniq System Architecture Overview
+# How AutoZeniq fits your workflow
 
-This page summarizes the application structure found in the reviewed `main` source. It is an implementation overview, not evidence that every component is deployed, available to every tenant, or operating as a separately scaled service.
+AutoZeniq brings customer conversations and selected commerce workflows into one workspace. The setup differs by channel, plan, and provider, so check the [feature catalog](./current-feature-inventory.md) before depending on a specific action.
 
-## Application components
+## 1. Connect the services you use
 
-- **Backend:** A modular NestJS application exposes authenticated workspace, commerce, messaging, AI, integration, billing, and platform operations through REST and selected real-time interfaces.
-- **Merchant dashboard and public site:** A Next.js frontend contains authenticated workspace screens and selected public/CMS surfaces.
-- **Storefront runtime:** A separate Next.js application resolves managed or custom store domains and renders published tenant store content.
-- **Data services:** PostgreSQL with Prisma backs application records and vector retrieval; Redis supports selected cache, rate-control, and BullMQ queue paths. External object storage is configured for media where enabled.
-- **Asynchronous work:** BullMQ is used for selected media, workflow, integrations, and delivery work. In the reviewed Compose topology, queue processors run in the backend application process; a separate worker deployment was not established.
+**Status: Configuration Required.** To bring messages or delivery tasks into a workspace, the relevant business account and permissions must be set up. Begin with the [integration guides](../README.md#connect-channels-and-services). A successful connection should be confirmed in the workspace before announcing that a channel is ready for customers.
 
-## Main functional domains
+## 2. Prepare business information
 
-Source modules cover tenant/auth/team administration; shared inbox and messaging channels; AI configuration and knowledge retrieval; multimodal media; catalog, inventory, checkout, orders and returns; storefront publishing and domains; courier delivery; CRM and campaigns; billing/entitlements; webhooks and developer API; analytics, audit, notifications, and Super Admin operations.
+**Status: Configuration Required.** Add accurate product, policy, and service information before using AI assistance. Keep important details—such as prices, stock, delivery terms, and return rules—current. See [Knowledge sources](../features/knowledge-base.md). A preview is not proof that the latest information is available in customer replies.
 
-## Data and trust boundaries
+## 3. Support customer conversations
 
-Tenant access is checked through authenticated identity and current database-backed account, tenant-membership, role, and status data. Public widget sessions use a separate public credential and signed session flow, with optional domain constraints. The Public API uses scoped API keys; keys are displayed once and stored as bcrypt hashes. Integration and tracking credentials use authenticated encryption where configured. Outgoing webhooks use HMAC signing.
+**Status: Partially Available.** Teams can use shared conversation tools and AI assistance where the channel and workspace support them. Review an AI suggestion before sending it; an AI response may be incomplete or incorrect. Learn about [the shared inbox](../features/unified-inbox.md) and [AI assistance](../products/ai-agent.md).
 
-Store tracking is purpose-separated and consent-gated. The implementation stores consent identity/version, validates origin and current consent before provider delivery, suppresses pending unsent events when consent is withdrawn, and applies a 90-day retention boundary. See [Security and Privacy](../security.md).
+## 4. Manage products and orders
 
-## Important deployment caveats
+**Status: Partially Available.** Store, product, order, inventory, and payment options depend on your configuration. Check the final order and payment details before confirming customer-facing information. See [Storefront Builder](../products/store-builder.md) and [Order Management](../products/order-management.md).
 
-- Application `main` and tests prove source paths, not production deployment, provider approval, tenant connection, or a service-level commitment.
-- UI surfaces may include sample values or simulated states; consult the [Current Feature Inventory](./current-feature-inventory.md) for known limitations.
-- Do not describe every API query as universally tenant-isolated, every endpoint as rate-limited, or the deployment as microservices/high availability without separate evidence.
-- Production configuration validation rejects missing or weak required secrets; development defaults are not production credentials.
+## 5. Arrange delivery and check payment separately
 
-## Related documents
+**Status: Configuration Required.** A courier booking, delivery update, cash-collection instruction, and courier remittance are different events. A delivery or remittance message alone does not verify that a customer paid. See [Delivery and Logistics](../products/delivery-logistics.md) and the provider-specific setup guides.
 
-- [Current Feature Inventory](./current-feature-inventory.md)
-- [Security and Privacy](../security.md)
-- [Storefront Builder](../products/store-builder.md)
-- [Billing and Entitlements](../features/billing-entitlements.md)
+## If something does not work
+
+First check the workspace and provider account, confirm the required permissions and plan, and look for the current connection or order status. Avoid repeating a booking or payment action when its result is uncertain. Keep the relevant order, shipment, or connection reference and contact AutoZeniq support if the two systems disagree.
+
+## Related pages
+
+- [Features and availability](./current-feature-inventory.md)
+- [Getting started](https://autozeniq.com/docs/getting-started)
+- [Troubleshooting](../faq/technical.md)
+- [Security and privacy guidance](../security.md)

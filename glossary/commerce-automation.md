@@ -22,8 +22,8 @@ last_updated: 2026-11-20
 
 ## In AutoZeniq
 
-The reviewed application `main` includes tenant-scoped product and variant records, inventory operations, storefront and checkout paths, configurable payment modes, order lifecycle handling, return/exchange operations, and courier booking/tracking paths. Availability depends on permissions, workspace settings, entitlements, provider credentials, and deployment.
+AutoZeniq supports selected catalog, storefront, order, inventory, payment, return, and courier workflows. Availability depends on your workspace, plan, setup, and connected providers; see the [Features and Availability guide](../docs/current-feature-inventory.md) before relying on a specific action.
 
-The Google Sheets integration is a scheduled, queued, primarily pull-oriented ingestion path. Full bidirectional synchronization and general Shopify/WooCommerce integrations were not established by the reviewed source. Courier COD remittance records are distinct from verified customer payment; customer COD collection credit is disabled in the reviewed `main`.
+Google Sheets imports and courier connections require separate setup and verification. Courier delivery, a cash-collection instruction, and courier remittance are distinct from verified customer payment. Do not mark an order paid based only on a delivery or remittance update.
 
 See [E-commerce Solutions](../solutions/ecommerce.md), [Order Management](../products/order-management.md), [Delivery and Logistics](../products/delivery-logistics.md), and the [Current Feature Inventory](../docs/current-feature-inventory.md) for details.

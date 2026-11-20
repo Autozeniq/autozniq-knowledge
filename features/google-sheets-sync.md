@@ -1,6 +1,6 @@
 ---
 title: Google Sheets Data Synchronization
-description: Status-qualified overview of spreadsheet discovery, queued ingestion, supported mapping, and dashboard connection limitations.
+description: Status-qualified guide to spreadsheet import, supported mapping, setup requirements, and limits.
 entity: AutoZeniq
 type: Feature
 category: features
@@ -14,21 +14,29 @@ last_updated: 2026-11-20
 ---
 # Google Sheets Data Synchronization
 
-The backend contains a scheduled, queued Google Sheets synchronization flow. It can discover tabs, classify product/FAQ/policy/knowledge content, map common English and Bengali column names, apply eligible product/inventory updates, and report job progress.
+**Status: Partially Available.** Eligible workspaces can import supported Google Sheets content for product, inventory, FAQ, policy, or knowledge workflows. The current scope is primarily one-way: AutoZeniq reads selected sheet data; it does not promise a live two-way connection.
 
-## Current scope
+## Prerequisites
 
-The reviewed flow is primarily pull-oriented: it reads spreadsheet data into AutoZeniq. Credential storage uses authenticated encryption, and production use requires valid encryption configuration. The supported mapping is heuristic; it is not a published accuracy guarantee.
+- A workspace role and plan that include the integration.
+- A Google account with access to the selected spreadsheet.
+- A completed provider authorization and a valid sheet or tab selection.
+- Supported headers and values for the intended import.
+- A sync or import job that finishes successfully.
 
-## Connection and scheduling caveats
+Common English and Bengali headers may be recognized, but mapping is not an accuracy guarantee. Review imported products, stock, and knowledge after each significant change.
 
-Parts of the dashboard add-source wizard use simulated connection checks and mock previews. Those UI states do not prove a credential was saved, provider access was granted, or a sheet was synchronized. A connected provider, account approval, configured schedule, and successful job are prerequisites to any live-availability claim.
+## Limits
 
-Full bidirectional order append, a completed OAuth connection experience, every schedule option advertised in older docs, and every public spreadsheet workflow were not established by the reviewed implementation. Do not describe it as a live two-way database or promise instant synchronization.
+- **Partially Available:** Scheduling and supported content types vary by workspace configuration.
+- **Needs Verification:** A connection preview or displayed sheet is not proof that authorization or synchronization completed.
+- **Not Available:** Full bidirectional order append and instant synchronization are not standard guarantees.
+
+## Troubleshooting
+
+Reconnect the Google account, confirm spreadsheet sharing and tab access, check header mapping, and review the import result for row-level errors. Correct the sheet and run the import again. Do not delete existing catalog or inventory data until the new import has been reviewed.
 
 ## Related documents
 
-- [Google Sheets Integration Guide](../integrations/google-sheets.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
 - [Knowledge Base](./knowledge-base.md)
-- [Order Management](../products/order-management.md)
+- [Current capabilities](../capabilities.md)

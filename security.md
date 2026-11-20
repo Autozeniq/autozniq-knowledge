@@ -1,45 +1,42 @@
 ---
 title: AutoZeniq Security and Privacy Controls
-description: Verified application security, access-control, credential, webhook, and store-tracking privacy controls with scope limits.
+description: Public overview of merchant-facing access, credential, webhook, and store-tracking privacy practices.
 entity: AutoZeniq
 type: Platform
 category: company
 keywords: AutoZeniq security, privacy, access control, credentials, consent, data retention, webhook security
 related_entities:
-  - Sentinel Security
-  - System Architecture
-  - Current Feature Inventory
+  - Security Controls
+  - Workspace Roles
 official_url: https://autozeniq.com/security
 last_updated: 2026-11-20
 ---
 # AutoZeniq Security and Privacy Controls
 
-This page describes selected controls found in the reviewed application `main` source. It is not a certification, penetration-test report, legal compliance statement, or guarantee of production configuration.
+**Status: Partially Available.** Security and privacy controls vary by feature, provider, plan, and deployment. This page is practical product guidance, not a certification, legal opinion, penetration-test report, or service-level commitment.
 
-## Access and tenant authorization
+## Access and credentials
 
-Authenticated application routes use current account and workspace membership/role checks. Public API keys are scoped and stored as bcrypt hashes after one-time display. The website widget uses a separate public key, signed sessions, and optional allowed-domain checks. Do not put a secret Public API key into frontend code.
+- **Partially Available:** Workspace access uses the account and role settings available in the current workspace; confirm exact permissions before granting access.
+- **Configuration Required:** Keep secret API credentials on a trusted server, and configure widget domain restrictions and connected services for the intended workspace.
+- **Needs Verification:** Provider-specific security requirements differ; follow current guidance for each connected service.
 
-## Credentials and request integrity
+## Webhooks and tracking privacy
 
-Integration and tracking credentials are encrypted with authenticated AES-256-GCM where those credential paths are used. Outgoing merchant webhooks are HMAC-signed. Provider webhook handling and courier events apply provider-specific verification and idempotency controls in reviewed paths; exact requirements vary by provider.
+Webhook verification requirements vary by integration. Follow the current provider-specific instructions before accepting events; see [Outgoing Webhooks](./integrations/webhook.md).
 
-Production runtime validation rejects missing, malformed, placeholder, or weak required secrets/configuration, including encryption and authentication keys, before dependent modules load. It does not silently generate replacement production keys.
+Configured store-tracking features can distinguish analytics, advertising, and matching purposes. Review the current consent controls and privacy notice for the specific store and tracking flow. Do not assume one retention period or consent rule applies to every customer record or product area.
 
-## Store tracking consent and retention
+## What is not promised
 
-Store tracking separates analytics, advertising, and advertising matching consent; optional purposes default to denied. Events require valid server-side consent identity/version and store scope. Provider delivery rechecks consent and retention, rejects expired or stale consent, and suppresses queued unsent deliveries after withdrawal. Legacy events without consent identity are quarantined rather than sent. Store tracking records and related consent/context are bounded by a 90-day retention policy.
+**Needs Verification:** AutoZeniq does not use this page to promise SOC 2, ISO, HIPAA, other certifications, dedicated data residency, a universal rate limit, immutable audit records, a public vulnerability-response SLA, a fixed TLS version, or uptime guarantees. Confirm contractual or deployment-specific commitments with your account representative.
 
-These controls are specific to the store-tracking paths reviewed; they should not be described as universal retention rules for all customer records.
+## Security troubleshooting
 
-## Security claims not established here
-
-The reviewed source does not establish SOC 2, ISO, HIPAA, or other certification; dedicated or isolated database clusters; universal enforcement on every query/table; TLS version across all deployments; comprehensive sanitization across every renderer; an immutable audit ledger; a public bounty or response-time commitment; or a universal IP rate limit. Do not state those guarantees without current independent evidence and product approval.
+Rotate exposed credentials immediately, reconnect providers after changing permissions, and verify webhook signatures. For suspected unauthorized access or privacy concerns, contact the approved support channel with the workspace, time, and event details. Do not include passwords, tokens, or secret keys.
 
 ## Related documents
 
-- [Sentinel Security](./features/sentinel-security.md)
-- [System Architecture](./docs/system-architecture.md)
-- [Current Feature Inventory](./docs/current-feature-inventory.md)
+- [Workspace Roles](./products/super-admin.md)
 - [Public API](./integrations/api.md)
 - [Outgoing Webhooks](./integrations/webhook.md)

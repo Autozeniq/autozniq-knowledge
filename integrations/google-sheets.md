@@ -1,38 +1,39 @@
 ---
 title: Google Sheets Integration Guide
-description: Current status, supported data flow, configuration dependencies, and limits of the Google Sheets integration.
+description: Google Sheets connection prerequisites, import behavior, verification steps, and limits.
 entity: AutoZeniq
 type: Integration
 category: integrations
-keywords: Google Sheets integration, spreadsheet sync, service account, catalog import, Bengali headers
+keywords: Google Sheets integration, spreadsheet sync, catalog import, inventory
 related_entities:
   - Google Sheets Synchronization
-  - Commerce Automation
   - Order Management System
 official_url: https://autozeniq.com/integrations/google-sheets
 last_updated: 2026-11-20
 ---
 # Google Sheets Integration Guide
 
-AutoZeniq's backend contains a queued Google Sheets synchronization flow that can read and classify spreadsheet tabs, map common English and Bengali headers, and update eligible product/inventory data. The current verified behavior is primarily pull-oriented. Available connection methods and scopes depend on the implemented deployment configuration; older OAuth and service-account walkthroughs are not confirmation that the full dashboard setup is active.
+**Status: Configuration Required**
 
-## Before using the feature
+Google Sheets use depends on the current workspace connection flow, access to the selected sheet, plan entitlement, and the sync options enabled for the account. Confirm the current connection method and scopes in the official AutoZeniq documentation; older OAuth or service-account instructions are **Needs Verification**.
 
-A successful live sync requires a valid provider connection with access to the selected sheet, encrypted credential storage configured for the environment, and a completed synchronization job. The add-source wizard includes simulated connection and preview states, so a dashboard preview alone is not proof of a saved connection or applied data.
+## Before you connect
 
-## Supported content and mapping
+- Confirm that the merchant can access the intended spreadsheet.
+- Keep product, inventory, FAQ, and policy data in clearly labeled tabs.
+- Review the proposed mapping before applying imported values.
+- Keep a backup of important data and test with a small sheet first.
 
-The backend can classify tabs as products, FAQs, policies, or general knowledge and recognizes common English and Bengali headers for fields such as product name, price, stock, description, category, and variants. Mapping is heuristic and should be checked before relying on imported values.
+## Observable behavior
 
-## Limits
+Where enabled, AutoZeniq may read selected tabs and classify or map supported product, inventory, FAQ, or policy information. Header matching and field mapping can require review. The currently documented scope should be treated as primarily import or pull oriented.
 
-- Do not describe this as bidirectional catalog/order synchronization.
-- No verified order-append-to-sheet flow was established in reviewed `main`.
-- Do not promise every older hourly/daily schedule option, row limit, mapping accuracy, or immediate update.
-- Google Sheets access is provider- and tenant-configuration-dependent.
+## Limitations
 
-## Related documents
+**Status: Partially Available.** Do not assume bidirectional catalog synchronization, order export, a fixed schedule, a universal row limit, immediate updates, or perfect mapping. Exact supported fields, schedules, conflict behavior, and write-back operations are **Needs Verification**.
 
-- [Google Sheets Synchronization](../features/google-sheets-sync.md)
-- [Knowledge Base](../features/knowledge-base.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+## Errors and recovery
+
+If access is denied, a sheet is missing, mapping is incomplete, or a sync fails, correct the provider permission or source data and run only the documented retry. Confirm the resulting catalog or knowledge content after a completed sync; a preview is not proof that data was saved or applied.
+
+See [Google Sheets Synchronization](../features/google-sheets-sync.md) for related product guidance.

@@ -1,21 +1,26 @@
 ---
 title: Customer Support and AI Assistance
-description: Verified shared inbox, knowledge retrieval, AI draft, and human takeover paths; no separate Support Agent behavior is assumed.
+description: Merchant-facing overview of shared inbox and AI-assisted support.
 entity: AutoZeniq
 type: Product Reference
 category: product
-keywords: AutoZeniq support, shared inbox, AI assistance, knowledge retrieval, human handover
+keywords: AutoZeniq support, shared inbox, AI assistance, knowledge base, human takeover
 related_entities:
-  - AutoZeniq AI Agent
   - Customer Support Workflows
   - Knowledge Base
+  - Current Feature Inventory
 last_updated: 2026-11-20
 ---
-
 # Customer Support and AI Assistance
+AutoZeniq can help teams review customer conversations, assign work, reply, and use AI-assisted drafts. **Status: Partially Available.** Channel, plan, and workspace configuration affect availability.
 
-The reviewed application `main` includes a tenant-scoped shared inbox, human message replies, conversation assignment, AI pause/takeover/resume controls, AI Copilot draft suggestions, and guarded automated-response paths. It does not substantiate a separate autonomous “Support Agent” with a fixed confidence threshold, sentiment classifier, or guaranteed ticket resolution.
+## Supported behavior
+- **Shared inbox and team replies:** **Status: Partially Available.**
+- **AI Copilot drafts:** **Status: Partially Available.** Review before sending.
+- **Knowledge-supported assistance:** **Status: Partially Available.** Keep business information current.
+- **Human takeover:** **Status: Needs Verification.** Confirm the control and channel behavior in your workspace.
 
-Knowledge ingestion supports selected document and data formats with asynchronous parsing and indexing. Conversational retrieval combines semantic vector search with PostgreSQL keyword search. This can provide useful context but does not guarantee correctness, universal citations, or zero hallucinations. Review critical customer-facing answers.
+AI does not guarantee correct answers, sentiment detection, automatic resolution, or a fixed response time. A separate autonomous “Support Agent” with guaranteed outcomes is **Not Available** unless explicitly documented.
 
-Channel connection, provider approval, workspace settings, entitlements, and deployment affect availability. See the [Current Feature Inventory](../../docs/current-feature-inventory.md), [Customer Support Workflows](../../features/customer-support.md), and [Knowledge Base](../../features/knowledge-base.md).
+## Troubleshooting
+Check the connected channel, permissions, plan access, knowledge source status, and whether AI assistance is enabled. If a draft is wrong, do not send it; correct the source information and contact support if needed.

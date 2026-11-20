@@ -1,39 +1,35 @@
 ---
 title: AutoZeniq Integration FAQ
-description: Status-qualified answers about channel and courier connections, Google Sheets, Public API, and webhooks.
+description: Practical answers about messaging, courier, spreadsheet, and other connections.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq integrations, Meta OAuth, courier, Google Sheets, API, webhook
+keywords: AutoZeniq integrations, courier, Google Sheets, channels, connections
 related_entities:
   - Delivery Logistics
   - Google Sheets Synchronization
-  - WhatsApp Integration
-  - Public API Integration
 official_url: https://autozeniq.com/faq
 last_updated: 2026-11-20
 ---
 # AutoZeniq Integration FAQ
 
-## Are the couriers connected automatically?
-No. Adapter code exists for Pathao, Steadfast, RedX, and Paperfly, but a merchant needs a valid provider account and configured credentials. Provider permissions, account approval, and deployment determine live availability.
+## Are courier connections automatic?
+No. **Status: Configuration Required.** A supported provider account, credentials, permissions, and workspace setup may be required.
+
+## Which courier providers are supported?
+The current provider list is **Needs Verification**. Confirm the list and operating coverage with the official product or support team before promising a connection.
+
+## Which messaging channels can I connect?
+Channel availability is **Needs Verification** and may depend on provider approval, account permissions, plan access, and workspace settings.
 
 ## Does a courier delivery or remittance prove COD payment?
-No. COD amount sent during a booking is a collection instruction. Delivery and remittance records do not prove customer payment; verified customer COD credit is disabled in the reviewed default branch.
+No. Delivery and remittance updates should not be treated as verified customer payment.
 
-## Does Google Sheets use OAuth or a Service Account?
-The backend contains a scheduled/queued sync flow, but complete dashboard OAuth/service-account setup has not been established by reviewed source. Some connection and preview steps are simulated. Check current in-app options and do not treat a preview as a saved connection.
+## Can I connect Google Sheets?
+**Status: Needs Verification.** Confirm the connection method, supported columns, sync direction, schedule, and first successful sync. A preview is not proof of an active connection.
 
-## Which messaging channels can be connected?
-Provider connection/OAuth paths exist for several channels including WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and a website widget. Actual channel use depends on provider approval, account permissions, feature entitlements, credentials, and deployment settings.
+## Can I connect several accounts?
+**Status: Needs Verification.** Limits can vary by plan, channel, and workspace.
 
-## Can I connect many social or courier accounts?
-Limits depend on the workspace plan and the current connection implementation. Do not assume every plan supports multiple accounts or provider-specific routing based only on older descriptions.
-
-## Related documents
-
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [Delivery and Logistics](../products/delivery-logistics.md)
-- [Google Sheets Integration](../integrations/google-sheets.md)
-- [Public API](../integrations/api.md)
-- [Webhook Integration](../integrations/webhook.md)
+## What should I provide to support when a connection fails?
+Share the provider, workspace, connection status, time of the failed attempt, and any displayed error. Do not share passwords or private access tokens.

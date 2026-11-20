@@ -1,30 +1,31 @@
 ---
 title: Telegram Bot Connection
-description: Status-qualified overview of Telegram integration paths and workspace/provider availability limits.
+description: Telegram bot setup prerequisites, shared-inbox behavior, limitations, and error handling.
 entity: AutoZeniq
 type: Integration
 category: integrations
-keywords: AutoZeniq Telegram, Telegram Bot, connection, webhook, shared inbox
+keywords: AutoZeniq Telegram, Telegram Bot, connection, shared inbox
 related_entities:
   - Customer Support Workflows
   - Shared Inbox
 official_url: https://autozeniq.com/integrations/telegram
 last_updated: 2026-11-20
 ---
-
 # Telegram Bot Connection
 
-The reviewed application `main` contains a Telegram provider-connection path and webhook handling. This does not establish that a bot token has been saved, the bot is connected for a specific workspace, or the integration is operating in production.
+**Status: Configuration Required**
 
-## Availability and limits
+Telegram use requires a bot connection, workspace access, and the channel features enabled for the account. Confirm the current bot setup, credential handling, supported message types, and plan requirements in the official AutoZeniq documentation.
 
-Use depends on a valid provider configuration, tenant permissions and entitlements, and deployment. The reviewed source does not establish support for every Telegram message type, inline keyboards, media format, webhook lifecycle behavior, rate-limit policy, or automatic AI reply. Confirm the actual connected bot and message path before making a channel-specific claim.
+## Observable behavior
 
-Where available, agents use the shared inbox's conversation history, human replies, assignment, and AI controls. AI Copilot suggestions are drafts, and automatic replies depend on configuration.
+When the bot is connected and active, supported conversations may appear in the shared inbox. Agents can use the inbox features enabled for the workspace, such as history, human replies, assignment, and configured AI assistance. AI suggestions are drafts unless an automatic reply option is explicitly enabled.
+
+## Limits and errors
+
+Support for every Telegram media format, keyboard or interactive control, webhook behavior, message limit, and automatic reply is **Needs Verification**. If messages do not appear or replies fail, check the bot connection state, workspace settings, provider notices, and the current Telegram requirements. Do not assume a failed or delayed provider response means the message was delivered.
 
 ## Related documents
 
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
 - [Shared Inbox](../features/unified-inbox.md)
 - [Customer Support Workflows](../features/customer-support.md)
-- [AI Agent](../products/ai-agent.md)

@@ -1,10 +1,10 @@
 ---
 title: AI-Assisted Replies
-description: Status-qualified description of AI reply suggestions, guarded automated-response paths, retrieval, and human controls.
+description: Status-qualified guide to AI drafts, optional automated replies, human review, and setup requirements.
 entity: AutoZeniq
 type: Feature
 category: features
-keywords: AutoZeniq AI reply, AI Copilot, automated responses, RAG, human review
+keywords: AutoZeniq AI reply, AI Copilot, automated responses, human review
 related_entities:
   - AI Agent
   - RAG
@@ -12,25 +12,24 @@ related_entities:
 official_url: https://autozeniq.com/features/ai-agent
 last_updated: 2026-11-20
 ---
-
 # AI-Assisted Replies
 
-The reviewed application `main` includes AI Copilot reply suggestions for human agents and guarded AI auto-reply paths. Copilot output is a draft; the agent decides whether to send it. Automated replies are conditional on tenant settings, channel/provider configuration, entitlements, and deployment.
+- **Available:** AI Copilot can prepare a reply draft for a human agent.
+- **Partially Available:** Automated AI replies may be available for eligible channels and workspaces after configuration and provider setup.
+- **Configuration Required:** AI settings, a supported channel connection, an enabled model/provider, relevant knowledge sources, and plan entitlement may all be required.
 
-## Retrieval and safeguards
+A draft is not a sent message. Review generated text before sending, especially for prices, availability, policies, delivery promises, and order status. Agents should pause or take over AI handling when those controls are available.
 
-When an eligible AI path has indexed context, retrieval combines semantic vector search with PostgreSQL keyword search and can apply query adaptation, reranking, context expansion, thresholds, and conflict checks. These safeguards may help constrain a response, but do not guarantee correctness, a fixed accuracy rate, or zero hallucinations.
+## Limits
 
-Agents can pause or take over AI handling where those controls are enabled. Confirm important prices, product availability, policies, and order status before sending or acting on a generated response.
+AI assistance does not guarantee factual accuracy, zero hallucinations, a fixed response time, universal language quality, or autonomous resolution across every channel. Do not assume that a connector or model listed in a workspace is approved or active until a test conversation succeeds.
 
-## What has not been verified
+## Troubleshooting
 
-The reviewed source does not establish responses within a fixed time, a universal multilingual quality level, automatic public replies or private messages to Facebook comments, fixed confidence thresholds across tenants, or autonomous resolution across every channel.
+If no draft appears, confirm the channel is connected, AI is enabled, the conversation is eligible, the workspace has entitlement, and relevant knowledge sources completed processing. If an automatic reply is not sent, check channel permissions, provider approval, safety settings, and any human-review requirement.
 
 ## Related documents
 
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [AI Agent](../products/ai-agent.md)
+- [AI Assistance](../products/ai-agent.md)
 - [Adaptive Retrieval and RAG](./adaptive-rag.md)
-- [RAG Glossary](../glossary/rag.md)
 - [Customer Support Workflows](./customer-support.md)

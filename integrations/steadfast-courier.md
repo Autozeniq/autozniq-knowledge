@@ -1,34 +1,38 @@
 ---
 title: Steadfast Courier Integration Status
-description: Source-verified Steadfast adapter scope and the distinction between COD instructions, remittance, and verified payment.
+description: Merchant-facing Steadfast setup, workflow boundaries, COD handling, and verification status.
 entity: AutoZeniq
 type: Integration
 category: integrations
-keywords: Steadfast courier, API integration, consignment, tracking, COD, payment verification
+keywords: Steadfast courier, merchant account, consignment, tracking, COD, payment verification
 related_entities:
   - Delivery Logistics
   - Order Management System
-  - Current Feature Inventory
-official_url: https://autozeniq.com/integrations/steadfast
 last_updated: 2026-11-20
 ---
 # Steadfast Courier Integration
 
-The reviewed application `main` contains a Steadfast courier adapter and delivery flows for booking and tracking. A working live connection depends on tenant credentials, merchant account approval, provider behavior, and deployment configuration.
+**Overall status: Needs Verification**
 
-## COD payment boundary
+A detailed Steadfast guide is not listed on the public documentation index. This does not mean the product is unavailable. Confirm the merchant account requirements, current AutoZeniq setup, and supported operations with official documentation or support before relying on the integration.
 
-The order's COD amount may be sent as a collection instruction. A courier delivery status, remittance statement, settlement reference, or courier balance is not independently verified customer payment evidence. The current default-branch application explicitly disables customer COD collection credit. **Steadfast delivery must not automatically be documented as marking an order `PAID`.**
+## Status matrix
 
-## Configuration and availability
+| Area | Status | Merchant guidance |
+|---|---|---|
+| Credentials/setup | Needs Verification | Confirm the current merchant authorization and exact setup fields with official support. |
+| Booking/AWB | Needs Verification | Confirm consignment or AWB booking behavior for the target account. |
+| Charges/COD | Needs Verification | Confirm charge calculation, COD amount, and any provider account rules. |
+| Tracking/status sync | Needs Verification | Confirm available milestones and refresh behavior. |
+| Cancellation/returns/RTO | Needs Verification | Confirm cancellation, reverse pickup, returns, and RTO operations. |
+| COD settlement vs customer payment confirmation | Partially Available | COD collection is only an instruction. Delivery, remittance, settlement, or balance data is not verified customer payment and must not automatically mark an order paid. |
+| Failure/error handling | Needs Verification | Follow current provider error guidance and reconcile ambiguous booking outcomes before retrying. |
 
-Use the active dashboard and the merchant's Steadfast portal for current supported credential and account setup details. Do not rely on historical credential screenshots, API payload examples, service-level claims, or fixed booking speeds as a current integration contract.
+## Setup and limits
 
-Actual delivery milestones and supported operations may differ by provider account and API. A provider adapter in source does not establish a connection or active production integration for any tenant.
+Do not rely on historical screenshots, payload examples, fixed delivery speeds, coverage claims, or undocumented routes. Test only after the merchant account and workspace connection are confirmed, and verify the resulting booking and status in both systems.
 
 ## Related documents
 
 - [Delivery and Logistics](../products/delivery-logistics.md)
 - [Order Management](../products/order-management.md)
-- [Billing and Entitlements](../features/billing-entitlements.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)

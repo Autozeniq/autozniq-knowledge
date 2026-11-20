@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq Knowledge Base and Retrieval
-description: Supported document ingestion, asynchronous indexing, tenant-scoped hybrid retrieval, and current feature boundaries.
+description: Guide to supported knowledge sources, processing, retrieval, prerequisites, and boundaries.
 entity: AutoZeniq
 type: Feature
 category: features
-keywords: AutoZeniq knowledge base, RAG, document ingestion, vector search, PostgreSQL, hybrid retrieval
+keywords: AutoZeniq knowledge base, RAG, document ingestion, retrieval
 related_entities:
   - RAG
   - Adaptive RAG
@@ -15,22 +15,28 @@ last_updated: 2026-11-20
 ---
 # Knowledge Base and Retrieval
 
-The knowledge service lets a workspace upload supported files and index content for conversational retrieval. The reviewed file paths include PDF, DOC/DOCX, CSV, JSON, and plain text. Ingestion and embedding/indexing are asynchronous; search combines semantic vector retrieval with PostgreSQL keyword search.
+**Status: Configuration Required.** Eligible workspaces can add supported PDF, DOC/DOCX, CSV, JSON, and plain-text files for processing and use in configured AI assistance. Processing is asynchronous; a source must finish successfully before it can be used reliably.
 
 ## Retrieval features
 
-Conversational Adaptive RAG can cache retrieval results, rewrite or expand queries, route by query type, rerank retrieved content, expand parent context, apply confidence thresholds, and detect potential source conflicts. These are retrieval/generation safeguards, not a guarantee that every response is correct or citation-bearing.
+**Status: Partially Available.** Retrieval may match meaning and keywords, adapt a question, rank relevant content, include surrounding context, and flag possible conflicts. These safeguards help an AI response use workspace information but do not guarantee correctness, citations, fixed indexing time, or zero hallucinations.
 
-## Boundaries
+## Prerequisites and boundaries
 
-- A recursive website URL crawler, a complete Q&A/chunk editor, and a live knowledge-gap API were not verified in the reviewed `main` implementation.
-- Universal citation display, fixed indexing times, zero hallucinations, and measured accuracy or cost improvements are not supported claims.
-- Google Sheets import is a separate, partially integrated path; the dashboard wizard includes simulated connection and preview states.
-- Exact source availability depends on workspace authorization, processing success, entitlements, and deployment configuration.
+- The user needs permission to manage knowledge sources.
+- Files must be readable and within the currently supported size and format limits.
+- The workspace must have an eligible AI feature and entitlement.
+- Google Sheets import is a separate, partially available integration; see [Google Sheets Synchronization](./google-sheets-sync.md).
+- **Needs Verification:** Website crawling, a full question-and-answer editor, and knowledge-gap reporting should be confirmed in the workspace before being promised.
+
+Keep prices, policies, inventory, and support instructions current. AI Copilot output remains a draft for human review.
+
+## Troubleshooting
+
+If a source is not used, check its format, access, processing status, and whether the AI feature is connected to the workspace knowledge base. Replace unreadable or outdated files and retry processing. If results remain incomplete, provide the source name and processing error to support.
 
 ## Related documents
 
 - [Adaptive RAG](./adaptive-rag.md)
 - [Google Sheets Synchronization](./google-sheets-sync.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [AI Agent](../products/ai-agent.md)
+- [AI Assistance](../products/ai-agent.md)

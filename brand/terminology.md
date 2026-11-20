@@ -1,49 +1,41 @@
 ---
 title: AutoZeniq Platform Terminology
-description: Status-qualified reference for product, billing, AI, and integration terms used in AutoZeniq documentation.
+description: Plain-language terms used across AutoZeniq merchant documentation.
 entity: AutoZeniq
 type: Brand
 category: company
-keywords: AutoZeniq terminology, product glossary, platform vocabulary, feature status
+keywords: AutoZeniq terminology, product glossary, platform vocabulary
 related_entities:
   - AI Agent
-  - Customer Support Automation
   - Storefront Builder
   - Order Management System
 official_url: https://autozeniq.com/
 last_updated: 2026-11-20
 ---
-
 # AutoZeniq Platform Terminology
-
-Use these definitions consistently when describing the product. A capability present in the application repository is not, by itself, proof of production deployment or general availability.
+Use these definitions when describing AutoZeniq.
 
 ## Core terms
+- **Workspace:** Your AutoZeniq account area, team members, settings, records, and plan access.
+- **Entitlement:** A plan, add-on, or workspace setting that determines whether a feature or usage limit is available.
+- **Order status:** The current operational stage of an order. An order status does not by itself confirm payment.
+- **Verified payment:** A payment confirmed through the applicable payment provider or an approved collection process.
+- **COD remittance:** A courier-reported collection or settlement record. It should not be treated as verified customer payment unless the applicable collection process confirms it.
+- **Storefront:** The customer-facing shop pages, catalog, cart, checkout, and order tracking experience.
+- **AI Copilot suggestion:** A draft response for a team member to review. It is not automatically sent unless an enabled automation applies.
+- **Human takeover:** A team member taking control of a conversation handled with AI assistance.
+- **Knowledge base:** Merchant-provided documents and information used to give AI assistance more relevant context.
+- **Workflow automation:** Configured rules that respond to supported events with supported actions. Availability varies by workspace and configuration.
 
-- **Workspace / tenant**: A merchant's scoped account area, members, records, settings, and entitlements.
-- **Entitlement**: A plan, subscription, usage, add-on, or workspace-override rule that can permit or limit a product operation.
-- **Order lifecycle status**: A validated operational state of an order, such as `CONFIRMED`, `SHIPPED`, or `DELIVERED`. It is not proof of payment.
-- **Verified payment**: A payment credit recorded only after the applicable provider or other authorized verification path. A courier remittance record alone is not a verified customer payment.
-- **COD remittance**: Funds reported or settled by a courier against a consignment. On the reviewed application `main`, customer COD collection credit is disabled; remittance must not be described as marking an order paid.
-- **Staged storefront payment**: A checkout configuration that can use COD-only, advance-plus-COD, full online, or partial payment modes, subject to configured rules and provider verification.
-
-## Product and technical terms
-
-- **Store builder**: The tenant-facing tools for editing store settings, pages, navigation, previewing drafts, publishing, and managing versions. Custom-domain readiness depends on ownership, DNS, and TLS checks.
-- **Google Sheets synchronization**: A scheduled and queued ingestion path that is primarily pull-oriented in the reviewed source. Dashboard connection checks and previews can be simulated; they are not proof of a live connection.
-- **Adaptive retrieval / RAG**: A conversational retrieval approach that supplies relevant indexed context to response generation. Retrieval and guardrails can help constrain responses but do not guarantee correctness or eliminate hallucinations.
-- **Workflow automation**: A graph-based workflow system with a limited set of connected triggers and executable actions. In the reviewed implementation, `order_placed` and `chat_keyword` are verified triggers and `notify_agent` is an executable action; unsupported actions fail closed.
-- **Provider-dependent integration**: Source code for an adapter or connection path does not prove provider approval, valid credentials, enabled entitlements, or production operation.
-
-## Messaging and support vocabulary
-
-- **Shared inbox**: A workspace area for reviewing conversations, assigning work, replying, and using configured AI assistance. Availability depends on channel and provider setup.
-- **AI Copilot suggestion**: A draft reply for an agent to review. It is not automatically sent merely because the feature exists.
-- **Human takeover**: An agent control to pause or take over AI handling where the conversation and workspace support it.
+## Status labels
+- **Available:** Confirmed for the documented merchant experience.
+- **Partially Available:** Some supported behavior exists, with meaningful scope or channel limits.
+- **Configuration Required:** Setup, permissions, provider access, or plan access is required.
+- **Planned:** Confirmed on an official public roadmap only.
+- **Not Available:** Not offered for the documented experience.
+- **Needs Verification:** Current availability has not been confirmed by public product documentation.
 
 ## Related documents
-
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [Capabilities](../capabilities.md)
-- [Product Overview](../products/overview.md)
-- [System Architecture](../docs/system-architecture.md)
+- [Product overview](../products/overview.md)
+- [FAQs](../docs/faqs.md)
+- [Pricing](../pricing.md)

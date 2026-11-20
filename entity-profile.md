@@ -1,6 +1,6 @@
 ---
 title: AutoZeniq Entity Profile
-description: Current, status-qualified reference profile for the AutoZeniq software platform.
+description: Public reference profile for the AutoZeniq software platform.
 entity: AutoZeniq
 type: Company
 category: company
@@ -11,40 +11,27 @@ related_entities:
   - Customer Support Automation
   - Storefront Builder
   - Order Management System
-  - Delivery Logistics
 official_url: https://autozeniq.com/
 last_updated: 2026-11-20
 ---
-
 # AutoZeniq Entity Profile
 
-## Entity details
-
 - **Name:** AutoZeniq
-- **Entity type:** Software platform / SaaS product
-- **Primary domain:** [autozeniq.com](https://autozeniq.com/)
-- **Product areas documented here:** Workspaces and administration; shared inbox and AI assistance; knowledge retrieval; catalog, storefront, checkout and orders; courier workflows; CRM; billing and entitlements; integrations and security.
-
-This profile summarizes product areas, not a claim that every capability is generally available or deployed. The authoritative source-checked status and caveats are in the [Current Feature Inventory](./docs/current-feature-inventory.md), reviewed against application `main`.
+- **Type:** Software platform for online businesses
+- **Website:** [autozeniq.com](https://autozeniq.com/)
+- **Primary uses:** Customer conversations, AI-assisted support, catalog and storefront operations, orders, inventory, and team workflows.
 
 ## Product areas
+1. **Inbox and AI assistance:** Shared conversations, team replies, and AI drafting. **Status: Partially Available.**
+2. **Knowledge:** Business information used to support relevant assistance. **Status: Partially Available.**
+3. **Commerce:** Catalog, storefront, checkout, orders, and inventory. **Status: Partially Available.**
+4. **Delivery:** Courier-related workflows where supported connections are configured. **Status: Configuration Required.**
+5. **CRM and follow-ups:** Customer and sales organization tools. **Status: Needs Verification.**
+6. **Integrations:** Messaging, spreadsheet, and other connections where supported. **Status: Configuration Required.**
 
-1. **Workspace and administration:** tenant membership, permissions, settings, entitlements, and selected super-admin controls.
-2. **Inbox and AI assistance:** conversation handling, agent reply tools, configured AI assistance, and human controls. Channel availability depends on provider configuration.
-3. **Knowledge and retrieval:** asynchronous knowledge ingestion and semantic plus keyword retrieval, with limits described in the inventory.
-4. **Commerce:** product and variant catalog, inventory operations, storefront and checkout paths, order lifecycle, payment modes, and return/exchange operations.
-5. **Delivery:** courier booking and tracking adapters and COD remittance records. Customer COD payment credit is disabled in the reviewed application `main`.
-6. **CRM:** contacts, leads, deal pipelines, activities, follow-ups, and queued campaigns, subject to the relevant limitations.
-7. **Integrations and platform controls:** scoped API and webhooks, Google Sheets ingestion, workflows, security controls, subscription billing, and plan entitlements.
-
-## Interpretation notes
-
-Source code does not establish production deployment, provider approval, contractual inclusion, performance results, certifications, or a particular customer's use. Use the detailed linked pages for each capability's status and scope.
+Exact availability can change by plan, provider, and workspace settings. AutoZeniq does not guarantee AI accuracy, delivery outcomes, or payment confirmation from order or courier status.
 
 ## Related documents
-
-- [Current Feature Inventory](./docs/current-feature-inventory.md)
-- [Capabilities Catalog](./capabilities.md)
-- [Entity Relationships](./entity-relations.md)
-- [Products Overview](./products/overview.md)
-- [System Architecture](./docs/system-architecture.md)
+- [Product overview](./products/overview.md)
+- [FAQs](./docs/faqs.md)
+- [Terminology](./brand/terminology.md)

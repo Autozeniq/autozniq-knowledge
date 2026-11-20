@@ -1,7 +1,7 @@
 ---
 title: AutoZeniq for Small Businesses
-description: Status-qualified overview of shared inbox, AI assistance, commerce, and CRM workflows for smaller teams.
-keywords: small business, shared inbox, customer support, CRM, commerce workflows
+description: Public use-case overview for small teams managing customers and commerce.
+keywords: small business, shared inbox, customer support, CRM, commerce workflow
 category: solutions
 entity: AutoZeniq
 type: Solution
@@ -11,25 +11,19 @@ related_entities:
   - CRM and Lead Management
 last_updated: 2026-11-20
 ---
-
 # AutoZeniq for Small Businesses
+AutoZeniq may help a small team organize customer conversations, product information, orders, and follow-ups. **Status: Partially Available.** Check plan access and workspace configuration before adopting a workflow.
 
-The reviewed application `main` includes a shared inbox, tenant-scoped workspace and team controls, configured AI assistance, product and order workflows, and CRM tools. These capabilities may help a team organize customer conversations and operations, but repository code alone does not establish how many conversations a team can handle or what sales, staffing, or response-time results it will achieve.
+## Common uses
+- Share customer conversations and assign responses. **Status: Partially Available.**
+- Use AI to draft replies for review. **Status: Partially Available.**
+- Organize contacts, leads, activities, or deals. **Status: Needs Verification.**
+- Manage catalog, storefront, and order operations. **Status: Needs Verification.**
+- Connect delivery or messaging providers. **Status: Configuration Required.**
 
-## Workflows teams can use
-
-Agents can review conversation history, reply, assign work, and pause or take over AI handling where configured. AI Copilot can draft replies for human review; guarded automatic-response paths are conditional on settings and channel/provider availability. CRM includes contacts and leads, configurable deal pipelines, activity, assignment, work-queue, and scheduled follow-up paths.
-
-The product catalog, inventory, storefront, checkout, order management, and courier paths may support commerce operations where configured. Custom-domain readiness and provider integrations require their own checks. Courier COD remittance does not establish verified customer payment.
-
-## Important limits
-
-The reviewed source does not establish automatic extraction of customer names/phone numbers from every chat, a separate lead-qualification AI agent, offline AI behavior outside configured channels, ticketing/SLA alerts, internal team notes, universal round-robin assignment, or quantified staffing and conversion improvements. Check current availability and entitlements for the workspace.
+Do not assume automatic lead capture from every chat, round-robin assignment, ticketing or SLA alerts, offline AI, universal channel support, or a guaranteed staffing or sales improvement. A delivery or courier update is not proof of customer payment.
 
 ## Related documents
-
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
 - [E-commerce](./ecommerce.md)
-- [Online Sellers](./online-seller.md)
-- [CRM and Lead Management](../products/crm-leads.md)
-- [Product Overview](../products/overview.md)
+- [Online sellers](./online-seller.md)
+- [General FAQ](../faq/general.md)

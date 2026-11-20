@@ -1,6 +1,6 @@
 ---
 title: Customer Support Workflows
-description: Verified inbox, AI assistance, knowledge retrieval, and human handover paths with current limitations.
+description: Merchant-facing guide to shared inbox support, AI assistance, knowledge retrieval, and human handover.
 entity: AutoZeniq
 type: Feature
 category: features
@@ -12,29 +12,29 @@ related_entities:
 official_url: https://autozeniq.com/solutions/customer-support
 last_updated: 2026-11-20
 ---
-
 # Customer Support Workflows
 
-The reviewed application `main` contains a tenant-scoped shared inbox for conversation search and listing, message history, human replies, assignment, AI pause/takeover/resume, and selected real-time updates. Configured AI paths can use indexed knowledge context, and AI Copilot suggestions are drafts for an agent to review.
+**Status: Partially Available.** AutoZeniq can provide a shared inbox for supported channels, human replies, assignment, and configured AI assistance. Exact controls depend on workspace role, plan, channel connection, provider approval, and settings.
 
 ## Knowledge and AI assistance
 
-Supported document and data sources can be parsed and indexed asynchronously. Conversational retrieval combines semantic vector search with PostgreSQL keyword search and can apply query adaptation, reranking, context expansion, thresholds, and conflict checks. These mechanisms can help constrain replies, but they do not guarantee correctness or eliminate hallucinations.
+- **Available:** Agents can review conversations and use AI Copilot drafts where enabled.
+- **Configuration Required:** Add and successfully process supported knowledge sources before using them for responses.
+- **Partially Available:** Automated AI replies and media handling depend on channel and provider support.
+- **Needs Verification:** A provider connector or AI option shown in a workspace must be tested before it is treated as active.
 
-Guarded AI auto-reply paths exist in the reviewed code, but availability depends on AI settings, channel/provider configuration, entitlements, and deployment. A draft suggestion is not automatically sent. Verify important prices, policies, stock, and order information before replying.
+Retrieval can help ground a response but does not guarantee correctness, citations, or the absence of hallucinations. Verify prices, policies, stock, and order information before replying.
 
-## Human handling
+## Human handling and limits
 
-Agents can use inbox controls to reply, assign conversations, and pause or take over AI handling where supported. The reviewed source does not establish a complete ticketing system, internal team notes, universal round-robin assignment, user-visible confidence thresholds, URL crawling, or automatic escalation for every unsupported answer.
+Agents can reply, assign work, and pause or take over AI where supported. A complete ticketing system, universal internal notes, round-robin assignment, URL crawling, and automatic escalation for every unsupported answer are **Not Available** as standard guarantees. Typing indicators, read receipts, and presence are also channel-dependent and not universal.
 
-## Availability notes
+## Troubleshooting
 
-A channel adapter or OAuth path in source is not proof that a provider account is approved or connected. Real-time behavior is limited to selected updates; do not claim universal typing indicators, read receipts, presence, or collision locks.
+Confirm the channel connection and permissions, check that the source or AI setting is enabled, and review any processing or provider error. Send a test message after reconnecting a provider. Escalate with the channel, conversation time, workspace, and error text if the issue continues.
 
 ## Related documents
 
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
 - [Knowledge Base](./knowledge-base.md)
 - [Conversation Management](./conversation-management.md)
-- [AI Agent](../products/ai-agent.md)
-- [Adaptive Retrieval and RAG](./adaptive-rag.md)
+- [AI Assistance](../products/ai-agent.md)

@@ -1,35 +1,36 @@
 ---
 title: AutoZeniq SDK and Widget Integration Status
-description: Verified Public API and browser widget integration boundaries; published SDK package availability is not confirmed.
+description: Status of published SDKs, website widget setup, and safe developer integration boundaries.
 entity: AutoZeniq
 type: Integration
 category: integrations
-keywords: AutoZeniq SDK, API client, web widget, browser key, developer integration
+keywords: AutoZeniq SDK, API client, web widget, developer integration
 related_entities:
   - Public API Integration
   - Webhook Integration
-  - Current Feature Inventory
 official_url: https://autozeniq.com/docs
 last_updated: 2026-11-20
 ---
 # SDK and Widget Integration Status
 
-The reviewed application source includes a website chat widget integration and a scoped Public API. It does not verify official published Node.js (`@autozeniq/node`) or Python (`autozeniq`) package releases or the methods described in older examples. Do not install or build production integrations against unverified package names and examples.
+## Published SDK packages
 
-## Website widget
+**Status: Needs Verification**
 
-The widget uses a separate public key, can enforce allowed-domain restrictions, and uses signed sessions. This browser credential is distinct from a secret Public API key. Exact script URL, JavaScript methods, event names, and customization options should be taken from the current dashboard or official reference; older snippets in this document are not a supported contract.
+Confirm any official package name, supported language, version, installation method, and compatibility directly in the current AutoZeniq developer documentation. Do not install packages or rely on methods from older examples unless they are listed in the current official reference.
 
-## Server-side integrations
+## Website chat widget
 
-Use a scoped Public API key only in a trusted server-side environment. Keys are displayed once and stored as bcrypt hashes. Apply key scopes and quotas, avoid logging secrets, and revoke keys if exposed. See the [Public API guide](./api.md).
+**Status: Configuration Required**
 
-## Webhook verification
+A website widget may be available for a workspace. Setup requirements, script location, browser credential, allowed domains, session behavior, customization, supported browsers, and message features are **Needs Verification** for the current account. Follow the current dashboard or official documentation rather than copying an unverified snippet.
 
-Outgoing webhook deliveries are HMAC-signed. Use the current per-endpoint secret and current official signature-verification instructions, if provided. The old sample snippets in this file are not authoritative; do not verify signatures against re-serialized JSON or use ordinary string comparison.
+Never place a secret server-side API key in browser code. If a public widget credential is provided, use it only for the documented browser integration and restrict its allowed domains where that option is available.
 
-## Related documents
+## Observable behavior and limitations
 
-- [Public API](./api.md)
-- [Outgoing Webhooks](./webhook.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+A configured widget can expose the channel features enabled for the workspace. It does not by itself confirm that a Page, phone number, courier, payment provider, or other service is connected. Published SDK availability, widget events, and customization options are not guaranteed across plans.
+
+## Errors and support
+
+Test the widget on an approved domain and check the current connection status. If it does not load, verify domain configuration, workspace access, browser errors, and provider approval without exposing credentials. For API or webhook failures, use the [Public API](./api.md) and [Outgoing Webhooks](./webhook.md) guidance and contact support for current contract details.

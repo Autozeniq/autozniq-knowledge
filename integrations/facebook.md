@@ -1,22 +1,28 @@
 ---
-title: Facebook Page Comments Verification Status
-description: Clarifies that the reviewed application main does not establish public comment replies or comment-to-private-message automation.
+title: Facebook Page Comments Integration Status
+description: Current status and verification boundary for Facebook Page comment replies and follow-up messaging.
 entity: AutoZeniq
 type: Integration Status
 category: integrations
-keywords: Facebook comments, Meta feed webhook, public reply, private reply, verification status
+keywords: Facebook comments, Page comments, public reply, private message, Meta
 related_entities:
   - Facebook Messenger
   - Meta Account Connection
-  - Customer Support Workflows
 official_url: https://autozeniq.com/integrations/facebook-comments
 last_updated: 2026-11-20
 ---
+# Facebook Page Comments Integration Status
 
-# Facebook Page Comments Verification Status
+**Status: Needs Verification**
 
-The reviewed application `main` includes provider connection and webhook paths for supported messaging channels, including Facebook Messenger. It does **not** establish a complete Facebook Page comment automation flow that publishes public replies or starts private messages from post comments.
+Do not promise that AutoZeniq can publish public replies to Page comments, trigger private messages from comments, respond to keywords, or create leads from comments. A Messenger connection alone does not establish any of those capabilities.
 
-Do not promise public comment replies, keyword-triggered comment responses, comment-to-private-message follow-ups, or resulting lead capture without separate current implementation and provider evidence. A Messenger connection does not by itself establish these Page comment capabilities.
+## Before relying on this workflow
 
-For verified messaging connection and inbox scope, see [Meta Account Connection](./meta-oauth.md), [Facebook Messenger](./facebook-messenger.md), and the [Current Feature Inventory](../docs/current-feature-inventory.md).
+Confirm the exact Page, Meta permissions, account approval, workspace settings, supported comment actions, and current provider documentation with AutoZeniq support. Test with a non-critical comment before using the workflow operationally.
+
+## Observable behavior and errors
+
+If the feature is enabled for the account, the connected channel should show its current connection state and any provider error. Missing permissions, provider review, unsupported message types, or an expired connection can prevent an action. Treat an absent or ambiguous result as unconfirmed; do not represent a comment as answered or a lead as captured until it is visibly confirmed.
+
+See [Facebook Messenger](./facebook-messenger.md) and [Meta Account Connection](./meta-oauth.md) for related channel setup.

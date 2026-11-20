@@ -1,6 +1,6 @@
 ---
 title: Returns, Exchanges, and Human Takeover
-description: Merchant-managed return/exchange requests, eligibility checks, inventory handling, and AI escalation boundaries.
+description: Merchant-managed returns and exchanges, eligibility boundaries, refund limitations, and human escalation guidance.
 entity: AutoZeniq
 type: Feature
 category: features
@@ -14,21 +14,26 @@ last_updated: 2026-11-20
 ---
 # Returns, Exchanges, and Human Takeover
 
-The application supports merchant-mediated return and exchange management for delivered orders. Staff can review requests, approve or reject them, and handle eligible returned quantities or exchange stock through the order workflow. A customer self-service return-submission flow was not verified in the reviewed `main` source.
+**Status: Partially Available**
 
-## Return and exchange boundaries
+AutoZeniq supports merchant-mediated handling of eligible return and exchange cases where the workspace has the relevant order workflow enabled. Confirm the current merchant policy, eligibility rules, and available actions before publishing a customer promise.
 
-Return approval, inventory restocking, courier reverse pickup, order status changes, and money refunds are separate actions. Eligible approved return quantities may be restocked; exchange flow can check replacement stock. The reviewed implementation does not establish automatic refund transfers or universal courier reverse-pickup booking.
+## Return and exchange workflow
 
-Do not promise a fixed return window, automatic AI confirmation flow, or return eligibility rule across tenants unless a current merchant policy and active workflow confirm it. A return record does not prove that a refund was issued.
+A merchant can review an eligible case and, where available, approve or reject it. Approval, inventory restocking, replacement stock, courier reverse pickup, order status, and refund are separate actions. Exact return windows, reasons, customer self-service submission, reverse pickup, and refund transfer behavior are **Needs Verification**.
+
+A return request, approval, courier event, or restock record does not prove that money was refunded. Confirm the refund through the responsible payment provider or the merchant's verified payment process.
 
 ## Human takeover
 
-AI reply paths can be paused or handed off for human handling. Selected complaint and escalation paths can flag an interaction for attention; escalation severity, notifications, and AI behavior depend on tenant settings and enabled channels. Do not claim every legal, payment, or emotional-language case is always detected or reaches a senior team instantly.
+**Status: Configuration Required.** A conversation can be handed to a human where the channel and workspace support takeover. AI suggestions are drafts unless automatic reply is explicitly enabled. Confirm assignment, notifications, escalation rules, and response ownership in the active workspace.
+
+## Errors and limitations
+
+If eligibility is unclear, stock is unavailable, a courier action fails, or a refund is ambiguous, pause the automated step and have a merchant review the case. Do not promise instant escalation, universal issue detection, automatic refunds, or automatic reverse pickup.
 
 ## Related documents
 
 - [Order Management](../products/order-management.md)
-- [AI Auto-Reply](./ai-auto-reply.md)
-- [Automation](./automation.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Delivery and Logistics](../products/delivery-logistics.md)
+- [AI Agent](../products/ai-agent.md)

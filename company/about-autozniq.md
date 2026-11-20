@@ -1,39 +1,31 @@
 ---
 title: About AutoZeniq
-description: Overview of AutoZeniq's product focus and the status-qualified platform capabilities in its application repository.
+description: Public overview of AutoZeniq for merchants and online businesses.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq, commerce operations, customer support, AI, online sellers, Bangladesh
+keywords: AutoZeniq, commerce operations, customer support, online sellers
 related_entities:
   - AI Agent
   - Commerce Automation
   - Storefront Builder
   - Order Management System
-  - Delivery Logistics
 official_url: https://autozeniq.com/about
 last_updated: 2026-11-20
 ---
 # About AutoZeniq
+AutoZeniq is a platform for online businesses that want to organize customer conversations and commerce operations in one workspace.
 
-AutoZeniq is a software platform focused on customer support and commerce workflows for online sellers and businesses. Its application repository includes a tenant dashboard, shared inbox, AI assistance and knowledge retrieval, product/catalog tools, a storefront builder, order and inventory management, courier integrations, CRM, and subscription entitlements.
+## Product areas
+- **Customer conversations:** Shared inbox tools, team replies, assignment, and AI-assisted response drafting. **Status: Partially Available.** Channel access and configuration vary.
+- **Knowledge and AI assistance:** Merchant-provided information can support more relevant assistance. **Status: Partially Available.** Review customer-facing answers before sending.
+- **Commerce:** Catalog, storefront, checkout, orders, inventory, and returns workflows. **Status: Partially Available.** Availability depends on the workspace and setup.
+- **Delivery connections:** Courier-related workflows may be available after provider setup. **Status: Configuration Required.**
+- **CRM and follow-ups:** Contacts, leads, deal organization, activities, and follow-ups. **Status: Needs Verification.** Confirm the current plan and workspace options.
 
-## Product areas in the application
-
-- **Customer conversations:** supported provider connection paths, shared inbox tools, and AI-generated reply suggestions.
-- **Knowledge and AI:** document ingestion, hybrid retrieval, and selected multimodal processing paths.
-- **Commerce:** tenant storefront, catalog, checkout, order lifecycle, inventory, and merchant-mediated returns/exchanges.
-- **Operations:** selected courier adapter paths, CRM contacts/leads/deals, follow-ups, campaigns, developer API/webhooks, and platform administration.
-
-## Status and availability
-
-These descriptions reflect source code, not a claim that every feature is deployed, enabled for every plan, or connected to a provider account. Availability may depend on entitlements, workspace configuration, provider approval, and the deployment. The [Current Feature Inventory](../docs/current-feature-inventory.md) records verified status and limitations.
-
-In particular, storefront COD modes can be configured, but verified customer COD collection credit is disabled in the reviewed `main`; courier remittance must not be treated as customer payment. Google Sheets sync is primarily pull-oriented, and the workflow builder exposes only a small subset of connected actions.
+AutoZeniq does not promise error-free AI, guaranteed sales results, or automatic payment confirmation from a delivery update. See the [FAQs](../docs/faqs.md) for practical limits.
 
 ## Related documents
-
-- [Products Overview](../products/overview.md)
-- [Capabilities Catalog](../capabilities.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [Product overview](../products/overview.md)
+- [E-commerce capabilities](../solutions/ecommerce.md)
 - [Pricing](../pricing.md)

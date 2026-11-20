@@ -1,6 +1,6 @@
 ---
 title: AutoZeniq Delivery and Logistics
-description: Courier booking, tracking, conditional auto-booking, fraud signals, and verified limits of COD settlement.
+description: Merchant-facing delivery setup, courier workflow boundaries, COD handling, and status guidance.
 entity: AutoZeniq
 type: Product
 category: products
@@ -8,42 +8,39 @@ keywords: AutoZeniq delivery, logistics, Pathao, Steadfast, RedX, Paperfly, cons
 related_entities:
   - Commerce Automation
   - Order Management System
-  - Pathao Courier Integration
-  - Steadfast Courier Integration
 official_url: https://autozeniq.com/products/delivery-logistics
 last_updated: 2026-11-20
 ---
 # AutoZeniq Delivery and Logistics
 
-The delivery module connects tenant orders with courier workflows. The reviewed application `main` contains adapters for Pathao, Paperfly, RedX, and Steadfast, plus consignment booking, bulk booking, tracking, public tracking, OTP, and courier webhook paths. Actual service availability depends on tenant entitlements, provider credentials, account approval, and deployment configuration.
+**Status: Configuration Required**
 
-## Booking and tracking
+Delivery workflows depend on the selected courier, merchant account authorization, workspace settings, plan, and current provider support. The four courier pages below must be treated independently; one courier's availability does not establish another's.
 
-Eligible confirmed or processing orders can be submitted for consignment booking. Booking records use durable claims to reduce duplicate provider requests. If a provider result is ambiguous, the system blocks blind automatic retries and requires reconciliation. Conditional auto-booking depends on tenant settings and selected order/payment/risk triggers; it is not a blanket automatic-dispatch guarantee.
+## Courier status matrix
 
-Provider status updates are checked against tenant/courier context and idempotency controls before processing. The dashboard contains consignment search/filtering, booking, tracking refresh, courier configuration, and settlement views. Do not promise every optional label, reverse-pickup, notification, or provider-specific operation without verifying its complete path.
+| Courier | Credentials/setup | Booking/AWB | Charges/COD | Tracking/status sync | Cancellation/returns/RTO | COD settlement vs payment | Failure handling |
+|---|---|---|---|---|---|---|---|
+| Pathao | Configuration Required | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Partially Available | Needs Verification |
+| RedX | Configuration Required | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Partially Available | Needs Verification |
+| Steadfast | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Partially Available | Needs Verification |
+| Paperfly | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Needs Verification | Partially Available | Needs Verification |
 
-## COD remittance is not payment verification
+See the individual [Pathao](../integrations/pathao-courier.md), [RedX](../integrations/redx-courier.md), [Steadfast](../integrations/steadfast-courier.md), and [Paperfly](../integrations/paperfly-courier.md) pages for setup boundaries.
 
-AutoZeniq records courier COD remittances and settlement references against consignments. These records are distinct from verified customer payment credit. **The reviewed default-branch code explicitly disables customer COD collection credit** because current adapters do not independently verify the required amount, currency, and provider reference. A courier settlement must not be described as proof of customer payment or as an automatic order-to-`PAID` update.
+## Setup and observable behavior
 
-## Fraud and analytics
+Before dispatch, confirm the courier account, pickup and delivery address, order details, COD instruction, and connection state. After booking, verify the returned consignment or AWB information and the status shown in AutoZeniq and the courier portal. Exact fields, rates, coverage, service levels, labels, notifications, and refresh timing are **Needs Verification** unless confirmed for the account.
 
-The fraud service can produce a bounded risk score and factors using hashed phone identifiers, anonymized platform return-to-origin history, and tenant-local order history. Merchants may configure prevention and thresholds. This does not guarantee that fraud or returns are prevented.
+## COD collection is not payment confirmation
 
-Some super-admin delivery and returns/fraud monitoring surfaces are present. The merchant delivery analytics page currently contains sample courier, RTO, cost, and SLA data; it must not be presented as live tenant performance. The backend exposes narrower live delivery/RTO aggregates.
+A COD amount tells the courier how much to collect from the customer. It is not proof that the customer paid. Delivery, remittance, settlement, courier balance, or a status update must not be represented as verified payment or automatically change an order to `PAID` unless an independently verified payment record exists.
 
-## Important boundaries
+## Errors and limits
 
-- Courier booking/tracking code does not prove a provider account is connected or operational in production.
-- Remittance records do not establish verified COD customer payment.
-- Do not claim zero manual dispatch, automatic settlement reconciliation, duplicate-free retries after ambiguous outcomes, or quantified delivery improvements without evidence.
-- Distinguish shipped application code from deployment and provider availability.
+If booking fails, an address is rejected, credentials expire, a provider is unavailable, or the result is ambiguous, preserve the order record and follow the current provider reconciliation process. Do not create a duplicate booking by blindly retrying. Do not promise automatic returns, reverse pickup, settlement reconciliation, or delivery performance without current account-specific confirmation.
 
 ## Related documents
 
 - [Order Management](./order-management.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [Pathao integration](../integrations/pathao-courier.md)
-- [Steadfast integration](../integrations/steadfast-courier.md)
-- [Security](../security.md)
+- [Returns and Exchanges](../features/returns-takeover-automation.md)

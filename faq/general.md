@@ -1,6 +1,6 @@
 ---
 title: AutoZeniq General FAQ
-description: Concise overview of AutoZeniq's product focus and availability caveats.
+description: General product answers for merchants and online businesses.
 keywords: AutoZeniq FAQ, customer support, commerce workflow, AI assistance, online sellers
 category: faq
 entity: AutoZeniq
@@ -10,33 +10,25 @@ related_entities:
   - Commerce Automation
   - Storefront Builder
   - Order Management System
-  - Current Feature Inventory
 official_url: https://autozeniq.com/faq
 last_updated: 2026-11-20
 ---
 # AutoZeniq General FAQ
 
 ## What is AutoZeniq?
-AutoZeniq is a software platform for customer support and commerce operations. The reviewed application repository includes tenant workspaces, a shared inbox, AI assistance, knowledge retrieval, catalog and order tools, a storefront builder, courier workflows, CRM, and subscription entitlements.
+AutoZeniq brings customer conversations and commerce operations into one workspace. **Status: Partially Available.** Features vary by plan and setup.
 
-## Is AutoZeniq only a chatbot?
-No. The application contains broader commerce and team workflows in addition to conversational AI. However, source code is not proof that every capability is deployed, enabled for every plan, or available in each provider-connected workspace.
-
-## Which messaging providers are supported?
-Provider connection paths exist for WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and a website widget. Actual availability depends on provider approval, account permissions, workspace settings, and deployment.
+## Which channels can I use?
+Supported channels may include messaging accounts and a website widget. **Status: Needs Verification.** Confirm the current channel list, provider approval, and account permissions before setup.
 
 ## Does AutoZeniq support Bengali or Banglish?
-The application includes multilingual and media-processing paths, but universal fluency or accuracy across Bengali, English, and Banglish has not been independently measured. Results depend on model/provider configuration and source quality.
+Language results depend on the selected AI and channel configuration. **Status: Needs Verification.** Test representative customer messages before relying on the feature.
 
-## Does AutoZeniq automatically collect and reconcile COD?
-No. Storefronts can be configured with COD payment modes, but verified customer COD credit is disabled in the reviewed default branch. A courier remittance is not proof that the customer paid.
+## Is AI fully automatic?
+AI Copilot suggestions are intended for team review. **Status: Partially Available.** Any automatic reply behavior depends on an explicitly enabled and supported configuration.
 
-## Where can I see what is actually implemented?
-See the [Current Feature Inventory](../docs/current-feature-inventory.md), which distinguishes code on `main`, configuration-dependent or partial flows, disabled actions, and claims not verified in the reviewed source.
+## Does COD remittance prove payment?
+No. A courier update or remittance record is not, by itself, verified customer payment. Record payment only after the applicable method or customer collection is independently confirmed.
 
-## Related documents
-
-- [Products Overview](../products/overview.md)
-- [Capabilities](../capabilities.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [System Architecture](../docs/system-architecture.md)
+## Where can I check limits?
+See [Pricing](../pricing.md) and the relevant product page. If a capability is not clearly documented, treat it as **Needs Verification**.

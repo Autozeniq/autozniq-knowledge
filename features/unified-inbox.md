@@ -1,6 +1,6 @@
 ---
 title: Shared Inbox
-description: Reviewed conversation search, message history, replies, assignment, AI controls, and provider-dependent channel paths.
+description: Guide to conversation search, history, replies, assignment, AI controls, channels, and media limits.
 entity: AutoZeniq
 type: Feature
 category: features
@@ -12,26 +12,27 @@ related_entities:
 official_url: https://autozeniq.com/features/omnichannel-inbox
 last_updated: 2026-11-20
 ---
-
 # Shared Inbox
 
-The reviewed application `main` contains a tenant-scoped workspace for listing and searching conversations, viewing message history, sending human replies, assigning work, and pausing, taking over, or resuming AI handling. Selected real-time updates are available. Channel availability depends on provider connection, account permissions, workspace configuration, and deployment.
+- **Available:** Eligible workspaces can list and search conversations, view history, send human replies, and assign work.
+- **Partially Available:** WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and website-widget messaging may be available when the provider account is connected and approved.
+- **Partially Available:** Image and voice handling, selected real-time updates, and AI pause or takeover controls vary by channel.
+- **Configuration Required:** Provider authorization, channel permissions, workspace role, and plan entitlement.
 
-## Channels and media
+## AI controls
 
-Provider connection and webhook paths exist for supported services including WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and the website widget. These integration paths do not prove that every provider is approved or that each message type is available in production. Text, image, and voice media upload/processing paths are present; do not infer exact file limits, universal playback/transcription, or availability across every channel.
-
-## Assignment and AI controls
-
-Agents can assign conversations and use configured AI assistance. AI Copilot reply suggestions are drafts for human review; separate guarded auto-reply paths depend on tenant settings and channel configuration. Do not promise automatic assignment based on agent load, collision locks, typing or presence indicators, read receipts, or internal notes.
+AI Copilot suggestions are drafts for human review. Automated replies require additional settings and are not guaranteed on every channel. Do not promise automatic assignment based on agent load, collision locks, typing or presence indicators, read receipts, or internal notes.
 
 ## Limits
 
-The reviewed source does not establish Shopify or WooCommerce customer purchase records in the inbox, a complete ticketing system, arbitrary workflow actions from the inbox, or sending every provider template message. Use the provider-specific integration documentation to verify any particular channel action.
+Shopify or WooCommerce purchase history, complete ticketing, arbitrary workflow actions, and every provider template message are **Needs Verification** for the specific workspace and channel. A connected provider does not by itself prove that every message type is available.
+
+## Troubleshooting
+
+If a channel is unavailable, reconnect the provider, confirm account approval and permissions, and send a test message. If history or replies are missing, check workspace scope and channel status. Contact support with the channel, time, and error text.
 
 ## Related documents
 
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
 - [Customer Support Workflows](./customer-support.md)
 - [Conversation Management](./conversation-management.md)
-- [Public API](../integrations/api.md)
+- [AI Assistance](../products/ai-agent.md)

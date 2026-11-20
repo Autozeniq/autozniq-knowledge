@@ -21,8 +21,8 @@ last_updated: 2026-11-20
 
 ## RAG in AutoZeniq
 
-The reviewed application `main` includes tenant-authorized ingestion for supported document and data formats, asynchronous parsing and indexing, and conversational retrieval that combines semantic vector search with PostgreSQL keyword search. Adaptive retrieval paths can cache results, rewrite or expand queries, route by query type, rerank sources, expand parent context, apply thresholds, and detect possible conflicts.
+AutoZeniq can use supported business information to help prepare an AI response when the source has been added and processed and the relevant AI feature is enabled. Depending on the workspace, retrieval may match related meaning and keywords, use nearby context, and flag possible conflicts between sources.
 
-Availability and results depend on what has been ingested, permissions, model/provider configuration, workspace settings, and deployment. The reviewed source does not establish a URL crawler, universal citations, a fixed confidence threshold for all tenants, zero hallucinations, fixed latency, or quantified accuracy/cost improvements.
+This capability requires setup and is not available in every workspace. Retrieved context can help an answer use business information but does not guarantee correctness, citations, instant updates, or error-free AI. Review important customer-facing answers before sending them.
 
 For details see [Adaptive Retrieval and RAG](../features/adaptive-rag.md) and the [Current Feature Inventory](../docs/current-feature-inventory.md).

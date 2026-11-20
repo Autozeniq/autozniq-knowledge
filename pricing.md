@@ -1,68 +1,47 @@
 ---
-title: AutoZeniq Pricing and Subscription Tiers
-description: Current public BDT plan prices, catalog limits, trials, and verified subscription payment paths.
+title: AutoZeniq Pricing and Subscription Plans
+description: Public guidance for AutoZeniq plan prices, limits, trials, and subscription payment options.
 entity: AutoZeniq
 type: Platform
 category: company
-keywords: AutoZeniq pricing, subscription plans, BDT billing, Starter, Growth, Enterprise, bKash, SSLCommerz
+keywords: AutoZeniq pricing, subscription plans, BDT billing, Starter, Growth, Enterprise
 related_entities:
   - AutoZeniq
-  - Enterprise Billing
-  - Super Admin and Tenant Governance
+  - Billing and Entitlements
 official_url: https://autozeniq.com/pricing
 last_updated: 2026-11-20
 ---
-# AutoZeniq Pricing and Subscription Tiers
+# AutoZeniq pricing and subscription plans
 
-The current reviewed public catalog is stated in Bangladeshi taka (BDT). Check the [official pricing page](https://autozeniq.com/pricing) for any live catalog changes. This document is based on the catalog currently checked into the application repository; it does not confirm that a particular price or offer is active in every deployment.
+**Status: Available as published offers.** The current public catalog lists Starter and Growth for self-service signup and Enterprise as a custom/contact-sales plan. Recheck the [official pricing page](https://autozeniq.com/pricing) before subscribing because prices and terms may change.
 
-## Public plans
+## Plans
 
-| Plan | Monthly | Annual | Published limits |
+| Plan | Monthly | Annual | Public limits |
 |---|---:|---:|---|
-| **Starter** | BDT 999/month | BDT 9,990/year | 1,000 messages/month, 1 team member, 2 channels |
-| **Growth** | BDT 2,999/month | BDT 29,990/year | 5,000 messages/month, 5 team members, 6 channels |
-| **Enterprise** | Custom | Custom | Contract-defined limits and terms; contact sales |
+| **Starter** | ৳999/month | ৳9,990/year | 1,000 messages/month, 1 agent license, 2 connected channels |
+| **Growth** | ৳2,999/month | ৳29,990/year | 5,000 messages/month, 5 agent licenses, 6 connected channels |
+| **Enterprise** | Custom | Custom | Contact sales for features, limits, and terms |
 
-Starter and Growth are the self-serve signup and trial offers. The default trial period is **14 days**. Enterprise is a custom/contact-sales offer rather than a self-serve checkout plan. Plan limits are governed by the reviewed catalog and entitlement configuration; older tables in this knowledge base are not authoritative.
+Starter and Growth list a 14-day trial. Check the current offer and your selected plan at signup; trial access and limits follow the plan shown there.
 
-## Subscription billing and payments
+## Payment options and billing changes
 
-The reviewed application code includes subscription checkout paths for **SSLCommerz in BDT** and **direct bKash tokenized checkout**. A subscription is activated only after the server verifies the provider result against the server-created payment intent, tenant, plan, billing cycle, currency, and amount. Durable invoice snapshots are linked to verified subscription/manual payment records, with a recovery path for persisted invoices.
+The public pricing page lists bKash, Nagad, Rocket, local Visa and Mastercard, and bank transfer. **Status: Needs Verification for a specific checkout.** The available methods can depend on the account and checkout flow; confirm the options shown before paying.
 
-Do not assume every provider or method displayed elsewhere is enabled for every subscription flow. In particular, UI labels for Nagad, Rocket/Upay, card brands, or bank transfer are not by themselves evidence of an active self-serve subscription checkout path.
+The public page also describes usage alerts and plan changes. **Status: Needs Verification.** Before changing a plan, purchasing an add-on, or relying on a cancellation or renewal date, review the current terms and confirmation shown in your account.
 
-## Entitlements and plan changes
+## Subscription and storefront payments are different
 
-Plan access is evaluated using the subscription, plan features/limits, usage, team seats, tenant overrides, and configured add-ons. Add-on data structures do not prove that a public add-on purchase flow is available.
+A subscription payment covers your AutoZeniq plan. A storefront customer's order may use different payment settings and can be paid in stages. A delivery update, courier cash-collection instruction, or remittance notice is not by itself verified customer-payment evidence. See [Order Management](./products/order-management.md).
 
-Proration can produce a plan-change quote. An immediate upgrade is not complete until the corresponding payment intent has been verified and settled. Scheduled downgrade behavior is limited by billing-provider configuration; do not promise frictionless or immediate plan changes based on the quote alone.
+## Common questions
 
-## Commerce checkout is separate
+### Are Enterprise features and limits fixed?
+No. Enterprise is shown as a custom offer; ask sales for the current scope and terms.
 
-Merchant storefront payment modes are configured separately from a merchant's AutoZeniq subscription. Available mode settings include COD-only, advance-plus-COD, full online payment, and partial payment. Advance-plus-COD requires an explicit fixed amount or percentage rule. A storefront order may be paid in multiple stages and by different methods; order or courier status alone is not proof of settlement.
+### Does this page list every payment method for every product flow?
+No. The public payment-options list describes subscription pricing information. Storefront checkout and individual provider availability may differ; confirm the method at the relevant checkout.
 
-Verified customer COD collection credit is currently unavailable in the reviewed default-branch implementation. Courier remittance records must not be represented as verified customer payment.
-
-## Affiliate program
-
-The public affiliate program is currently closed. Applications are not accepted, commission rates and payout terms are unset, and affiliate earning, commission approval, and payouts are disabled pending explicit authorization. No commission or earnings estimate is published here.
-
-## FAQ
-
-### Is Enterprise available through self-serve checkout?
-No. Enterprise is a custom/contact-sales offer in the reviewed public catalog.
-
-### Can I upgrade in the middle of a billing period?
-The system can calculate a proration quote, but an immediate upgrade depends on a verified payment-settlement flow. Do not treat the quote as a completed paid plan change.
-
-### Does this page list every payment method supported by every AutoZeniq product?
-No. Subscription-provider paths and merchant storefront payment modes are different. Provider, currency, account approval, and deployment configuration can affect availability.
-
-## Related documents
-
-- [Billing and Entitlements](./features/billing-entitlements.md)
-- [Current Feature Inventory](./docs/current-feature-inventory.md)
-- [Storefront Builder](./products/store-builder.md)
-- [Order Management](./products/order-management.md)
-- [Super Admin](./products/super-admin.md)
+### Where should I check before subscribing?
+Use the [official pricing page](https://autozeniq.com/pricing) and the terms presented during signup or checkout.

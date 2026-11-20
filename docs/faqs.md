@@ -1,46 +1,35 @@
 ---
-title: AutoZeniq Product and Technical FAQs
-description: Frequently asked questions answered against the reviewed application source, with availability and payment caveats.
+title: AutoZeniq FAQs
+description: Frequently asked questions for merchants using AutoZeniq.
 entity: AutoZeniq
 type: Documentation
 category: general
-keywords: AutoZeniq FAQ, commerce, storefront, AI, Google Sheets, courier, payments
+keywords: AutoZeniq FAQ, storefront, AI, integrations, orders, payments
 official_url: https://autozeniq.com/faq
 last_updated: 2026-11-20
 ---
+# AutoZeniq FAQs
 
-# AutoZeniq Product and Technical FAQs
+### What is AutoZeniq?
+AutoZeniq helps online businesses manage customer conversations and commerce operations. **Status: Partially Available.** The tools available to you depend on your workspace, plan, and connections.
 
-These answers describe code reviewed on the application repository's `main` branch. Production access can depend on provider approval, tenant configuration, permissions, entitlements, and deployment.
+### Is AutoZeniq only a chatbot?
+No. It may also include inbox, catalog, storefront, order, inventory, and team workflows. **Status: Partially Available.** Confirm the current options in your workspace.
 
-### What does AutoZeniq include?
+### Does AutoZeniq guarantee correct AI answers?
+No. AI assistance can be useful but can make mistakes. **Status: Partially Available.** Review important customer-facing answers before sending.
 
-The reviewed product includes tenant workspaces, a shared inbox, AI assistance and knowledge retrieval, catalog and order workflows, a store builder, CRM tools, courier integrations, and selected automation and administration functions. See the [current feature inventory](./current-feature-inventory.md) for status and limitations.
+### Does a courier update mark a cash-on-delivery order as paid?
+No. A delivery or courier remittance update is not, by itself, verified customer payment. Record payment only after the applicable payment method or customer collection is independently confirmed.
 
-### Does a merchant need Shopify or WooCommerce?
+### Can I connect my messaging channel or courier?
+Possibly. **Status: Configuration Required.** Provider approval, account permissions, credentials, plan access, and workspace settings may be required.
 
-The reviewed source includes a native product catalog and storefront/checkout paths. It does not establish a general Shopify or WooCommerce synchronization integration. Custom-domain routing requires domain ownership, DNS, and TLS readiness; code in the repository does not prove that a particular store is deployed.
+### Can I use a spreadsheet as a catalog source?
+**Status: Needs Verification.** Confirm the current connection method, supported fields, sync direction, and successful first sync before relying on it.
 
-### How does Google Sheets synchronization work?
+### Where can I find plan information?
+See [Pricing and subscriptions](../pricing.md). Public prices and limits should be confirmed on the official pricing page before purchase.
 
-The backend contains a scheduled, queued, primarily pull-oriented flow for ingesting spreadsheet data, including eligible product and inventory updates. Some add-source wizard checks and previews are simulated. A working provider connection, saved credentials, configured schedule, and successful sync job must be confirmed before describing a sheet as connected or live.
-
-### Does courier COD settlement mark an order paid?
-
-No. The system has courier COD remittance and settlement records, but the reviewed `main` explicitly disables verified customer COD collection credit. A courier settlement record is not proof that a customer payment was verified and must not be described as automatically marking an order paid.
-
-### Which courier integrations are present?
-
-The reviewed application contains Pathao, Paperfly, RedX, and Steadfast adapters and related booking/tracking paths. Actual operation depends on provider credentials, approval, workspace settings, and deployment. An adapter in source is not proof that the merchant's account is connected.
-
-### Does AutoZeniq AI guarantee correct answers?
-
-No. Retrieval and guardrails can help constrain an answer using available context, but the reviewed source does not establish zero hallucinations or a fixed accuracy rate. AI Copilot reply suggestions are drafts for an agent to review; guarded automatic-response paths depend on configuration and channel setup.
-
-### What are the current subscription plans?
-
-See [Pricing and subscriptions](../pricing.md) for the current public catalog and limits. Do not reuse older plan matrices or infer that every listed payment method is available for every subscription flow.
-
-### Where can I find more implementation detail?
-
-See the [system architecture](./system-architecture.md), [security and privacy](../security.md), [order management](../products/order-management.md), and [delivery and logistics](../products/delivery-logistics.md) pages.
+### How do I troubleshoot a missing feature?
+Check plan access, workspace permissions, provider connection, required setup, and the current status label on the relevant KB page. If the issue remains, contact AutoZeniq support with the workspace and feature details.

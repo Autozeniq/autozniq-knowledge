@@ -1,151 +1,107 @@
 ---
-title: AutoZeniq Current Feature Inventory and Status
-description: Source-verified inventory of product areas, implementation status, limits, and documentation corrections.
+title: AutoZeniq Features and Availability
+description: A merchant-facing guide to AutoZeniq capabilities, setup needs, limitations, and availability.
 entity: AutoZeniq
 type: Reference
 category: products
-keywords: AutoZeniq features, implementation status, feature inventory, current product, release status
+keywords: AutoZeniq features, feature status, availability, setup, limitations
 related_entities:
-  - AutoZeniq
-  - Commerce Automation
   - Customer Support Automation
   - Storefront Builder
   - Order Management System
   - Delivery Logistics
-authority: Reviewed against application main and knowledge main
-source_commit: 0002f9abd36022b8aef9d85d42c02b92a4311e89
+official_url: https://autozeniq.com/features
 last_updated: 2026-11-20
 ---
-# AutoZeniq: Current Feature Inventory
+# Features and availability
 
-This is the consolidated, source-checked inventory of important AutoZeniq product and platform capabilities. It records what is present in the application repository's `main` branch and where older knowledge pages needed correction. A feature in source code or a test is **not** proof that it is enabled in production, deployed to customers, approved by a provider, or included in a contract. Availability can depend on plan entitlements, tenant settings, provider credentials, migrations, and deployment configuration.
+This guide summarizes customer-facing product areas and the main conditions that affect their use. A status applies only to the scope named here; a provider account, plan, workspace setting, or region may change what is available to a particular merchant. When a page says **Needs Verification**, confirm the current option in your workspace or with AutoZeniq before relying on it.
 
-## How to read the status
+## What the status labels mean
 
-- **On main** means the reviewed default-branch code or tests contain the described behavior. It does not claim production deployment or general availability.
-- **Partial / configuration-dependent** means a flow exists but depends on configuration, provider capability, or an incomplete user-facing path.
-- **Disabled** means the current default-branch code explicitly prevents the action.
-- **Not verified** means the reviewed source does not support making the claim; it does not mean the feature is planned or will be built.
-- **Development branch only** must not be presented as a current feature unless merged into `main` and verified there.
+- **Available:** currently offered for the stated use.
+- **Partially Available:** only some parts of the workflow are offered or confirmed.
+- **Configuration Required:** setup, a connected account, or workspace settings are needed.
+- **Planned:** only used for a feature announced on an official public roadmap. No roadmap date is implied here.
+- **Not Available:** the stated function is not currently offered.
+- **Needs Verification:** current account, plan, provider, or end-to-end availability must be confirmed.
 
-This inventory compares the repositories' default branches. Development branches and open pull requests are not treated as shipped unless their changes have been merged into application `main`. The inventory reflects application `main` commit `0002f9a` (2026-11-19), not unmerged branch work.
+A feature marked **Needs Verification** is not a promise that it is planned. This guide does not make claims about internal systems, release schedules, AI accuracy, or service guarantees.
 
-## Product and platform inventory
+## Customer conversations and AI
 
-### Workspaces, authentication, teams, and platform administration — On main, with caveats
+**Shared inbox — Partially Available.** Teams can work with customer conversations and replies; channel-specific features and media support vary. See [Unified Inbox](../features/unified-inbox.md) and [conversation handling](../features/conversation-management.md).
 
-AutoZeniq provisions a tenant workspace, owner membership, and eligible trial subscription at registration. Bearer access/refresh tokens support login and refresh. Authorization checks current account, tenant, membership, role, and status in the database rather than trusting token role claims alone. Owners and admins manage workspace settings and team membership; invitations can reserve seats and send an email.
+**AI assistance — Partially Available.** AI can assist with customer-support workflows. Suggested replies are drafts for a person to review. Automatic replies depend on channel setup and workspace configuration; AI answers can be incomplete or incorrect. See [AI assistance](../products/ai-agent.md) and [AI replies](../features/ai-auto-reply.md).
 
-The platform control plane supports tenant search/details, profile and status operations, allow-listed settings, plan/usage and manual-payment operations, feature flags, audit views, maintenance, staff roles, and selected operational monitoring. Super-admin impersonation is a reason-required, audited, revocable session with a 30-minute expiry.
+**Business knowledge — Configuration Required.** Add supported business information before relying on AI to answer questions about products, policies, or services. Processing and available source types can vary. Review important answers before sending them. See [Knowledge sources](../features/knowledge-base.md).
 
-**Limits:** the dashboard's invite-accept route currently simulates verification with mock state; do not describe invitation acceptance as a complete end-to-end activation flow. A separate super-admin login, dedicated JWT role authority, mandatory 2FA, or support-agent impersonation was not verified. Public claims of a dedicated `SuperAdminGuard` are stale: current authorization uses shared authentication plus database-backed role checks.
+**Media messages — Needs Verification.** Image and voice handling can vary by channel, file type, and workspace setup. Confirm the supported message type before building a customer workflow around it. See [Media messages](../features/multimodal-processing.md).
 
-### Shared inbox, messaging, and AI assistance — On main, channel/configuration-dependent
+**Workflow automation — Partially Available.** Some configured workflows can respond to an order event or a chat keyword by notifying a team member. Do not assume that every workflow action, coupon, messaging template, or abandoned-cart automation is available. See [Workflow automation](../features/automation.md).
 
-The tenant-scoped inbox supports conversation search/listing, message history, human replies, assignment, AI pause/takeover/resume, and selected real-time updates. Text, image, and voice media upload/processing paths are present. AI Copilot can generate reply suggestions for agents; suggestions are drafts and are not automatically sent. AI settings, rules, a prompt playground, model administration, and guarded AI auto-reply paths are present. Push and WebSocket notifications are available where configured.
+## Store, products, orders, and payments
 
-**Limits:** do not promise universal typing indicators, presence, read receipts, collision locks, internal notes, ticketing, or automated team/round-robin assignment from the reviewed code. Channel feature flags and model mappings do not prove that every provider adapter or message type is complete. Use the AI-state terms `active`, `paused`, and `disabled`; avoid describing AI as an order-state status.
+**Storefront builder — Configuration Required.** Store pages and domains need setup before customers can use them. Custom domains require domain ownership and correct DNS configuration; activation timing depends on readiness. See [Storefront Builder](../products/store-builder.md).
 
-### Knowledge ingestion, search, and conversational retrieval — On main
+**Products and catalog — Partially Available.** Product details, variants, categories, images, and stock information are managed in the workspace. Available tools can depend on the plan and enabled workspace settings.
 
-Tenant-authorized PDF, DOC/DOCX, CSV, JSON, and plain-text sources can be parsed and indexed asynchronously. Retrieval combines semantic vector search with PostgreSQL keyword search. Conversational Adaptive RAG can cache results, rewrite or expand queries, route by query type, rerank sources, expand parent context, apply thresholds, and detect possible conflicts.
+**Inventory — Partially Available.** Stock changes are connected to order and return workflows. Check the item and order record before promising that a change has synchronized to every connected channel.
 
-**Limits:** the reviewed code does not establish a URL crawler, a complete Q&A/chunk editor, universal citation display, a live knowledge-gap API, HyDE generation, zero hallucinations, fixed response times, or measured accuracy/cost improvements. Do not publish performance figures without current benchmark evidence.
+**Orders and payments — Partially Available.** Orders can include configured payment arrangements and more than one payment stage. A payment should be treated as received only after the relevant payment method confirms it. A courier's delivery status, collection instruction, or remittance report is not by itself verified customer-payment evidence. See [Order Management](../products/order-management.md).
 
-### External data and Google Sheets — Partial / configuration-dependent
+**Coupons and promotions — Partially Available.** Store checkout may support configured discounts. Review the final order total and the coupon terms; do not assume every limit, stacking rule, or workflow-based coupon action is supported.
 
-The backend contains a scheduled, queued Google Sheets synchronization flow that can discover tabs, classify product/FAQ/policy/knowledge content, map common English and Bengali headers, update product/inventory data, and report progress. Credential storage uses authenticated encryption and production requires configured encryption keys.
+**Returns and exchanges — Configuration Required.** Merchants can review eligible requests through configured return workflows. A return decision does not itself prove that a refund has been issued, that a courier pickup is booked, or that stock has been restored. See [Returns and Exchanges](../features/returns-takeover-automation.md).
 
-**Limits:** verified behavior is primarily pull-oriented. The dashboard add-source wizard uses simulated connection checks and mock previews in parts of the flow; its UI is not proof that a connection was persisted. Full bidirectional order append, OAuth, every advertised schedule, or every public spreadsheet workflow was not established by the reviewed implementation.
+**Product reviews — Needs Verification.** Confirm the customer submission and storefront display options before advertising review collection or public review feeds.
 
-### Workflow automation — Partial; unsupported actions fail closed
+## Courier integrations
 
-Workflows can be saved as tenant-scoped graphs, validated, published, queued, leased, and recovered. Verified connected triggers include `order_placed` and `chat_keyword`. `notify_agent` is the executable action found in the reviewed path; `send_whatsapp_template` and `apply_coupon` fail closed. `cart_abandoned` has no safe automatic event emitter in the reviewed code and is a manual bridge only.
+Courier connections require a merchant account and provider configuration. A connected courier may support some booking and tracking steps, but delivery, customer payment, courier remittance, and merchant payout are separate events. See [Delivery and Logistics](../products/delivery-logistics.md).
 
-**Limits:** do not present courier booking, lead tagging, stock reservation, arbitrary webhooks, WhatsApp template sending, coupon application, or other design-only actions as available workflow-builder actions. Safe recovery is limited to notification-only graphs.
+| Provider | Status | Public setup information |
+|---|---|---|
+| Pathao | Partially Available | A public guide lists a merchant client ID and secret as setup requirements. Confirm current fields and supported operations in your account. See [Pathao setup](../integrations/pathao-courier.md). |
+| RedX | Configuration Required | A public guide describes merchant-account authorization, but the full current setup and supported operations need confirmation. See [RedX setup](../integrations/redx-courier.md). |
+| Steadfast | Needs Verification | Confirm current setup, booking, status updates, and account availability with AutoZeniq before relying on the integration. See [Steadfast setup](../integrations/steadfast-courier.md). |
+| Paperfly | Needs Verification | Confirm current setup, booking, status updates, and account availability with AutoZeniq before relying on the integration. See [Paperfly setup](../integrations/paperfly-courier.md). |
 
-### Channels, developer API, widgets, and webhooks — On main, provider-dependent
+**COD payment confirmation — Not Available as an automatic courier-status action.** Do not mark an order paid solely because a courier delivered it, was instructed to collect cash, or later reports a remittance. Use the approved payment-verification process for the actual customer collection.
 
-Provider connection/OAuth paths exist for supported messaging providers including WhatsApp, Facebook Messenger, Instagram, Telegram, TikTok, and a website widget. Meta OAuth and WhatsApp Embedded Signup, provider webhook handling, token-health checks, and reconnect notifications are present. The scoped Public API covers conversations, messages, customers, orders, knowledge, and webhook endpoint management. Developer API keys are one-time displayed and stored as bcrypt hashes with prefix lookup. The widget uses a separate public key, can enforce allowed domains, and uses signed sessions. Outgoing webhooks have endpoint management, queued delivery, delivery history, and replay paths.
+For any provider, confirm booking results before retrying an uncertain request. If the provider dashboard and AutoZeniq show different states, pause duplicate booking attempts and contact support with the order and shipment references.
 
-**Limits:** actual availability depends on provider approval, account permissions, tenant entitlements, credentials, and deployment settings. Do not claim published Node/Python SDK packages, undocumented widget JavaScript methods, permanent provider tokens, unverified event/retry catalogs, or a universal integration count. Never embed a secret API key in browser code.
+## Business tools and workspace services
 
-### Catalog, inventory, storefront, checkout, and orders — On main
+**CRM and leads — Needs Verification.** Contact and lead workflows may depend on plan, permissions, and workspace setup. Confirm how leads are created and updated before relying on automatic lead capture. See [CRM and Leads](../products/crm-leads.md).
 
-Product/catalog functions include tenant-scoped product and variant management, categories, images, stock fields, search, publication state, and bulk operations. Inventory paths support reservation, confirmation/deduction, release, adjustment, restocking, and transaction-safe order/return handling. The storefront includes product/category pages, cart and checkout, delivery quotes, customer/shipping details, configurable payment modes, coupon validation, idempotent order submission, and public tracking. Orders use tenant-scoped records, generated order identifiers, payment/timeline records, status validation, and optional fraud-risk evaluation.
+**Follow-ups and campaigns — Needs Verification.** Confirm the available channel, recipient limits, and reporting in your workspace. Do not treat displayed engagement figures as provider-confirmed results unless the product identifies them as such.
 
-The current order lifecycle includes `CREATED`, `PENDING_CONFIRMATION`, `CONFIRMED`, `PROCESSING`, `COURIER_BOOKED`, `SHIPPED`, `IN_TRANSIT`, `OUT_FOR_DELIVERY`, `DELIVERED`, `RTO`, `RETURNED`, and `EXCHANGED`, subject to the validated transition rules. Reviews require signed purchase verification and a delivered order. Merchants can manage return/exchange requests for delivered orders; approval can restock eligible returned quantities or verify exchange stock.
+**Analytics and reports — Needs Verification.** Available reports and export scope can depend on your plan and permissions. Treat sample, estimated, or unavailable figures according to their on-screen labels; no revenue, delivery, or service-level guarantees are made here.
 
-**Limits:** merchant-mediated returns are verified; shopper self-service return submission and automatic refund transfer were not. Do not equate reservation, stock deduction, release, return approval, courier remittance, or an order status with a verified payment capture.
+**Notifications — Partially Available.** In-workspace notices may be available; browser or provider notifications require additional setup and are not guaranteed to reach every device.
 
-### Store builder, domains, tracking, and public content — Mixed / configuration-dependent
+**Team access and invitations — Partially Available.** Workspace access depends on account role and plan limits. Confirm that an invitation has been accepted before assuming a team member can sign in. See [Workspace roles and access](../products/super-admin.md).
 
-The tenant store builder supports editing settings/pages/navigation, draft preview, publishing, version history, and rollback. The reviewed default theme blueprints are `modern`, `elegant`, and `minimal`. Managed subdomains and custom domains are handled by the storefront resolver. Custom-domain readiness requires ownership, DNS, and TLS checks; stale or failed readiness can disable routing. The runtime renders published pages and configured SEO metadata.
+**Data sources and Google Sheets — Partially Available.** Spreadsheet imports may require access permission, supported columns, and a successful sync. A preview or saved connection state alone is not proof that the latest data has imported. See [Google Sheets](../integrations/google-sheets.md).
 
-Store tracking supports Meta, Google, and TikTok configuration, browser/server modes, consent purposes, origin checks, an event outbox, and provider adapters. Analytics, advertising, and matching consent are separate; optional purposes start denied. Tracking diagnostics/endpoint acknowledgement do not prove that a provider processed or reported an event.
+**Subscription plans — Available as published offers.** Starter and Growth are listed for self-service signup; Enterprise is a custom/contact-sales offer. Prices and plan limits can change, so check [current pricing](../pricing.md) before subscribing.
 
-The CMS backend has broad public read APIs, but the inspected admin write surface is limited (settings, blog, pricing, and FAQs). Public pricing/FAQ/blog paths mix CMS content with local/static or mock fallbacks; freshness depends on CMS and revalidation configuration. The full admin console described in the CMS design document is not evidence of a shipped surface.
+**Affiliate earnings and payouts — Not Available.** Do not rely on affiliate applications, commission rates, earnings, or payouts as an active service.
 
-### Courier delivery, fraud, and COD — On main, with a material payment limitation
+**Audit logs — Partially Available.** Some workspace activity may be visible to authorized users. Do not treat the log as a complete record of every change or as a payment statement.
 
-The delivery module contains Pathao, Paperfly, RedX, and Steadfast adapters, booking and bulk-booking paths, consignment records, tracking/public tracking, OTP, and signed/idempotent courier webhook handling. Conditional auto-booking follows tenant rules and selected risk/destination logic. Booking outcomes that are ambiguous are held for reconciliation rather than blindly retried. Fraud scoring uses hashed phone identifiers, anonymized platform RTO history, and tenant-local order history. Admin delivery and returns/fraud monitoring surfaces exist.
+**Public API, SDKs, and webhooks — Needs Verification.** The currently linked public developer pages need confirmation before use. Do not copy old endpoint lists, event names, SDK package names, or code examples into a live integration. See [API status](../integrations/api.md), [webhooks](../integrations/webhook.md), and [SDK status](../integrations/sdk.md).
 
-Courier COD remittance records and settlement workflows are implemented, but **verified customer COD collection credit is explicitly unavailable on the reviewed `main` branch**. A courier remittance/settlement record is not proof that a particular customer payment was verified and must not mark an order paid. The delivery analytics page labels its courier/RTO/cost/SLA examples as sample data; only narrower backend aggregates are live in the reviewed code.
+**Security and privacy claims — Needs Verification.** Follow the current privacy notice and workspace guidance. No certification, regulatory compliance, or universal security guarantee is stated in this guide. See [Security and Privacy](../security.md).
 
-### CRM, leads, pipelines, follow-ups, and campaigns — On main, with analytics caveats
+## Roadmap and release notes
 
-Tenant-scoped contacts, leads, assignment (including round-robin paths), lead conversion, pipelines/deals, activity records, work queue, scheduled follow-ups, and queued campaign broadcasts are present. Current default pipeline stages are **New Lead, Contacted, Qualified, Proposal Sent, and Negotiation**. `WON` and `LOST` are deal statuses, not default pipeline stages. Contact duplicate detection uses the tenant/channel/external-identifier tuple in the reviewed creation path, not phone number alone.
+Only features announced on an official public roadmap should be described as **Planned**. **Needs Verification** means availability must be checked; it does not mean the feature is scheduled. See [release information](../updates/changelog.md) for the scope of public release notes.
 
-Campaign creation and queued broadcasts are implemented subject to entitlements/quota. The dashboard's read/reply counts are derived estimates, not provider-measured engagement analytics.
+## Related pages
 
-### Subscription pricing, entitlements, invoices, and affiliate status — On main, with explicit limits
-
-The reviewed public catalog lists:
-
-- **Starter:** BDT 999/month or BDT 9,990/year; 1,000 messages/month, 1 team member, and 2 channels.
-- **Growth:** BDT 2,999/month or BDT 29,990/year; 5,000 messages/month, 5 team members, and 6 channels.
-- **Enterprise:** custom pricing and contact sales; limits and terms are contract-defined.
-
-Starter and Growth are the self-serve trial/checkout offers. The default trial is 14 days. Entitlements combine plan features/limits, subscription state, usage, add-ons, and tenant overrides. Verified subscription paths include SSLCommerz BDT checkout and direct bKash tokenized checkout; server-side provider verification is required. Durable invoice snapshots and recovery paths are present for verified/manual payment flows. Tenant commerce payment modes include COD-only, advance-plus-COD, full online, and partial payment; advance-plus-COD requires an explicit fixed or percentage rule.
-
-Plan-change proration can produce a quote. Immediate upgrades are not complete until a verified payment-intent settlement path is available. Do not assert that every UI-listed method (such as Nagad, Rocket, card brands, or bank transfer) is active for every subscription flow. Do not publish a plan matrix from older pages instead of the current catalog.
-
-**Affiliate program — Disabled:** the data model and read-only UI exist, but applications are closed, commission rates and payout terms are unset, and earning, commission approval, activation, and payouts are disabled pending explicit authorization. Do not publish rates, earnings, or availability.
-
-### Analytics, audit, notifications, and operations — Mixed
-
-The merchant dashboard and selected analytics endpoints cover support/AI activity, leads, response time, usage, and channel activity, with some analytics plan-gated. Tenant audit records are tenant-scoped, role-restricted, and filterable/paginated; their presence does not prove that every platform action is audited or that the ledger is immutable. Super-admin commerce/health surfaces include selected backend-backed operational signals; parts of the super-admin dashboards and the delivery analytics page use fixed, synthetic, or sample values. Do not describe those values as live customer, revenue, cost, uptime, or SLA results.
-
-In-app notifications and WebSocket updates are implemented; FCM requires configuration. Transactional email uses the configured Brevo integration. Redis-backed BullMQ processors handle selected background tasks in the backend application process; a separate worker service is not established by the reviewed Compose deployment.
-
-### Security, privacy, and runtime — On main for scoped controls; broad claims unverified
-
-Reviewed controls include live workspace membership/role checks, API scopes and quotas, separate widget rate controls, encrypted integration/tracking credentials, HMAC webhook verification/signing, AI input/output guardrails and common-identifier redaction, and a 90-day tracking-data purge. Consent is purpose-separated, default-deny for optional purposes, versioned/validated, and can suppress queued tracking events after withdrawal or expiry. Production runtime validation rejects missing/weak secrets and invalid required configuration rather than silently generating keys.
-
-These controls do **not** establish universal tenant isolation across every query/table, a universal public API rate limit, TLS version, DOMPurify coverage everywhere, immutable audit storage, a security certification, dedicated infrastructure, data residency, or an SLA. Do not claim SOC 2, HIPAA, or other certification without separate approval and evidence.
-
-## Highest-priority corrections made to older knowledge
-
-Older pages described capabilities more broadly than the checked source supports. Use this inventory and the updated linked pages where statements conflict. In particular:
-
-1. Replace the old pricing matrix and plan limits; use the values above.
-2. Distinguish subscription payments from staged storefront payments, provider verification from COD remittance, and affiliate records from enabled affiliate earnings.
-3. Correct order statuses, CRM pipeline stages, payment-mode options, inventory/return behavior, actual store themes, and domain readiness requirements.
-4. Label simulations, sample analytics, static CMS fallbacks, design documents, registry-only flags, and development branches accurately.
-5. Remove or qualify unsupported accuracy, speed, cost, conversion, uptime, customer/revenue, and “zero/guaranteed” claims.
-6. Treat implementation and tests as source evidence only; verify production deployment/provider access before making live-availability or contractual claims.
-
-## Related documents
-
-- [Capabilities](../capabilities.md)
-- [Products overview](../products/overview.md)
-- [Pricing and subscriptions](../pricing.md)
-- [Billing and entitlements](../features/billing-entitlements.md)
-- [Order management](../products/order-management.md)
-- [Delivery and logistics](../products/delivery-logistics.md)
-- [CRM and leads](../products/crm-leads.md)
-- [Store builder](../products/store-builder.md)
-- [Super Admin](../products/super-admin.md)
-- [Security and privacy](../security.md)
-- [System architecture](./system-architecture.md)
-- [Product changelog](../updates/changelog.md)
+- [Product overview](../products/overview.md)
+- [Plans and pricing](../pricing.md)
+- [FAQs](./faqs.md)
+- [Troubleshooting](../faq/technical.md)

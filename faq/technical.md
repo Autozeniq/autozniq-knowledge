@@ -1,36 +1,30 @@
 ---
-title: AutoZeniq Technical FAQ
-description: Current architecture, data, API, privacy, and security facts with evidence-based limits.
+title: AutoZeniq Setup and Troubleshooting FAQ
+description: Practical answers about AI assistance, business information, integrations, and troubleshooting.
 entity: AutoZeniq
 type: FAQ
 category: faq
-keywords: AutoZeniq technical FAQ, PostgreSQL, RAG, security, tenant access, privacy, queue
+keywords: AutoZeniq troubleshooting, AI, data, privacy, integrations, sync
 related_entities:
   - Security and Privacy
-  - System Architecture
-  - Current Feature Inventory
+  - Features and Availability
+  - Google Sheets Synchronization
 official_url: https://autozeniq.com/faq
 last_updated: 2026-11-20
 ---
-# AutoZeniq Technical FAQ
+# Setup and troubleshooting FAQ
 
-## What is the application architecture?
-The reviewed repository contains a modular NestJS backend, a Next.js merchant/public frontend, and a separate Next.js storefront runtime. PostgreSQL/Prisma backs application records and retrieval; Redis supports selected cache and queue paths. Queue processors run within the backend process in the reviewed Compose topology; a separate worker service was not established.
+## How should I use AI assistance?
+AI can help draft or organize customer responses. **Status: Partially Available.** Review important answers—especially prices, stock, delivery terms, and policies—before sending them.
 
-## How does knowledge retrieval work?
-The knowledge service supports PDF, DOC/DOCX, CSV, JSON, and plain-text ingestion. Retrieval combines vector and PostgreSQL keyword search with adaptive query, reranking, and context steps. This does not guarantee correct answers, universal citations, fixed latency, or zero hallucinations.
+## Can AI use my business information?
+Knowledge-supported assistance may use information you provide. **Status: Needs Verification.** Add current information you are authorized to share, and confirm the supported source types and processing status in your workspace.
 
-## Are all tables/queries universally tenant-isolated?
-Current authenticated routes use current account and tenant-membership/role checks, and many services scope records by tenant. The source review did not establish universal isolation for every query/table, so avoid an absolute guarantee.
+## How should I handle sensitive or regulated information?
+**Status: Needs Verification.** Review the current [Privacy Policy](https://autozeniq.com/privacy) and confirm the applicable terms with AutoZeniq before uploading sensitive or regulated information. Never include passwords, private access tokens, or payment credentials in a support request.
 
-## How are credentials and tracking protected?
-Integration and tracking credentials use authenticated encryption where enabled. Production config validation rejects missing or weak required secrets. Store tracking uses purpose-separated consent, suppresses pending events after revocation, quarantines legacy records without consent identity, and applies a 90-day tracking retention boundary. These details should not be generalized to all data categories.
+## What should I do if an order, message, or imported record looks wrong?
+Pause any downstream action, check the relevant source record and current status, and contact support with the affected order or connection reference and the time of the issue. A preview or saved connection state does not confirm that a new sync completed.
 
-## Does AutoZeniq have a security certification?
-No certification or audit attestation is established by the reviewed application repository. Do not claim SOC 2, ISO, HIPAA, penetration-test completion, or a universal TLS/rate-limit standard without separate evidence.
-
-## Related documents
-
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [System Architecture](../docs/system-architecture.md)
-- [Security and Privacy](../security.md)
+## What information helps support investigate a connection problem?
+Include the provider name, workspace, approximate time, affected record or shipment reference, and the error shown in the product. Do not send passwords, private tokens, or full payment credentials.

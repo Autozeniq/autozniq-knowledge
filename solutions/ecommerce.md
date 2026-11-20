@@ -1,10 +1,10 @@
 ---
 title: AutoZeniq E-commerce Capabilities
-description: Status-qualified overview of storefront, order, messaging, courier, catalog, and CRM capabilities for online sellers.
+description: Public overview of storefront, catalog, orders, support, and delivery workflows.
 entity: AutoZeniq
 type: Solution
 category: solutions
-keywords: AutoZeniq ecommerce, online sellers, storefront, orders, couriers, Google Sheets
+keywords: AutoZeniq ecommerce, online sellers, storefront, orders, inventory, delivery
 related_entities:
   - AI Agent
   - Storefront Builder
@@ -14,29 +14,17 @@ official_url: https://autozeniq.com/solutions/ecommerce
 last_updated: 2026-11-20
 ---
 # AutoZeniq E-commerce Capabilities
+AutoZeniq may bring storefront, catalog, order, customer support, and delivery workflows together for online sellers. **Status: Partially Available.** Your available tools depend on plan, workspace settings, and provider connections.
 
-AutoZeniq's application `main` includes tenant-workspace tools for online sellers: a shared customer inbox, AI assistance, a store builder and checkout, order and inventory management, courier integrations, knowledge sources, CRM, and selected reporting. Which functions are available depends on the workspace plan, settings, provider access, and deployment.
+- **Storefront and catalog:** **Status: Partially Available.** Confirm publishing, domain, catalog, and checkout options before launch.
+- **Orders and inventory:** **Status: Partially Available.** Confirm supported fields, stock behavior, and return process.
+- **Delivery connections:** **Status: Configuration Required.** Provider access and account setup may be required.
+- **Messaging and AI assistance:** **Status: Configuration Required.** Channel approval and workspace setup may be required.
+- **Spreadsheet sources:** **Status: Needs Verification.** Confirm sync direction, fields, and schedule before relying on live updates.
 
-## What the codebase supports
-
-- **Storefront:** edit and publish tenant pages, preview drafts, manage versions, and configure managed/custom domains. Custom domains require verified ownership, DNS, and TLS readiness.
-- **Orders and catalog:** manage products and variants, inventory, checkout, order lifecycle, payment records, and merchant-mediated returns/exchanges.
-- **Delivery:** adapters for Pathao, Steadfast, RedX, and Paperfly are present with booking/tracking flows; live use requires account credentials and provider readiness.
-- **Google Sheets:** queued, scheduled, primarily pull-oriented synchronization can classify tabs and map common English/Bengali catalog headers. The dashboard wizard has simulated states in parts; bidirectional order append is not verified.
-- **CRM and messaging:** tenant-scoped contacts, leads, deals, follow-ups, campaigns, supported messaging-provider paths, and AI suggestions.
-
-## Payment and courier note
-
-Store checkout can be configured for COD-only, advance-plus-COD, full online, or partial payment. An advance-plus-COD rule must specify an amount or percentage. Online capture requires server-side provider verification. Verified customer COD collection credit is currently disabled; courier delivery/remittance records are not proof that the customer paid and do not automatically mark an order paid.
-
-## Availability caveat
-
-An adapter, screen, API path, or test in the source repository is not evidence of production deployment, connected provider accounts, published availability, or measured outcomes. Refer to the [Current Feature Inventory](../docs/current-feature-inventory.md) for status details.
+A courier status or remittance record is not proof of customer payment. AutoZeniq does not promise error-free inventory, guaranteed delivery, or sales uplift.
 
 ## Related documents
-
-- [Products Overview](../products/overview.md)
-- [Order Management](../products/order-management.md)
-- [Delivery and Logistics](../products/delivery-logistics.md)
-- [Storefront Builder](../products/store-builder.md)
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
+- [E-commerce use case](../use-cases/ecommerce.md)
+- [Online sellers](../use-cases/online-seller.md)
+- [FAQs](../docs/faqs.md)

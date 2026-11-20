@@ -1,28 +1,22 @@
 ---
 title: Lead Management and CRM Workflows
-description: Verified CRM contacts, leads, pipelines, assignments, activities, and follow-ups; no separate Lead Agent is established.
+description: Merchant-facing overview of contacts, leads, pipeline organization, and follow-ups.
 entity: AutoZeniq
 type: Product Reference
 category: product
-keywords: AutoZeniq lead management, contacts, CRM, pipeline, assignments, follow-ups
+keywords: AutoZeniq lead management, contacts, CRM, pipeline, follow-ups
 related_entities:
-  - AutoZeniq AI Agent
-  - Lead and Contact Workflows
   - CRM and Lead Management
+  - Current Feature Inventory
 last_updated: 2026-11-20
 ---
-
 # Lead Management and CRM Workflows
+AutoZeniq may help teams organize contacts, leads, activities, deals, and follow-ups. **Status: Needs Verification.** Confirm the current tools and plan access for your workspace.
 
-The reviewed application `main` contains tenant-scoped contacts and leads, lead assignment and bulk-assignment paths, lead conversion, deal pipelines, activity records, work-queue items, and scheduled follow-ups. It does not establish a separate autonomous “Lead Agent” that continuously detects intent, collects and validates personal details, and creates qualified leads from every conversation.
+## What to expect
+- **Contact and lead organization:** **Status: Partially Available.** Supported fields and capture methods vary.
+- **Deal pipeline:** **Status: Partially Available.** Stages and permissions may be configurable.
+- **Assignments and follow-ups:** **Status: Needs Verification.** Confirm whether the required assignment or reminder behavior is enabled.
+- **Campaigns or broadcasts:** **Status: Needs Verification.** Provider rules, consent, plan limits, and channel setup may apply.
 
-## Verified CRM scope
-
-The default deal pipeline stages are **New Lead**, **Contacted**, **Qualified**, **Proposal Sent**, and **Negotiation**; pipeline configuration may differ by workspace. The reviewed contact-creation path uses a tenant/channel/external-identifier combination for duplicate detection, not phone number alone. Campaign broadcasting is queued subject to entitlement and quota limits, and displayed read/reply metrics are estimates rather than provider-verified engagement.
-
-## Related documents
-
-- [Current Feature Inventory](../../docs/current-feature-inventory.md)
-- [Lead and Contact Workflows](../../features/lead-detection.md)
-- [CRM and Lead Management](../crm-leads.md)
-- [AI Agent](../ai-agent.md)
+A separate autonomous “Lead Agent” that qualifies every conversation and creates complete leads automatically is **Not Available** unless current official documentation says otherwise. Do not promise CRM synchronization or guaranteed conversion results.

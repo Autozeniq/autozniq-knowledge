@@ -1,27 +1,22 @@
 ---
 title: Analytics and Operations Views
-description: Source-qualified summary of selected dashboard analytics and their data-quality limits; a separate Analyst Agent is not verified.
+description: Merchant-facing overview of analytics and reporting availability.
 entity: AutoZeniq
 type: Product Reference
 category: product
-keywords: AutoZeniq analytics, dashboard metrics, leads, support activity, usage
+keywords: AutoZeniq analytics, dashboard reports, operations views
 related_entities:
-  - AutoZeniq AI Agent
   - CRM and Lead Management
   - Current Feature Inventory
 last_updated: 2026-11-20
 ---
-
 # Analytics and Operations Views
+AutoZeniq may provide dashboard views for activity, conversations, leads, usage, or operations. **Status: Needs Verification.** Confirm the current reports and plan access in your workspace.
 
-The reviewed application `main` contains merchant dashboard and selected analytics endpoints for support/AI activity, leads, response time, usage, and channel activity. Some analytics are plan-gated. The source does not establish a separate natural-language “Analyst Agent” that scans every chat, feedback item, order, or customer record and produces reports.
+Treat dashboard figures as decision support, not a guarantee of revenue, cost savings, engagement, uptime, or service levels. Check the date range, source, filters, and definitions before sharing a metric.
 
-## Data limits
-
-Some figures are derived estimates; campaign read/reply counts are not provider-measured engagement. Selected Super Admin and delivery analytics surfaces include fixed, synthetic, or sample values. Do not present such data as live customer, revenue, cost, uptime, or SLA results. A metric should be described only with its scope and source.
+A separate autonomous “Analyst Agent” that continuously reviews every record is **Not Available** unless explicitly listed in current official product documentation.
 
 ## Related documents
-
-- [Current Feature Inventory](../../docs/current-feature-inventory.md)
-- [CRM and Lead Management](../crm-leads.md)
-- [System Architecture](../../docs/system-architecture.md)
+- [Pricing](../../pricing.md)
+- [FAQs](../../docs/faqs.md)

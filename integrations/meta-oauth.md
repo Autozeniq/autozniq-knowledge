@@ -1,32 +1,33 @@
 ---
 title: Meta Account Connection Status
-description: Reviewed Meta OAuth connection paths, webhook handling, token health, and provider approval caveats.
+description: Meta connection prerequisites, approval dependencies, observable status, and recovery guidance.
 entity: AutoZeniq
 type: Integration
 category: integrations
-keywords: Meta OAuth, Facebook, Instagram, account connection, webhook, token health
+keywords: Meta connection, Facebook, Instagram, WhatsApp, account connection
 related_entities:
-  - Customer Support Automation
+  - Facebook Messenger
+  - WhatsApp Business Connection
   - Shared Inbox
-  - Security and Privacy
 official_url: https://autozeniq.com/integrations/meta-oauth
 last_updated: 2026-11-20
 ---
-
 # Meta Account Connection Status
 
-The reviewed application `main` contains Meta OAuth and WhatsApp Embedded Signup connection paths, provider webhook handling, token-health checks, and reconnect notifications. These are implementation paths; they do not establish that Meta has approved a particular app, workspace, Page, account, permission, or production deployment.
+**Status: Configuration Required**
 
-## What is and is not verified
+Meta channel connections depend on the relevant business or Page access, provider approval, workspace permissions, account status, and AutoZeniq plan. The exact connection flow, permission list, supported channels, and account requirements are **Needs Verification**; use the current official connection flow or ask support.
 
-Connection and webhook code is present for supported Meta messaging providers. The reviewed source does not establish automatic renewal of every token, permanent Page tokens, a universal daily validation schedule, a specific Graph API version or permission set, or successful connection for a particular merchant.
+## Setup prerequisites
 
-Provider permissions and product availability can vary by account, app review, region, business verification, tenant entitlements, and deployment. Check the actual connection state and provider requirements before promising that messages or media can be exchanged.
+Use an authorized Meta account, select only the intended business assets, and review the consent screen before completing the connection. Confirm that the selected Page, Instagram account, or WhatsApp Business account is the one the workspace should use. Do not share access tokens or paste them into support requests.
 
-## Related documents
+## Observable behavior
 
-- [Current Feature Inventory](../docs/current-feature-inventory.md)
-- [Shared Inbox](../features/unified-inbox.md)
-- [Facebook Messenger](./facebook-messenger.md)
-- [WhatsApp](./whatsapp.md)
-- [Security and Privacy](../security.md)
+A successful connection should show the current account or channel state in the supported AutoZeniq settings and may allow the enabled channel to receive or send messages. Connection status is not a guarantee that every media type, template, comment action, or automation is supported.
+
+## Errors and recovery
+
+Common blockers include missing asset permission, provider review or business verification, an expired or revoked connection, an already-used account, or a workspace entitlement limit. Follow the current reconnect or disconnect flow, then verify the displayed account and channel state. If the provider result is ambiguous, stop and contact AutoZeniq or Meta support rather than creating duplicate connections.
+
+See [Facebook Messenger](./facebook-messenger.md) and [WhatsApp](./whatsapp.md).

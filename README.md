@@ -1,13 +1,11 @@
 ---
-title: AutoZeniq Official Knowledge Base
-description: Product, feature, integration, security, and status documentation for AutoZeniq.
+title: AutoZeniq Knowledge Base
+description: Merchant guides for AutoZeniq setup, customer support, AI assistance, commerce, delivery, and integrations.
 entity: AutoZeniq
 type: Company
 category: company
-keywords: AutoZeniq, AI commerce automation, ecommerce support, storefront, Bangladesh SaaS
+keywords: AutoZeniq, merchant help, ecommerce, customer support, storefront, integrations
 related_entities:
-  - AI Agent
-  - Commerce Automation
   - Customer Support Automation
   - Storefront Builder
   - Order Management System
@@ -15,45 +13,57 @@ related_entities:
 official_url: https://autozeniq.com/
 last_updated: 2026-11-20
 ---
-# AutoZeniq
+# AutoZeniq Knowledge Base
 
-AutoZeniq is a multi-tenant platform for customer-support and commerce operations. It brings together a shared inbox, AI-assisted responses, knowledge retrieval, CRM and lead tools, a storefront builder, order and inventory workflows, delivery integrations, and platform administration.
+Practical guides for online sellers and customer-support teams using AutoZeniq. Start with setup, connect the services your business uses, then follow the guides for customer conversations, sales, orders, and delivery.
 
-- **Official website:** [autozeniq.com](https://autozeniq.com/)
-- **Public pricing:** [autozeniq.com/pricing](https://autozeniq.com/pricing)
-- **Market focus:** online sellers, ecommerce businesses, and customer-support teams.
+- [Official website](https://autozeniq.com/)
+- [Current pricing](https://autozeniq.com/pricing)
+- [Official help center](https://autozeniq.com/docs)
 
-## Read this first: feature status
+## Feature status labels
 
-For the current evidence-backed feature list, limitations, and corrections to older pages, see the **[Current Feature Inventory](./docs/current-feature-inventory.md)**. It distinguishes current `main` code from partial/simulated flows, disabled functions, unverified claims, and deployment/provider dependencies. Source code or tests do not, by themselves, prove that a feature is deployed or available to every tenant.
+- **Available:** described as currently offered for the stated use.
+- **Partially Available:** only part of the workflow is covered; read the limitation before relying on it.
+- **Configuration Required:** needs a connected account, workspace settings, or other setup.
+- **Planned:** included only when AutoZeniq publishes it on an official roadmap; a future date is not implied here.
+- **Not Available:** the stated function is not currently offered.
+- **Needs Verification:** confirm the current plan, account, or supported workflow with AutoZeniq before relying on it.
 
-## Product areas
+Statuses apply to the specific scope described on each page. Provider access, plan, and account setup can affect availability.
 
-- **[Products overview](./products/overview.md):** workspace, support, AI, commerce, CRM, delivery, and administration.
-- **[Storefront Builder](./products/store-builder.md):** tenant store editing, preview/publish, themes, domains, and public rendering.
-- **[Order Management](./products/order-management.md):** order lifecycle, inventory, staged payments, and verification caveats.
-- **[Delivery & Logistics](./products/delivery-logistics.md):** courier booking, tracking, fraud signals, and COD remittance limitations.
-- **[CRM & Leads](./products/crm-leads.md):** contacts, leads, pipelines, follow-ups, campaigns, and affiliate status.
-- **[AI Agent](./products/ai-agent.md):** AI assistance and knowledge retrieval.
-- **[Super Admin](./products/super-admin.md):** tenant governance and selected platform operations.
-- **[Pricing](./pricing.md):** current public plan catalog and billing caveats.
+## Start and set up
 
-## Features and integrations
+- [Product overview and feature catalog](./docs/current-feature-inventory.md)
+- [Getting started](https://autozeniq.com/docs/getting-started)
+- [Plans and pricing](./pricing.md)
+- [Frequently asked questions](./docs/faqs.md)
 
-- **[Unified Inbox](./features/unified-inbox.md)** · [AI Auto-Reply](./features/ai-auto-reply.md) · [Knowledge Base](./features/knowledge-base.md) · [Adaptive RAG](./features/adaptive-rag.md)
-- **[Google Sheets Sync](./features/google-sheets-sync.md)** · [Workflow Automation](./features/automation.md) · [Billing & Entitlements](./features/billing-entitlements.md) · [Multimodal Processing](./features/multimodal-processing.md)
-- **[Security & Privacy](./security.md)** · [Sentinel Security Notes](./features/sentinel-security.md)
-- **[Public API](./integrations/api.md)** · [Developer SDK Status](./integrations/sdk.md) · [Outgoing Webhooks](./integrations/webhook.md)
-- [WhatsApp](./integrations/whatsapp.md) · [Meta OAuth](./integrations/meta-oauth.md) · [Facebook Messenger](./integrations/facebook-messenger.md) · [Telegram](./integrations/telegram.md)
-- [Pathao](./integrations/pathao-courier.md) · [Steadfast](./integrations/steadfast-courier.md) · [Google Sheets](./integrations/google-sheets.md)
+## Connect channels and services
 
-## Architecture and company information
+- [WhatsApp](./integrations/whatsapp.md) · [Facebook Messenger](./integrations/facebook-messenger.md) · [Instagram and Meta](./integrations/meta-oauth.md)
+- [Telegram](./integrations/telegram.md) · [Website chat widget](./features/unified-inbox.md)
+- [Pathao](./integrations/pathao-courier.md) · [RedX](./integrations/redx-courier.md) · [Steadfast](./integrations/steadfast-courier.md) · [Paperfly](./integrations/paperfly-courier.md)
+- [Google Sheets](./integrations/google-sheets.md) · [API status](./integrations/api.md) · [Webhooks](./integrations/webhook.md) · [SDKs](./integrations/sdk.md)
 
-- [System Architecture](./docs/system-architecture.md) · [Core Technical Innovations](./docs/core-technical-innovations.md)
-- [Capabilities](./capabilities.md) · [Entity Profile](./entity-profile.md) · [Entity Relationships](./entity-relations.md)
-- [FAQs](./faq/general.md) · [Integration FAQ](./faq/integration.md) · [Product FAQ](./faq/product.md) · [Technical FAQ](./faq/technical.md)
-- [About AutoZeniq](./company/about-autozniq.md) · [Brand Identity](./brand/brand-identity.md) · [Terminology](./brand/terminology.md) · [Changelog](./updates/changelog.md)
+## Support and AI
 
-## Documentation status
+- [Shared inbox](./features/unified-inbox.md) · [Conversation handling](./features/conversation-management.md)
+- [AI assistance](./products/ai-agent.md) · [AI replies](./features/ai-auto-reply.md) · [Knowledge sources](./features/knowledge-base.md)
+- [Workflow automation](./features/automation.md) · [Media messages](./features/multimodal-processing.md)
 
-This public knowledge base is maintained separately from the application source. Some older product and design pages may retain historical or aspirational statements; where wording conflicts, use the current feature inventory and its linked status-corrected pages. Do not infer production deployment, provider approval, customer or revenue outcomes, certifications, or service guarantees from repository evidence alone.
+## Store, orders, and delivery
+
+- [Storefront builder](./products/store-builder.md) · [Order management](./products/order-management.md)
+- [Delivery and logistics](./products/delivery-logistics.md) · [Returns and exchanges](./features/returns-takeover-automation.md)
+- [Product and payment capabilities](./glossary/commerce-automation.md)
+
+## Business tools and help
+
+- [CRM and leads](./products/crm-leads.md) · [Follow-ups and lead management](./features/lead-detection.md)
+- [Analytics status](./products/agents/analyst-agent.md) · [Account roles and access](./products/super-admin.md)
+- [Security and privacy guidance](./security.md) · [Troubleshooting](./faq/technical.md)
+
+## About this knowledge base
+
+These pages focus on merchant-visible behavior, setup requirements, limitations, and practical next steps. They do not make guarantees about AI accuracy, provider performance, delivery time, or regulatory certification. For a feature marked **Needs Verification**, check the in-app options or ask AutoZeniq support before building a business process around it.
